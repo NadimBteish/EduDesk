@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz@1,18..72&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;color:#1B2230;background:#F7F5F1;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:inherit;text-decoration:none}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#2B5AD4"/><rect x="34" y="34" width="32" height="32" rx="9" fill="none" stroke="#fff" stroke-width="6"/></svg></template>
+<div style="{{ rootStyle }}">
+
+<!-- ============ HEADER ============ -->
+<header style="position:sticky;top:0;z-index:50;background:rgba(247,245,241,0.82);backdrop-filter:blur(12px);border-bottom:1px solid rgba(27,34,48,0.07)">
+  <div style="max-width:1180px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="#top" style="display:flex;align-items:center;gap:11px">
+      <span style="width:34px;height:34px;border-radius:9px;background:var(--ed-primary,#2B5AD4);display:flex;align-items:center;justify-content:center;flex:none">
+        <span style="width:13px;height:13px;border:2.5px solid #fff;border-radius:4px;display:block"></span>
+      </span>
+      <span style="font-weight:700;font-size:18px;letter-spacing:-0.01em;color:#16203A">EduDesk<span style="color:var(--ed-primary,#2B5AD4)"> AI</span></span>
+    </a>
+    <nav style="display:flex;align-items:center;gap:30px">
+      <a href="#problem" style="font-size:14.5px;font-weight:500;color:#4B5566">The problem</a>
+      <a href="#how" style="font-size:14.5px;font-weight:500;color:#4B5566">How it works</a>
+      <a href="#why" style="font-size:14.5px;font-weight:500;color:#4B5566">Why EduDesk</a>
+      <a href="#pricing" style="font-size:14.5px;font-weight:500;color:#4B5566">Pricing</a>
+      <a href="#demo" style="display:inline-flex;align-items:center;height:42px;padding:0 20px;border-radius:var(--ed-radius,14px);background:var(--ed-primary,#2B5AD4);color:#fff;font-weight:600;font-size:14.5px;box-shadow:0 6px 18px -8px var(--ed-primary,#2B5AD4)">Book a demo</a>
+    </nav>
+  </div>
+</header>
+
+<div id="top"></div>
+
+<!-- ============ HERO ============ -->
+<section style="position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(900px 520px at 78% -8%, color-mix(in oklab, var(--ed-primary,#2B5AD4) 9%, #F7F5F1), #F7F5F1 62%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;padding:78px 32px 64px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center">
+    <div style="min-width:300px">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;background:#fff;border:1px solid rgba(27,34,48,0.09);font-size:13px;font-weight:600;color:#4B5566;margin-bottom:24px">
+        <span style="width:7px;height:7px;border-radius:999px;background:var(--ed-accent,#E8845A)"></span>
+        Built for K–12 &amp; higher education
+      </div>
+      <h1 style="margin:0 0 20px;font-size:clamp(38px,5vw,60px);line-height:1.04;letter-spacing:-0.025em;font-weight:800;color:#15203A;text-wrap:balance">Give teachers back the time they lose to tech.</h1>
+      <p style="margin:0 0 34px;font-size:clamp(17px,1.5vw,20px);line-height:1.55;color:#4B5566;max-width:520px">Make every classroom run seamlessly, so educators can focus on what matters most — their students. EduDesk AI resolves everyday tech problems instantly, and cuts your support costs along the way.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:13px;align-items:center">
+        <a href="#demo" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:var(--ed-radius,14px);background:var(--ed-primary,#2B5AD4);color:#fff;font-weight:600;font-size:16px;box-shadow:0 12px 28px -12px var(--ed-primary,#2B5AD4)">Book a demo</a>
+        <a href="#how" style="display:inline-flex;align-items:center;gap:9px;height:52px;padding:0 22px;border-radius:var(--ed-radius,14px);background:#fff;border:1px solid rgba(27,34,48,0.12);color:#1B2230;font-weight:600;font-size:16px">
+          How it works
+          <span style="display:inline-block;width:16px;height:16px;border-top:2px solid #1B2230;border-right:2px solid #1B2230;transform:rotate(45deg) translateX(-2px);opacity:0.6"></span>
+        </a>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:18px 26px;margin-top:38px;font-size:13.5px;font-weight:500;color:#6A7382">
+        <span style="display:flex;align-items:center;gap:8px"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> GDPR-ready</span>
+        <span style="display:flex;align-items:center;gap:8px"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> UK &amp; EU data residency</span>
+        <span style="display:flex;align-items:center;gap:8px"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Safeguarding-aware</span>
+      </div>
+    </div>
+
+    <!-- product mock: support thread -->
+    <div style="min-width:300px;position:relative">
+      <div style="position:absolute;-top:18px;inset:-14px -8px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 7%, #fff);border-radius:28px;transform:rotate(1.4deg)"></div>
+      <div style="position:relative;background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:22px;box-shadow:0 30px 60px -32px rgba(21,32,58,0.4);overflow:hidden">
+        <div style="display:flex;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid rgba(27,34,48,0.07)">
+          <span style="width:26px;height:26px;border-radius:7px;background:var(--ed-primary,#2B5AD4);display:flex;align-items:center;justify-content:center"><span style="width:9px;height:9px;border:2px solid #fff;border-radius:3px"></span></span>
+          <span style="font-weight:700;font-size:14.5px;color:#16203A">EduDesk AI</span>
+          <span style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#2E8B57"><span style="width:7px;height:7px;border-radius:999px;background:#2E8B57"></span>Online</span>
+        </div>
+        <div style="padding:20px 18px;display:flex;flex-direction:column;gap:14px;background:#FBFAF8">
+          <div style="align-self:flex-end;max-width:80%;background:var(--ed-primary,#2B5AD4);color:#fff;padding:11px 14px;border-radius:14px 14px 4px 14px;font-size:14.5px;line-height:1.45">The projector in Room 12 won't connect to my laptop — class starts in 5 minutes.</div>
+          <div style="align-self:flex-end;font-size:11.5px;color:#9AA2AE;margin-top:-8px">Ms. Carter · 8:54am</div>
+          <div style="align-self:flex-start;max-width:88%;background:#fff;border:1px solid rgba(27,34,48,0.08);padding:13px 15px;border-radius:14px 14px 14px 4px;font-size:14.5px;line-height:1.5;color:#28303E">
+            That display is set to the wrong input. On the projector remote, press <b>Source</b> → <b>HDMI&nbsp;2</b>. I've also re-pushed the wireless profile to your laptop.
+            <div style="display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:11px;border-top:1px solid rgba(27,34,48,0.07);font-size:13px;font-weight:600;color:#2E8B57">
+              <span style="width:18px;height:18px;border-radius:999px;background:#2E8B57;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px">✓</span>
+              Resolved in 22 seconds
+            </div>
+          </div>
+          <div style="align-self:flex-start;display:flex;align-items:center;gap:8px;font-size:12.5px;color:#8A93A0;padding-left:2px">
+            <span style="display:inline-flex;gap:3px"><span style="width:5px;height:5px;border-radius:999px;background:#C4CAD3"></span><span style="width:5px;height:5px;border-radius:999px;background:#C4CAD3"></span><span style="width:5px;height:5px;border-radius:999px;background:#C4CAD3"></span></span>
+            No ticket. No IT visit. Back to teaching.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section id="problem" data-reveal style="padding:74px 32px;scroll-margin-top:80px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="max-width:680px;margin-bottom:46px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ed-accent,#E8845A);margin-bottom:14px">The daily reality</div>
+      <h2 style="margin:0 0 16px;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-0.02em;font-weight:800;color:#15203A;text-wrap:balance">Small tech problems have a big hidden cost.</h2>
+      <p style="margin:0;font-size:18px;line-height:1.55;color:#4B5566">A projector that won't connect. A login that won't work. A printer that's down. Each one pulls a teacher out of the lesson — and lands as one more ticket on an IT team that's already stretched thin.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:22px">
+      <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:30px 28px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9AA2AE;margin-bottom:14px">For teachers</div>
+        <h3 style="margin:0 0 12px;font-size:21px;font-weight:700;letter-spacing:-0.01em;color:#1B2230">Lessons interrupted, momentum lost</h3>
+        <p style="margin:0;font-size:15.5px;line-height:1.6;color:#56606E">Every minute spent troubleshooting a device is a minute taken from students. Teachers aren't IT staff — and they shouldn't have to be.</p>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:30px 28px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9AA2AE;margin-bottom:14px">For IT teams</div>
+        <h3 style="margin:0 0 12px;font-size:21px;font-weight:700;letter-spacing:-0.01em;color:#1B2230">Buried in repetitive tickets</h3>
+        <p style="margin:0;font-size:15.5px;line-height:1.6;color:#56606E">The same low-complexity issues, over and over, crowd out the project work that actually moves the institution forward.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how" data-reveal style="padding:74px 32px;background:#15203A;scroll-margin-top:64px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="max-width:640px;margin-bottom:52px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ed-accent,#E8845A);margin-bottom:14px">How it works</div>
+      <h2 style="margin:0 0 14px;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-0.02em;font-weight:800;color:#fff;text-wrap:balance">Three simple steps. No tickets, no jargon.</h2>
+      <p style="margin:0;font-size:18px;line-height:1.55;color:#AEB7C7">A teacher reports an issue, EduDesk AI resolves it on the spot — and when it can't, a real person picks it up.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:30px 26px">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+          <span style="font-family:'Newsreader',serif;font-style:italic;font-size:34px;font-weight:400;color:var(--ed-accent,#E8845A);line-height:1">01</span>
+          <span style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>
+          </span>
+        </div>
+        <h3 style="margin:0 0 10px;font-size:20px;font-weight:700;color:#fff">Report it</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#AEB7C7">A teacher flags the problem in plain language — by app, chat or a quick message. Seconds, not a support form.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:30px 26px">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+          <span style="font-family:'Newsreader',serif;font-style:italic;font-size:34px;font-weight:400;color:var(--ed-accent,#E8845A);line-height:1">02</span>
+          <span style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+          </span>
+        </div>
+        <h3 style="margin:0 0 10px;font-size:20px;font-weight:700;color:#fff">AI resolves it instantly</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#AEB7C7">EduDesk AI knows your exact systems and fixes common issues on the spot — logins, projectors, printers, LMS access.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:30px 26px">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+          <span style="font-family:'Newsreader',serif;font-style:italic;font-size:34px;font-weight:400;color:var(--ed-accent,#E8845A);line-height:1">03</span>
+          <span style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+          </span>
+        </div>
+        <h3 style="margin:0 0 10px;font-size:20px;font-weight:700;color:#fff">A human steps in when needed</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#AEB7C7">Anything the AI can't solve goes straight to our remote support team. Either way, the teacher gets back to teaching.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section id="why" data-reveal style="padding:74px 32px;scroll-margin-top:64px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="max-width:660px;margin-bottom:46px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ed-accent,#E8845A);margin-bottom:14px">Why EduDesk AI</div>
+      <h2 style="margin:0 0 14px;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-0.02em;font-weight:800;color:#15203A;text-wrap:balance">A calmer, more predictable way to run support.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:22px">
+      <div style="display:flex;gap:18px;background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px">
+        <span style="flex:none;width:48px;height:48px;border-radius:13px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 11%, #fff);display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ed-primary,#2B5AD4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <div>
+          <h3 style="margin:0 0 8px;font-size:19px;font-weight:700;color:#1B2230">Predictable annual cost</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#56606E">One subscription instead of expensive IT staffing and overtime. You know exactly what support costs for the year.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:18px;background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px">
+        <span style="flex:none;width:48px;height:48px;border-radius:13px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 11%, #fff);display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ed-primary,#2B5AD4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </span>
+        <div>
+          <h3 style="margin:0 0 8px;font-size:19px;font-weight:700;color:#1B2230">Frees your IT team</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#56606E">Repetitive, low-complexity tickets are handled automatically — so your existing staff focus on the work that matters.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:18px;background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px">
+        <span style="flex:none;width:48px;height:48px;border-radius:13px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 11%, #fff);display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ed-primary,#2B5AD4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="9" r="2.4"/><circle cx="9" cy="18" r="2.4"/><path d="M8 7l8 1.5M7.6 16l1.8-7"/></svg>
+        </span>
+        <div>
+          <h3 style="margin:0 0 8px;font-size:19px;font-weight:700;color:#1B2230">Learns your institution</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#56606E">It maps your specific systems, software and quirks — and gets sharper at resolving your issues over time.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:18px;background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px">
+        <span style="flex:none;width:48px;height:48px;border-radius:13px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 11%, #fff);display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ed-primary,#2B5AD4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6l-7-3z"/></svg>
+        </span>
+        <div>
+          <h3 style="margin:0 0 8px;font-size:19px;font-weight:700;color:#1B2230">Serious about student data</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#56606E">Encryption, strict access controls and data residency built to education's safeguarding and privacy standards.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OUTCOMES ============ -->
+<section data-reveal style="padding:64px 32px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 7%, #F7F5F1);scroll-margin-top:64px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:38px">
+      <h2 style="margin:0;font-size:clamp(26px,3vw,38px);line-height:1.12;letter-spacing:-0.02em;font-weight:800;color:#15203A;max-width:560px;text-wrap:balance">The value lands where it counts — time, cost and calm.</h2>
+      <span style="font-size:13px;font-weight:600;color:#8A93A0;font-style:italic">Illustrative figures</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+      <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px 24px">
+        <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#2B5AD4);line-height:1">3 hrs</div>
+        <div style="margin-top:10px;font-size:15px;line-height:1.5;color:#56606E">recovered per teacher, every week</div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px 24px">
+        <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#2B5AD4);line-height:1">70%</div>
+        <div style="margin-top:10px;font-size:15px;line-height:1.5;color:#56606E">of issues resolved instantly, no human needed</div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px 24px">
+        <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#2B5AD4);line-height:1">40%</div>
+        <div style="margin-top:10px;font-size:15px;line-height:1.5;color:#56606E">lower operational support cost</div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px 24px">
+        <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#2B5AD4);line-height:1">1</div>
+        <div style="margin-top:10px;font-size:15px;line-height:1.5;color:#56606E">predictable annual IT budget line</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUILT FOR EDUCATION ============ -->
+<section data-reveal style="padding:74px 32px;scroll-margin-top:64px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="max-width:660px;margin-bottom:42px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ed-accent,#E8845A);margin-bottom:14px">Built for education</div>
+      <h2 style="margin:0 0 14px;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-0.02em;font-weight:800;color:#15203A;text-wrap:balance">One service, shaped to how schools and universities really work.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px">
+      <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;overflow:hidden">
+        <div style="height:150px;background-image:repeating-linear-gradient(45deg,#EEEAE3 0 12px,#F4F1EB 12px 24px);display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(27,34,48,0.07)">
+          <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#9AA2AE;background:#fff;padding:5px 10px;border-radius:6px">classroom photo — K–12</span>
+        </div>
+        <div style="padding:26px 28px">
+          <h3 style="margin:0 0 10px;font-size:20px;font-weight:700;color:#1B2230">K–12 schools &amp; trusts</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#56606E">Keep interactive boards, registers, printers and login systems running across every classroom — without a tech expert in the building.</p>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;overflow:hidden">
+        <div style="height:150px;background-image:repeating-linear-gradient(45deg,#EEEAE3 0 12px,#F4F1EB 12px 24px);display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(27,34,48,0.07)">
+          <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#9AA2AE;background:#fff;padding:5px 10px;border-radius:6px">lecture hall photo — higher ed</span>
+        </div>
+        <div style="padding:26px 28px">
+          <h3 style="margin:0 0 10px;font-size:20px;font-weight:700;color:#1B2230">Colleges &amp; universities</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#56606E">Support faculty across lecture halls, labs and departments — at the scale and complexity higher education demands.</p>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:18px;align-items:flex-start;background:#15203A;border-radius:18px;padding:30px 32px">
+      <span style="flex:none;width:48px;height:48px;border-radius:13px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
+      </span>
+      <div>
+        <h3 style="margin:0 0 8px;font-size:19px;font-weight:700;color:#fff">Student data, protected by design</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#AEB7C7;max-width:760px">EduDesk AI is built around education's duty of care. Data is encrypted, access is tightly controlled, and information stays within UK &amp; EU residency — with safeguarding considerations baked into how the service operates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing" data-reveal style="padding:74px 32px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 6%, #F7F5F1);scroll-margin-top:64px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="text-align:center;max-width:640px;margin:0 auto 46px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ed-accent,#E8845A);margin-bottom:14px">Pricing</div>
+      <h2 style="margin:0 0 14px;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-0.02em;font-weight:800;color:#15203A;text-wrap:balance">Simple annual subscription. No surprises.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.55;color:#4B5566">One predictable cost for the whole institution. Final pricing is tailored to your size and systems.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch">
+      <div style="display:flex;flex-direction:column;background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:20px;padding:32px 28px">
+        <h3 style="margin:0 0 6px;font-size:18px;font-weight:700;color:#1B2230">Single school</h3>
+        <p style="margin:0 0 20px;font-size:14px;color:#8A93A0">For one K–12 school</p>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px"><span style="font-size:40px;font-weight:800;letter-spacing:-0.03em;color:#15203A">£4,800</span><span style="font-size:15px;color:#8A93A0">/ year</span></div>
+        <p style="margin:0 0 22px;font-size:13px;color:#9AA2AE;font-style:italic">Illustrative</p>
+        <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:26px">
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Instant AI resolution, all staff</span>
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Remote human escalation</span>
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Setup &amp; systems mapping</span>
+        </div>
+        <a href="#demo" style="margin-top:auto;display:flex;align-items:center;justify-content:center;height:46px;border-radius:var(--ed-radius,14px);background:#fff;border:1px solid rgba(27,34,48,0.16);font-weight:600;font-size:15px;color:#1B2230">Book a demo</a>
+      </div>
+      <div style="display:flex;flex-direction:column;background:#15203A;border:1px solid #15203A;border-radius:20px;padding:32px 28px;position:relative;box-shadow:0 30px 60px -34px rgba(21,32,58,0.6)">
+        <span style="position:absolute;top:20px;right:20px;font-size:11.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#15203A;background:var(--ed-accent,#E8845A);padding:5px 11px;border-radius:999px">Most common</span>
+        <h3 style="margin:0 0 6px;font-size:18px;font-weight:700;color:#fff">Trust / District</h3>
+        <p style="margin:0 0 20px;font-size:14px;color:#9AAAC4">Multiple sites, one contract</p>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px"><span style="font-size:40px;font-weight:800;letter-spacing:-0.03em;color:#fff">£18,000</span><span style="font-size:15px;color:#9AAAC4">/ year</span></div>
+        <p style="margin:0 0 22px;font-size:13px;color:#7E8DA6;font-style:italic">Illustrative</p>
+        <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:26px">
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#CDD5E2"><span style="color:var(--ed-accent,#E8845A);font-weight:800">✓</span> Everything in Single school</span>
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#CDD5E2"><span style="color:var(--ed-accent,#E8845A);font-weight:800">✓</span> Multi-site dashboard &amp; reporting</span>
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#CDD5E2"><span style="color:var(--ed-accent,#E8845A);font-weight:800">✓</span> Priority escalation &amp; SLAs</span>
+        </div>
+        <a href="#demo" style="margin-top:auto;display:flex;align-items:center;justify-content:center;height:46px;border-radius:var(--ed-radius,14px);background:var(--ed-primary,#2B5AD4);color:#fff;font-weight:600;font-size:15px">Book a demo</a>
+      </div>
+      <div style="display:flex;flex-direction:column;background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:20px;padding:32px 28px">
+        <h3 style="margin:0 0 6px;font-size:18px;font-weight:700;color:#1B2230">University / College</h3>
+        <p style="margin:0 0 20px;font-size:14px;color:#8A93A0">Large, complex institutions</p>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px"><span style="font-size:40px;font-weight:800;letter-spacing:-0.03em;color:#15203A">Custom</span></div>
+        <p style="margin:0 0 22px;font-size:13px;color:#9AA2AE;font-style:italic">Tailored quote</p>
+        <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:26px">
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Everything in Trust / District</span>
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Department-level configuration</span>
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Dedicated account team</span>
+        </div>
+        <a href="#demo" style="margin-top:auto;display:flex;align-items:center;justify-content:center;height:46px;border-radius:var(--ed-radius,14px);background:#fff;border:1px solid rgba(27,34,48,0.16);font-weight:600;font-size:15px;color:#1B2230">Talk to us</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin:28px 0 0;font-size:13.5px;color:#8A93A0;font-style:italic">All figures shown are illustrative placeholders, not a quote.</p>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section id="demo" data-reveal style="padding:84px 32px;scroll-margin-top:64px">
+  <div style="max-width:1080px;margin:0 auto;background:var(--ed-primary,#2B5AD4);border-radius:26px;padding:clamp(40px,5vw,66px);position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(600px 360px at 88% -20%, rgba(255,255,255,0.16), transparent 70%);pointer-events:none"></div>
+    <div style="position:relative;max-width:620px">
+      <h2 style="margin:0 0 16px;font-size:clamp(30px,3.6vw,46px);line-height:1.1;letter-spacing:-0.025em;font-weight:800;color:#fff;text-wrap:balance">See EduDesk AI handle your school's real issues.</h2>
+      <p style="margin:0 0 32px;font-size:18px;line-height:1.55;color:rgba(255,255,255,0.85)">Book a 20-minute demo. We'll walk through how it resolves the everyday problems your teachers face — and what it could save you this year.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:13px">
+        <a href="#demo" style="display:inline-flex;align-items:center;height:54px;padding:0 30px;border-radius:var(--ed-radius,14px);background:#fff;color:var(--ed-primary,#2B5AD4);font-weight:700;font-size:16px">Book a demo</a>
+        <a href="#how" style="display:inline-flex;align-items:center;height:54px;padding:0 26px;border-radius:var(--ed-radius,14px);background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.3);color:#fff;font-weight:600;font-size:16px">See how it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="padding:44px 32px;border-top:1px solid rgba(27,34,48,0.08)">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px">
+    <div style="display:flex;align-items:center;gap:11px">
+      <span style="width:30px;height:30px;border-radius:8px;background:var(--ed-primary,#2B5AD4);display:flex;align-items:center;justify-content:center;flex:none"><span style="width:11px;height:11px;border:2.5px solid #fff;border-radius:3.5px"></span></span>
+      <span style="font-weight:700;font-size:16px;color:#16203A">EduDesk<span style="color:var(--ed-primary,#2B5AD4)"> AI</span></span>
+    </div>
+    <p style="margin:0;font-size:14px;color:#6A7382;max-width:420px;text-align:right">Make every classroom run seamlessly, so educators can focus on what matters most — their students.</p>
+  </div>
+  <div style="max-width:1180px;margin:24px auto 0;padding-top:20px;border-top:1px solid rgba(27,34,48,0.06);font-size:13px;color:#9AA2AE">© 2026 EduDesk AI · For K–12 and higher education · GDPR-ready</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900},&quot;primaryColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#2B5AD4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#2B5AD4&quot;,&quot;#1F6F5C&quot;,&quot;#0E7490&quot;,&quot;#2E5BB8&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#E8845A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#E8845A&quot;,&quot;#E0A53B&quot;,&quot;#C9776E&quot;,&quot;#7C6FB0&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;radius&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:14,&quot;min&quot;:0,&quot;max&quot;:24,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Theme&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props.primaryColor || '#2B5AD4';
+    const a = this.props.accentColor || '#E8845A';
+    const r = (this.props.radius ?? 14);
+    return { rootStyle: `--ed-primary:${p};--ed-accent:${a};--ed-radius:${r}px` };
+  }
+
+  componentDidMount() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const setup = () => {
+      const els = Array.from(document.querySelectorAll('[data-reveal]'));
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+        return;
+      }
+      els.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity .7s ease, transform .7s ease';
+      });
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'none';
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(el => obs.observe(el));
+      // safety: ensure everything visible shortly after load
+      setTimeout(() => els.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; }), 2500);
+    };
+    requestAnimationFrame(setup);
+  }
+}
+</script>
+</body>
+</html>
