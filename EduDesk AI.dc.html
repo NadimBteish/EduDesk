@@ -16,7 +16,78 @@
   html{scroll-behavior:smooth}
   body{margin:0;font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;color:#1B2230;background:#F7F5F1;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   a{color:inherit;text-decoration:none}
-  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  .phone-stage{min-width:300px;position:relative;display:flex;justify-content:flex-end}
+  .phone-stage:before{content:"";position:absolute;inset:34px -18px -18px 52px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 10%, #fff);border-radius:32px;transform:rotate(1.2deg);z-index:0;pointer-events:none}
+  .phone-shell{position:relative;z-index:2;width:min(100%,440px);min-height:560px;background:#07101F;border:1px solid rgba(255,255,255,0.12);border-radius:28px;box-shadow:0 34px 80px -42px rgba(21,32,58,0.66);overflow:hidden;color:#F7FAFF}
+  .phone-top{height:68px;display:flex;align-items:center;gap:12px;padding:0 20px;border-bottom:1px solid rgba(255,255,255,0.12)}
+  .phone-back{font-size:28px;color:#8FA2C2;line-height:1}
+  .phone-brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800}
+  .phone-brand-mark{width:28px;height:28px;border-radius:8px;background:var(--ed-primary,#2B5AD4);display:grid;place-items:center;flex:none}
+  .phone-brand-mark span{width:10px;height:10px;border:2px solid #fff;border-radius:3px}
+  .phone-live{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:#A6E0C7}
+  .phone-live span{width:7px;height:7px;border-radius:999px;background:#2E8B57;box-shadow:0 0 0 5px rgba(46,139,87,0.15)}
+  .phone-log{height:400px;padding:22px 18px;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+  .phone-bubble{max-width:86%;border-radius:18px;padding:13px 15px;font-size:14.5px;line-height:1.42;box-shadow:0 14px 32px -26px rgba(0,0,0,0.5);animation:phoneIn .28s ease both}
+  .phone-bubble.user{align-self:flex-end;background:var(--ed-primary,#2B5AD4);color:#fff;border-bottom-right-radius:6px}
+  .phone-bubble.ai{align-self:flex-start;background:#14243F;border:1px solid rgba(255,255,255,0.2);color:#F4F8FF;border-bottom-left-radius:6px}
+  .phone-meta{align-self:flex-end;margin-top:-7px;color:#8FA2C2;font-size:11.5px}
+  .phone-result{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.16);display:flex;align-items:center;gap:8px;color:#BFF3D7;font-size:12.5px;font-weight:800}
+  .phone-result.esc{color:#FFD3BF}
+  .phone-dot{width:18px;height:18px;border-radius:999px;background:#2E8B57;display:grid;place-items:center;color:#fff;font-size:11px;line-height:1;flex:none}
+  .phone-result.esc .phone-dot{background:var(--ed-accent,#E8845A)}
+  .phone-typing{align-self:flex-start;display:flex;gap:4px;padding:13px 15px;border-radius:16px;background:#0E1A33;border:1px solid rgba(255,255,255,0.12);animation:phoneIn .2s ease both}
+  .phone-typing span{width:6px;height:6px;border-radius:999px;background:#91A0B8;animation:phonePulse 1s ease-in-out infinite}
+  .phone-typing span:nth-child(2){animation-delay:.12s}.phone-typing span:nth-child(3){animation-delay:.24s}
+  .phone-compose{margin:0 16px 16px;height:58px;border:1px solid rgba(255,255,255,0.16);border-radius:18px;display:flex;align-items:center;gap:10px;padding:0 9px 0 16px;background:#0B162B;color:#97A5BB;font-size:14px;font-weight:600}
+  .phone-compose span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .phone-send{margin-left:auto;width:40px;height:40px;border-radius:999px;background:#F3F6FB;color:#15203A;display:grid;place-items:center;font-size:20px;font-weight:800;flex:none}
+  .live-stack{position:absolute;left:-118px;top:78px;display:grid;gap:12px;width:190px;z-index:1;pointer-events:none}
+  .live-card{background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:14px;padding:13px 14px;box-shadow:0 20px 42px -30px rgba(21,32,58,0.55);opacity:.55;transform:translateX(0);transition:.25s ease}
+  .live-card.active{opacity:1;transform:translateX(-8px)}
+  .live-card b{display:block;font-size:13px;color:#15203A;margin-bottom:4px}
+  .live-card span{display:block;font-size:12px;line-height:1.35;color:#667085}
+  @keyframes phoneIn{from{transform:translateY(12px)}to{transform:none}}
+  @keyframes phonePulse{0%,80%,100%{opacity:.35;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+  .systems-band{padding:34px 0 42px;background:#07101F;color:#fff;overflow:hidden}
+  .systems-inner{display:grid;gap:22px}
+  .systems-kicker{max-width:1180px;margin:0 auto;padding:0 32px;font-size:13px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#AEB7C7}
+  .systems-marquee{position:relative;overflow:hidden;width:100%;mask-image:linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%)}
+  .systems-marquee:before,.systems-marquee:after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
+  .systems-marquee:before{left:0;background:linear-gradient(90deg,#07101F,rgba(7,16,31,0))}
+  .systems-marquee:after{right:0;background:linear-gradient(270deg,#07101F,rgba(7,16,31,0))}
+  .systems-track{display:flex;width:max-content;animation:systems-scroll 32s linear infinite;will-change:transform}
+  .systems-row{display:flex;align-items:center;gap:18px;padding-right:18px;white-space:nowrap}
+  .system-pill{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 22px;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:#F4F7FB;font-size:17px;font-weight:800;letter-spacing:0}
+  .system-pill span{width:10px;height:10px;border-radius:3px;background:var(--ed-accent,#E8845A);box-shadow:0 0 0 5px rgba(232,132,90,0.12)}
+  .systems-marquee:hover .systems-track{animation-play-state:paused}
+  .roi-visual{margin-top:26px;padding:24px;border-radius:18px;background:#F7F5F1;border:1px solid rgba(27,34,48,0.08)}
+  .roi-visual-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:18px}
+  .roi-visual-head h4{margin:0 0 5px;font-size:17px;line-height:1.2;color:#15203A}
+  .roi-visual-head p{margin:0;font-size:13.5px;line-height:1.4;color:#667085}
+  .roi-chip{display:flex;align-items:center;min-height:38px;padding:0 13px;border-radius:999px;background:#fff;border:1px solid rgba(27,34,48,0.1);color:#15203A;font-size:12.5px;font-weight:800;white-space:nowrap}
+  .roi-compare{display:grid;gap:14px}
+  .roi-bar-label{display:flex;justify-content:space-between;gap:16px;margin-bottom:8px;color:#56606E;font-size:13px;font-weight:700}
+  .roi-bar-label strong{color:#15203A}
+  .roi-track{height:16px;border-radius:999px;background:#E9EDF3;overflow:hidden}
+  .roi-fill{display:block;height:100%;width:0;border-radius:999px;transition:width .35s ease}
+  .roi-fill.baseline{background:#8A93A0}
+  .roi-fill.edudesk{background:linear-gradient(90deg,var(--ed-primary,#2B5AD4),#6FA8FF)}
+  .roi-graph{margin-top:22px;padding-top:20px;border-top:1px solid rgba(27,34,48,0.08)}
+  .roi-graph-title{display:flex;justify-content:space-between;gap:18px;margin-bottom:14px;font-size:13px;font-weight:800;color:#15203A}
+  .roi-graph-title strong{color:var(--ed-primary,#2B5AD4)}
+  .roi-year-bars{height:150px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:end}
+  .roi-year{height:100%;display:grid;grid-template-rows:1fr auto auto;align-items:end;gap:7px;text-align:center}
+  .roi-year span{display:block;width:100%;height:12%;min-height:18px;border-radius:12px 12px 6px 6px;background:linear-gradient(180deg,var(--ed-primary,#2B5AD4),#8CB8FF);transition:height .35s ease}
+  .roi-year b{font-size:13px;color:#15203A}
+  .roi-year em{font-style:normal;font-size:12px;color:#667085}
+  .roi-footnotes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:18px}
+  .roi-footnotes span{display:flex;flex-direction:column;gap:3px;min-height:62px;padding:13px 14px;border-radius:14px;background:#fff;border:1px solid rgba(27,34,48,0.08);font-size:12.5px;color:#667085}
+  .roi-footnotes b{font-size:20px;line-height:1;color:#15203A}
+  @keyframes systems-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (max-width:980px){.roi-footnotes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:760px){.roi-visual-head,.roi-graph-title{display:grid}.roi-footnotes{grid-template-columns:1fr}.roi-year-bars{height:132px}}
+  @media (max-width:980px){.live-stack{display:none}.phone-stage{justify-content:center}.phone-shell{min-height:520px}.phone-log{height:360px}}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.systems-track{animation:none}.phone-bubble,.phone-typing{animation:none}}
 </style>
 </helmet>
 
@@ -37,6 +108,7 @@
       <a href="#how" style="font-size:14.5px;font-weight:500;color:#4B5566">How it works</a>
       <a href="#why" style="font-size:14.5px;font-weight:500;color:#4B5566">Why EduDesk</a>
       <a href="#pricing" style="font-size:14.5px;font-weight:500;color:#4B5566">Pricing</a>
+      <a href="#faq" style="font-size:14.5px;font-weight:500;color:#4B5566">FAQ</a>
       <a href="dashboard.html" style="font-size:14.5px;font-weight:600;color:#1B2230;display:inline-flex;align-items:center;height:42px;padding:0 18px;border-radius:var(--ed-radius,14px);border:1px solid rgba(27,34,48,0.14)">Dashboard</a>
       <a href="#demo" style="display:inline-flex;align-items:center;height:42px;padding:0 20px;border-radius:var(--ed-radius,14px);background:var(--ed-primary,#2B5AD4);color:#fff;font-weight:600;font-size:14.5px;box-shadow:0 6px 18px -8px var(--ed-primary,#2B5AD4)">Book a demo</a>
     </nav>
@@ -70,29 +142,72 @@
       </div>
     </div>
 
-    <!-- product mock: support thread -->
-    <div style="min-width:300px;position:relative">
-      <div style="position:absolute;-top:18px;inset:-14px -8px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 7%, #fff);border-radius:28px;transform:rotate(1.4deg)"></div>
-      <div style="position:relative;background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:22px;box-shadow:0 30px 60px -32px rgba(21,32,58,0.4);overflow:hidden">
-        <div style="display:flex;align-items:center;gap:10px;padding:15px 18px;border-bottom:1px solid rgba(27,34,48,0.07)">
-          <span style="width:26px;height:26px;border-radius:7px;background:var(--ed-primary,#2B5AD4);display:flex;align-items:center;justify-content:center"><span style="width:9px;height:9px;border:2px solid #fff;border-radius:3px"></span></span>
-          <span style="font-weight:700;font-size:14.5px;color:#16203A">EduDesk AI</span>
-          <span style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#2E8B57"><span style="width:7px;height:7px;border-radius:999px;background:#2E8B57"></span>Online</span>
+    <!-- product mock: live classroom support phone -->
+    <div class="phone-stage">
+      <div class="live-stack" aria-hidden="true">
+        <div class="live-card active"><b>Room 12</b><span>Projector fixed before registration.</span></div>
+        <div class="live-card"><b>Library printer</b><span>Queue cleared automatically.</span></div>
+        <div class="live-card"><b>Lecture Hall B</b><span>Escalated with full device context.</span></div>
+      </div>
+      <div class="phone-shell" aria-label="Interactive EduDesk AI support demo">
+        <div class="phone-top">
+          <div class="phone-back">‹</div>
+          <div class="phone-brand"><span class="phone-brand-mark"><span></span></span>EduDesk AI</div>
+          <div class="phone-live"><span></span>Live</div>
         </div>
-        <div style="padding:20px 18px;display:flex;flex-direction:column;gap:14px;background:#FBFAF8">
-          <div style="align-self:flex-end;max-width:80%;background:var(--ed-primary,#2B5AD4);color:#fff;padding:11px 14px;border-radius:14px 14px 4px 14px;font-size:14.5px;line-height:1.45">The projector in Room 12 won't connect to my laptop — class starts in 5 minutes.</div>
-          <div style="align-self:flex-end;font-size:11.5px;color:#9AA2AE;margin-top:-8px">Ms. Carter · 8:54am</div>
-          <div style="align-self:flex-start;max-width:88%;background:#fff;border:1px solid rgba(27,34,48,0.08);padding:13px 15px;border-radius:14px 14px 14px 4px;font-size:14.5px;line-height:1.5;color:#28303E">
-            That display is set to the wrong input. On the projector remote, press <b>Source</b> → <b>HDMI&nbsp;2</b>. I've also re-pushed the wireless profile to your laptop.
-            <div style="display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:11px;border-top:1px solid rgba(27,34,48,0.07);font-size:13px;font-weight:600;color:#2E8B57">
-              <span style="width:18px;height:18px;border-radius:999px;background:#2E8B57;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px">✓</span>
-              Resolved in 22 seconds
-            </div>
+        <div class="phone-log" id="heroChatLog">
+          <div class="phone-bubble user">The projector in Room 12 won't connect to my laptop — class starts in 5 minutes.</div>
+          <div class="phone-meta">Ms. Carter · 8:54am</div>
+          <div class="phone-bubble ai">That display is set to the wrong input. I pushed the wireless profile again and checked the room map.
+            <div class="phone-result"><span class="phone-dot">✓</span>Resolved in 22 seconds</div>
           </div>
-          <div style="align-self:flex-start;display:flex;align-items:center;gap:8px;font-size:12.5px;color:#8A93A0;padding-left:2px">
-            <span style="display:inline-flex;gap:3px"><span style="width:5px;height:5px;border-radius:999px;background:#C4CAD3"></span><span style="width:5px;height:5px;border-radius:999px;background:#C4CAD3"></span><span style="width:5px;height:5px;border-radius:999px;background:#C4CAD3"></span></span>
-            No ticket. No IT visit. Back to teaching.
+          <div class="phone-bubble user">A teacher in Room 8 says the printer is offline.</div>
+          <div class="phone-bubble ai">The PaperCut queue was stuck. I cleared it and restarted the print service.
+            <div class="phone-result"><span class="phone-dot">✓</span>Resolved in 31 seconds</div>
           </div>
+        </div>
+        <div class="phone-compose">
+          <span id="heroPrompt">Ask EduDesk AI about a classroom issue...</span>
+          <span class="phone-send">↑</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SYSTEMS MARQUEE ============ -->
+<section class="systems-band" data-reveal aria-label="Education systems EduDesk AI connects with">
+  <div class="systems-inner">
+    <div class="systems-kicker">Works with the systems schools already use</div>
+    <div class="systems-marquee">
+      <div class="systems-track">
+        <div class="systems-row">
+          <div class="system-pill"><span></span>Google Classroom</div>
+          <div class="system-pill"><span></span>Microsoft Teams</div>
+          <div class="system-pill"><span></span>Canvas</div>
+          <div class="system-pill"><span></span>Moodle</div>
+          <div class="system-pill"><span></span>Blackboard</div>
+          <div class="system-pill"><span></span>SIMS</div>
+          <div class="system-pill"><span></span>Arbor</div>
+          <div class="system-pill"><span></span>Bromcom</div>
+          <div class="system-pill"><span></span>PaperCut</div>
+          <div class="system-pill"><span></span>Epson projectors</div>
+          <div class="system-pill"><span></span>Microsoft Intune</div>
+          <div class="system-pill"><span></span>Jamf School</div>
+        </div>
+        <div class="systems-row" aria-hidden="true">
+          <div class="system-pill"><span></span>Google Classroom</div>
+          <div class="system-pill"><span></span>Microsoft Teams</div>
+          <div class="system-pill"><span></span>Canvas</div>
+          <div class="system-pill"><span></span>Moodle</div>
+          <div class="system-pill"><span></span>Blackboard</div>
+          <div class="system-pill"><span></span>SIMS</div>
+          <div class="system-pill"><span></span>Arbor</div>
+          <div class="system-pill"><span></span>Bromcom</div>
+          <div class="system-pill"><span></span>PaperCut</div>
+          <div class="system-pill"><span></span>Epson projectors</div>
+          <div class="system-pill"><span></span>Microsoft Intune</div>
+          <div class="system-pill"><span></span>Jamf School</div>
         </div>
       </div>
     </div>
@@ -288,6 +403,71 @@
       <h2 style="margin:0 0 14px;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-0.02em;font-weight:800;color:#15203A;text-wrap:balance">Simple annual subscription. No surprises.</h2>
       <p style="margin:0;font-size:17px;line-height:1.55;color:#4B5566">One predictable cost for the whole institution. Final pricing is tailored to your size and systems.</p>
     </div>
+
+    <!-- ROI calculator -->
+    <div style="max-width:1180px;margin:0 auto 46px;background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:20px;padding:32px 30px">
+      <h3 style="margin:0 0 6px;font-size:19px;font-weight:700;color:#1B2230">Estimate your savings</h3>
+      <p style="margin:0 0 24px;font-size:14px;color:#56606E;max-width:460px">Enter your numbers — built on the same 3&nbsp;hrs/teacher/week and 40% cost-reduction figures used across this page.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:26px">
+        <div>
+          <label for="roiStaff" style="display:block;font-size:13px;font-weight:700;color:#1B2230;margin-bottom:8px">Teaching staff</label>
+          <input id="roiStaff" type="number" min="1" data-default="60" placeholder="60" style="width:100%;height:48px;border-radius:12px;border:1px solid rgba(27,34,48,0.16);padding:0 14px;font:600 15px 'Hanken Grotesk',system-ui;color:#1B2230;outline:none;background:#F7F5F1">
+        </div>
+        <div>
+          <label for="roiSites" style="display:block;font-size:13px;font-weight:700;color:#1B2230;margin-bottom:8px">Sites / schools</label>
+          <input id="roiSites" type="number" min="1" data-default="1" placeholder="1" style="width:100%;height:48px;border-radius:12px;border:1px solid rgba(27,34,48,0.16);padding:0 14px;font:600 15px 'Hanken Grotesk',system-ui;color:#1B2230;outline:none;background:#F7F5F1">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-top:22px;border-top:1px solid rgba(27,34,48,0.08)">
+        <div>
+          <div id="roiHours" style="font-size:28px;font-weight:800;color:#2B5AD4;letter-spacing:-0.02em">—</div>
+          <div style="font-size:13px;color:#56606E;margin-top:4px">teaching hours recovered / year</div>
+        </div>
+        <div>
+          <div id="roiSaving" style="font-size:28px;font-weight:800;color:#2B5AD4;letter-spacing:-0.02em">—</div>
+          <div style="font-size:13px;color:#56606E;margin-top:4px">estimated annual saving vs. traditional IT support</div>
+        </div>
+        <div>
+          <div id="roiPlan" style="font-size:28px;font-weight:800;color:#2B5AD4;letter-spacing:-0.02em">—</div>
+          <div style="font-size:13px;color:#56606E;margin-top:4px">suggested plan</div>
+        </div>
+      </div>
+      <div class="roi-visual" aria-label="Live ROI visualisation">
+        <div class="roi-visual-head">
+          <div>
+            <h4>Annual impact view</h4>
+            <p>Cost, cumulative saving, and support workload shift as your inputs change.</p>
+          </div>
+          <div class="roi-chip" id="roiLowerSpend">— lower support spend</div>
+        </div>
+        <div class="roi-compare">
+          <div>
+            <div class="roi-bar-label"><span>Traditional IT support estimate</span><strong id="roiBaselineLabel">£—</strong></div>
+            <div class="roi-track"><span class="roi-fill baseline" id="roiBaselineBar"></span></div>
+          </div>
+          <div>
+            <div class="roi-bar-label"><span>EduDesk AI annual subscription</span><strong id="roiCostLabel">£—</strong></div>
+            <div class="roi-track"><span class="roi-fill edudesk" id="roiCostBar"></span></div>
+          </div>
+        </div>
+        <div class="roi-graph">
+          <div class="roi-graph-title"><span>Projected cumulative saving</span><strong id="roiThreeYear">£— over 3 years</strong></div>
+          <div class="roi-year-bars" aria-hidden="true">
+            <div class="roi-year"><span id="roiYear1Bar"></span><b id="roiYear1Label">£—</b><em>Year 1</em></div>
+            <div class="roi-year"><span id="roiYear2Bar"></span><b id="roiYear2Label">£—</b><em>Year 2</em></div>
+            <div class="roi-year"><span id="roiYear3Bar"></span><b id="roiYear3Label">£—</b><em>Year 3</em></div>
+          </div>
+        </div>
+        <div class="roi-footnotes">
+          <span><b id="roiPaybackPeriod">—</b> cash payback period from support-cost savings</span>
+          <span><b id="roiCostPerTeacher">—</b> cost per teacher / month</span>
+          <span><b id="roiItHoursFreed">—</b> IT team hours freed / year</span>
+          <span><b id="roiTicketsAvoided">—</b> low-complexity tickets deflected / year</span>
+          <span><b id="roiWeeklyHours">—</b> teacher hours recovered / week</span>
+        </div>
+      </div>
+      <p style="margin:18px 0 0;font-size:12.5px;color:#9AA2AE;font-style:italic">Illustrative estimate only, not a quote.</p>
+    </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch">
       <div style="display:flex;flex-direction:column;background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:20px;padding:32px 28px">
         <h3 style="margin:0 0 6px;font-size:18px;font-weight:700;color:#1B2230">Single school</h3>
@@ -328,6 +508,48 @@
       </div>
     </div>
     <p style="text-align:center;margin:28px 0 0;font-size:13.5px;color:#8A93A0;font-style:italic">All figures shown are illustrative placeholders, not a quote.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" data-reveal style="padding:74px 32px;scroll-margin-top:64px">
+  <style>
+    .faq-item summary{cursor:pointer;list-style:none}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item .faq-chevron{transition:transform .2s ease}
+    .faq-item[open] .faq-chevron{transform:rotate(180deg)}
+  </style>
+  <div style="max-width:820px;margin:0 auto">
+    <div style="max-width:640px;margin-bottom:36px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ed-accent,#E8845A);margin-bottom:14px">FAQ</div>
+      <h2 style="margin:0 0 14px;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-0.02em;font-weight:800;color:#15203A;text-wrap:balance">Questions schools ask us first.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <details class="faq-item" style="background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:16px;padding:20px 24px">
+        <summary style="display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:16px;font-weight:700;color:#1B2230">Where is our student data stored and processed?<span class="faq-chevron" style="flex:none;width:11px;height:11px;border-right:2px solid #8A93A0;border-bottom:2px solid #8A93A0;transform:rotate(45deg);margin-top:-4px"></span></summary>
+        <p style="margin:14px 0 0;font-size:14.5px;line-height:1.6;color:#56606E">All data stays within UK &amp; EU data residency, is encrypted in transit and at rest, and access is tightly controlled. EduDesk AI is built around education's safeguarding and privacy standards, and a compliance summary is available for your DPO on request.</p>
+      </details>
+      <details class="faq-item" style="background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:16px;padding:20px 24px">
+        <summary style="display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:16px;font-weight:700;color:#1B2230">How long does setup take?<span class="faq-chevron" style="flex:none;width:11px;height:11px;border-right:2px solid #8A93A0;border-bottom:2px solid #8A93A0;transform:rotate(45deg);margin-top:-4px"></span></summary>
+        <p style="margin:14px 0 0;font-size:14.5px;line-height:1.6;color:#56606E">Most single schools are mapped and live within two to three weeks. We handle the systems mapping — connecting your projectors, printers, LMS and SSO — so there's minimal work required from your existing IT staff.</p>
+      </details>
+      <details class="faq-item" style="background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:16px;padding:20px 24px">
+        <summary style="display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:16px;font-weight:700;color:#1B2230">What happens when the AI can't fix something?<span class="faq-chevron" style="flex:none;width:11px;height:11px;border-right:2px solid #8A93A0;border-bottom:2px solid #8A93A0;transform:rotate(45deg);margin-top:-4px"></span></summary>
+        <p style="margin:14px 0 0;font-size:14.5px;line-height:1.6;color:#56606E">It escalates instantly to a real person on our remote support team, with full context attached — no re-explaining the problem. Anything needing hands-on-site is flagged to your own IT team the same way.</p>
+      </details>
+      <details class="faq-item" style="background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:16px;padding:20px 24px">
+        <summary style="display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:16px;font-weight:700;color:#1B2230">Is there a minimum contract length?<span class="faq-chevron" style="flex:none;width:11px;height:11px;border-right:2px solid #8A93A0;border-bottom:2px solid #8A93A0;transform:rotate(45deg);margin-top:-4px"></span></summary>
+        <p style="margin:14px 0 0;font-size:14.5px;line-height:1.6;color:#56606E">Subscriptions run on an annual term to match school budgeting cycles. Trust and district plans can add or remove sites at renewal as your estate changes.</p>
+      </details>
+      <details class="faq-item" style="background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:16px;padding:20px 24px">
+        <summary style="display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:16px;font-weight:700;color:#1B2230">Does this replace our IT team?<span class="faq-chevron" style="flex:none;width:11px;height:11px;border-right:2px solid #8A93A0;border-bottom:2px solid #8A93A0;transform:rotate(45deg);margin-top:-4px"></span></summary>
+        <p style="margin:14px 0 0;font-size:14.5px;line-height:1.6;color:#56606E">No — it takes the repetitive, low-complexity tickets off their plate. Your team stays in control of anything hands-on-site or strategic, with more time to spend on it.</p>
+      </details>
+      <details class="faq-item" style="background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:16px;padding:20px 24px">
+        <summary style="display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:16px;font-weight:700;color:#1B2230">Which systems does EduDesk AI connect to?<span class="faq-chevron" style="flex:none;width:11px;height:11px;border-right:2px solid #8A93A0;border-bottom:2px solid #8A93A0;transform:rotate(45deg);margin-top:-4px"></span></summary>
+        <p style="margin:14px 0 0;font-size:14.5px;line-height:1.6;color:#56606E">Google Classroom, Canvas and Moodle, Epson and most classroom projector networks, PaperCut print servers, staff SSO/identity providers, and Microsoft Intune for device management — with more added on request.</p>
+      </details>
+    </div>
   </div>
 </section>
 
@@ -395,7 +617,200 @@ class Component extends DCLogic {
       // safety: ensure everything visible shortly after load
       setTimeout(() => els.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; }), 2500);
     };
-    requestAnimationFrame(setup);
+    const setupRoi = () => {
+      const staffEl = document.getElementById('roiStaff');
+      const sitesEl = document.getElementById('roiSites');
+      const hoursEl = document.getElementById('roiHours');
+      const savingEl = document.getElementById('roiSaving');
+      const planEl = document.getElementById('roiPlan');
+      const visual = {
+        lowerSpend: document.getElementById('roiLowerSpend'),
+        baselineLabel: document.getElementById('roiBaselineLabel'),
+        costLabel: document.getElementById('roiCostLabel'),
+        baselineBar: document.getElementById('roiBaselineBar'),
+        costBar: document.getElementById('roiCostBar'),
+        threeYear: document.getElementById('roiThreeYear'),
+        year1Bar: document.getElementById('roiYear1Bar'),
+        year2Bar: document.getElementById('roiYear2Bar'),
+        year3Bar: document.getElementById('roiYear3Bar'),
+        year1Label: document.getElementById('roiYear1Label'),
+        year2Label: document.getElementById('roiYear2Label'),
+        year3Label: document.getElementById('roiYear3Label'),
+        paybackPeriod: document.getElementById('roiPaybackPeriod'),
+        costPerTeacher: document.getElementById('roiCostPerTeacher'),
+        itHoursFreed: document.getElementById('roiItHoursFreed'),
+        ticketsAvoided: document.getElementById('roiTicketsAvoided'),
+        weeklyHours: document.getElementById('roiWeeklyHours')
+      };
+      if (!staffEl || !sitesEl || !hoursEl || !savingEl || !planEl || staffEl.dataset.ready === 'true') return;
+
+      staffEl.value = staffEl.value || staffEl.dataset.default || '60';
+      sitesEl.value = sitesEl.value || sitesEl.dataset.default || '1';
+
+      const formatCurrency = (value) => '£' + Math.round(value).toLocaleString();
+      const setText = (el, value) => { if (el) el.textContent = value; };
+      const setWidth = (el, value) => { if (el) el.style.width = value + '%'; };
+      const setHeight = (el, value) => { if (el) el.style.height = value + '%'; };
+
+      const planFor = (sites) => {
+        if (sites <= 1) return { name: 'Single school', cost: 4800 };
+        if (sites <= 6) return { name: 'Trust / District', cost: 18000 };
+        return { name: 'University / College', cost: 18000 + ((sites - 6) * 2500) };
+      };
+
+      const calc = () => {
+        const staff = Math.max(1, parseInt(staffEl.value, 10) || 1);
+        const sites = Math.max(1, parseInt(sitesEl.value, 10) || 1);
+        const hours = Math.round(staff * 3 * 38);
+        const plan = planFor(sites);
+        const baseline = plan.cost / 0.6;
+        const saving = Math.max(0, Math.round(baseline - plan.cost));
+        const weeklyHours = staff * 3;
+        const ticketsAvoided = Math.round(staff * 0.7 * 38);
+        const itHoursFreed = Math.round(ticketsAvoided * 0.3);
+        const paybackMonths = saving > 0 ? plan.cost / (saving / 12) : 0;
+        const costPerTeacher = plan.cost / staff / 12;
+        const spendReduction = Math.round((saving / baseline) * 100);
+        const cumulative = [saving, saving * 2, saving * 3];
+        const maxCumulative = Math.max(cumulative[2], 1);
+        hoursEl.textContent = hours.toLocaleString() + ' hrs';
+        savingEl.textContent = formatCurrency(saving);
+        planEl.textContent = plan.name;
+
+        setText(visual.lowerSpend, spendReduction + '% lower support spend');
+        setText(visual.baselineLabel, formatCurrency(baseline));
+        setText(visual.costLabel, formatCurrency(plan.cost));
+        setWidth(visual.baselineBar, 100);
+        setWidth(visual.costBar, Math.max(10, Math.round((plan.cost / baseline) * 100)));
+        setText(visual.threeYear, formatCurrency(cumulative[2]) + ' over 3 years');
+        [visual.year1Bar, visual.year2Bar, visual.year3Bar].forEach((bar, index) => {
+          setHeight(bar, Math.max(14, Math.round((cumulative[index] / maxCumulative) * 100)));
+        });
+        setText(visual.year1Label, formatCurrency(cumulative[0]));
+        setText(visual.year2Label, formatCurrency(cumulative[1]));
+        setText(visual.year3Label, formatCurrency(cumulative[2]));
+        setText(visual.paybackPeriod, paybackMonths ? paybackMonths.toFixed(1) + ' mo' : '—');
+        setText(visual.costPerTeacher, '£' + costPerTeacher.toFixed(2));
+        setText(visual.itHoursFreed, itHoursFreed.toLocaleString() + ' hrs');
+        setText(visual.ticketsAvoided, ticketsAvoided.toLocaleString());
+        setText(visual.weeklyHours, weeklyHours.toLocaleString() + ' hrs');
+      };
+
+      staffEl.addEventListener('input', calc);
+      sitesEl.addEventListener('input', calc);
+      staffEl.addEventListener('change', calc);
+      sitesEl.addEventListener('change', calc);
+      staffEl.dataset.ready = 'true';
+      sitesEl.dataset.ready = 'true';
+      calc();
+    };
+
+    const setupHeroPhone = () => {
+      const log = document.getElementById('heroChatLog');
+      const prompt = document.getElementById('heroPrompt');
+      if (!log || log.dataset.ready === 'true') return;
+      log.dataset.ready = 'true';
+
+      const liveCards = Array.from(document.querySelectorAll('.live-card'));
+      const threads = [
+        {
+          prompt: "The projector won't connect...",
+          room: 0,
+          messages: [
+            { type: 'user', text: "The projector in Room 12 won't connect to my laptop — class starts in 5 minutes.", meta: 'Ms. Carter · 8:54am' },
+            { type: 'ai', text: "I checked Room 12's device map, switched the projector input, and re-pushed the wireless profile to your laptop.", status: 'Resolved in 22 seconds' }
+          ]
+        },
+        {
+          prompt: 'Teacher cannot log into Moodle...',
+          room: 1,
+          messages: [
+            { type: 'user', text: "I can't log into Moodle and my class needs the assignment now.", meta: 'Mr. Ahmed · 9:06am' },
+            { type: 'ai', text: 'Your SSO token had expired. I refreshed the session and restored access to the Year 9 course page.', status: 'Resolved in 18 seconds' }
+          ]
+        },
+        {
+          prompt: 'Lecture hall microphone is dead...',
+          room: 2,
+          messages: [
+            { type: 'user', text: 'Lecture Hall B has no microphone audio for the seminar.', meta: 'Dr. Lewis · 9:12am' },
+            { type: 'ai', text: 'The room receiver is offline, so I escalated this with the device ID, last connection time, and room booking attached.', status: 'Escalated to a human', escalated: true }
+          ]
+        },
+        {
+          prompt: 'Printer queue is stuck...',
+          room: 1,
+          messages: [
+            { type: 'user', text: 'The library printer says offline and students are waiting.', meta: 'Office team · 9:18am' },
+            { type: 'ai', text: 'The PaperCut queue was stuck behind a failed job. I cleared it, restarted the queue, and released the waiting print jobs.', status: 'Resolved in 31 seconds' }
+          ]
+        }
+      ];
+
+      const addBubble = (msg) => {
+        const bubble = document.createElement('div');
+        bubble.className = 'phone-bubble ' + (msg.type === 'user' ? 'user' : 'ai');
+        bubble.textContent = msg.text;
+        if (msg.status) {
+          const result = document.createElement('div');
+          result.className = 'phone-result' + (msg.escalated ? ' esc' : '');
+          const dot = document.createElement('span');
+          dot.className = 'phone-dot';
+          dot.textContent = msg.escalated ? '→' : '✓';
+          result.appendChild(dot);
+          result.appendChild(document.createTextNode(msg.status));
+          bubble.appendChild(result);
+        }
+        log.appendChild(bubble);
+        if (msg.meta) {
+          const meta = document.createElement('div');
+          meta.className = 'phone-meta';
+          meta.textContent = msg.meta;
+          log.appendChild(meta);
+        }
+        log.scrollTop = log.scrollHeight;
+      };
+
+      const addTyping = () => {
+        const typing = document.createElement('div');
+        typing.className = 'phone-typing';
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        log.appendChild(typing);
+        log.scrollTop = log.scrollHeight;
+        return typing;
+      };
+
+      let threadIndex = 0;
+      const questionPause = 1400;
+      const typingPause = 1800;
+      const threadPause = 3200;
+
+      const runThread = () => {
+        const thread = threads[threadIndex % threads.length];
+        if (prompt) prompt.textContent = thread.prompt;
+        liveCards.forEach((card, i) => card.classList.toggle('active', i === thread.room));
+        log.innerHTML = '';
+
+        addBubble(thread.messages[0]);
+        setTimeout(() => {
+          const typing = addTyping();
+          setTimeout(() => {
+            typing.remove();
+            addBubble(thread.messages[1]);
+            threadIndex += 1;
+            setTimeout(runThread, threadPause);
+          }, typingPause);
+        }, questionPause);
+      };
+
+      setTimeout(runThread, 700);
+    };
+
+    requestAnimationFrame(() => {
+      setup();
+      setupRoi();
+      setupHeroPhone();
+    });
   }
 }
 </script>

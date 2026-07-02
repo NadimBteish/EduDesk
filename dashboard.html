@@ -94,6 +94,11 @@
     border-bottom:1px solid var(--ed-line);
     padding:0 34px;min-height:74px;display:flex;align-items:center;gap:18px;
   }
+  .menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;flex:none;color:var(--ed-ink-soft)}
+  .menu-btn:hover{background:rgba(21,32,58,0.06)}
+  .menu-btn svg{width:21px;height:21px}
+  .sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(8,12,24,0.45);z-index:55}
+  .sidebar-backdrop.show{display:block}
   .topbar h1{font-size:21px;font-weight:800;letter-spacing:-0.02em;color:var(--ed-ink)}
   .topbar .sub{font-size:13.5px;color:var(--ed-muted-2);font-weight:500;margin-top:2px}
   .topbar .spacer{flex:1}
@@ -354,7 +359,13 @@
     .kb-grid{grid-template-columns:1fr}
   }
   @media (max-width:780px){
-    .sidebar{display:none}
+    .sidebar{
+      position:fixed;top:0;left:0;z-index:60;
+      transform:translateX(-100%);transition:transform .25s ease;
+      box-shadow:0 0 44px rgba(0,0,0,0.35);
+    }
+    .sidebar.open{transform:translateX(0)}
+    .menu-btn{display:flex}
     .stats{grid-template-columns:1fr}
     .content{padding:22px 18px 50px}
     .topbar{padding:0 18px}
@@ -399,9 +410,14 @@
     </div>
   </aside>
 
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
   <!-- ============ MAIN ============ -->
   <main class="main">
     <div class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
       <div>
         <h1 id="pageTitle">Good morning, Sarah</h1>
         <div class="sub" id="pageSub">Here's how your classroom tech is running today.</div>
@@ -507,6 +523,8 @@
               <button class="chip" onclick="quickAsk(this,'reportLog')">Printer is offline</button>
               <button class="chip" onclick="quickAsk(this,'reportLog')">Smartboard not responding</button>
               <button class="chip" onclick="quickAsk(this,'reportLog')">No sound from speakers</button>
+              <button class="chip" onclick="quickAsk(this,'reportLog')">Laptop won't turn on</button>
+              <button class="chip" onclick="quickAsk(this,'reportLog')">Can't join the Teams call</button>
             </div>
             <form class="chat-input" onsubmit="return sendMsg(event,'reportLog')">
               <input type="text" placeholder="Describe your tech problem…" autocomplete="off" required>
@@ -796,6 +814,8 @@ const CATS = {
   smartboard:{color:'#12876A', bg:'rgba(18,135,106,0.12)', svg:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8 20h8"/>'},
   sound:{color:'#0E7490', bg:'rgba(14,116,144,0.12)', svg:'<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>'},
   wifi:{color:'#2A53CC', bg:'rgba(42,83,204,0.1)', svg:'<path d="M5 12.5a10 10 0 0 1 14 0M8 15.5a6 6 0 0 1 8 0M11 18.5a2 2 0 0 1 2 0"/><circle cx="12" cy="20" r="0.6"/>'},
+  device:{color:'#B05A3C', bg:'rgba(176,90,60,0.12)', svg:'<rect x="3.5" y="4.5" width="17" height="11" rx="2"/><path d="M2 19.5h20"/>'},
+  software:{color:'#3C6E9A', bg:'rgba(60,110,154,0.12)', svg:'<rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M3.5 9h17"/>'},
   other:{color:'#8A93A0', bg:'rgba(138,147,160,0.12)', svg:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3M12 17h.01"/>'}
 };
 
@@ -866,6 +886,16 @@ let currentRole = 'teacher';
 let currentView = 'home';
 
 // ======================================================================
+//  MOBILE SIDEBAR (hamburger drawer)
+// ======================================================================
+const sidebarEl = document.querySelector('.sidebar');
+const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+function openSidebar(){ sidebarEl.classList.add('open'); sidebarBackdrop.classList.add('show'); }
+function closeSidebar(){ sidebarEl.classList.remove('open'); sidebarBackdrop.classList.remove('show'); }
+document.getElementById('menuBtn').addEventListener('click', openSidebar);
+sidebarBackdrop.addEventListener('click', closeSidebar);
+
+// ======================================================================
 //  SIDEBAR RENDER
 // ======================================================================
 function iconSvg(name){
@@ -917,6 +947,7 @@ function go(view){
   document.getElementById('pageTitle').textContent = t.t;
   document.getElementById('pageSub').textContent = t.s;
   window.scrollTo({top:0,behavior:'smooth'});
+  closeSidebar();
 }
 
 // ======================================================================
@@ -956,6 +987,16 @@ const KB_RESPONSES = [
    reply:"Your laptop output had switched to the internal speakers. I've set the default audio device back to <b>Room 12 – Ceiling</b> and unmuted the amp. Play your video again — sound should come through now."},
   {keys:['wifi','wi-fi','internet','network','tablet','ipad','dropping','disconnect'], cat:'wifi', resolved:false, resTime:'Human',
    reply:"Several devices in Room 12 are dropping off the same access point — that points to a hardware fault I can't fix remotely. I've <b>escalated to our support team</b> with the AP details. The wired laptop connection is unaffected."},
+  {keys:['wont turn on',"won't turn on",'not turning on','wont charge',"won't charge",'not charging','battery','power button','dead laptop'], cat:'device', resolved:false, resTime:'Human',
+   reply:"That looks like a hardware fault with the charger or battery, which I can't fix remotely. I've <b>escalated this to our support team</b> and flagged a loaner device for Room 12 in the meantime."},
+  {keys:['keyboard','mouse','trackpad','webcam not','camera not','not detected','wont connect to laptop',"won't connect to laptop",'usb'], cat:'device', resolved:true, resTime:'28s',
+   reply:"That's a driver/pairing glitch. I've refreshed the USB and Bluetooth device stack on your laptop and re-paired the peripheral — give it a few seconds and try it again."},
+  {keys:['frozen','freezing','crashed','crashing',"won't open",'wont open','not responding','stuck loading','powerpoint','word','slides'], cat:'software', resolved:true, resTime:'31s',
+   reply:"I've force-closed the stuck app, cleared its cache, and relaunched it for you — your last saved version is intact. Give it a moment to reopen."},
+  {keys:['teams','zoom','video call','cant join','can\'t join','online lesson','meeting link','join the call'], cat:'software', resolved:true, resTime:'26s',
+   reply:"Your call app had a stale session token. I've reset it and re-granted camera/microphone permissions — try joining the call again, it should connect straight away."},
+  {keys:['drive','onedrive','google drive','shared file','sync','cant open the file',"can't open the file",'file wont open',"file won't open"], cat:'software', resolved:true, resTime:'24s',
+   reply:"Your file sync had stalled. I've forced a resync and refreshed your access permissions on the shared drive — the file should open normally now."},
 ];
 function matchAI(text){
   const t=text.toLowerCase();
@@ -992,8 +1033,16 @@ function handleUserText(logId,text){
       : '<div class="resolved-tag esc"><span class="check">→</span> Escalated to a human · you\'ll get an update shortly</div>';
     appendMsg(logId,'ai',block);
     const id='ED-'+(2043+(tickets.length-8));
-    tickets.unshift({id, cat:r.cat, title:text.length>60?text.slice(0,60)+'…':text, room:'Room 12', status:r.resolved?'ai':'esc', mins:0, resTime:r.resolved?r.resTime:'Human'});
-    refreshTeacher(); renderSidebar();
+    const shortTitle=text.length>60?text.slice(0,60)+'…':text;
+    tickets.unshift({id, cat:r.cat, title:shortTitle, room:'Room 12', status:r.resolved?'ai':'esc', mins:0, resTime:r.resolved?r.resTime:'Human'});
+    // mirror onto the trust-wide feed so IT/Admin see it appear live when they switch roles
+    if(r.resolved){
+      INST.unshift({id, cat:r.cat, title:shortTitle, room:'Room 12', who:'S. Carter', status:'ai', mins:0, resTime:r.resTime});
+    } else {
+      INST.unshift({id, cat:r.cat, title:shortTitle, room:'Room 12', who:'S. Carter', status:'esc', mins:0, prio:'high',
+        reason:"Reported live by Ms. Carter — EduDesk AI couldn't resolve this remotely and flagged it for a human."});
+    }
+    refreshTeacher(); renderSidebar(); renderEscalations(); renderITTickets();
   },1050);
 }
 function sendMsg(e,logId){
