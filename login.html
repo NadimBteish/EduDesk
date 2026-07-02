@@ -1,36 +1,9 @@
-from http import cookies
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from pathlib import Path
-from urllib.parse import parse_qs, urlparse
-import html
-import mimetypes
-import os
-import secrets
-
-
-ROOT = Path(__file__).resolve().parent
-PORT = int(os.environ.get("PORT", "5174"))
-SESSIONS = {}
-
-SCHOOL_DOMAINS = (
-    ".edu",
-    ".ac.uk",
-    ".sch.uk",
-    ".k12.",
-    "school",
-    "academy",
-    "college",
-    "university",
-    "trust",
-)
-
-
-LOGIN_PAGE = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EduDesk AI - Sign in</title>
+<title>EduDesk AI — Sign in</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz@1,18..72&display=swap" rel="stylesheet">
@@ -40,6 +13,8 @@ LOGIN_PAGE = """<!DOCTYPE html>
   body{min-height:100vh;font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   .shell{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr}
+
+  /* ---- story panel ---- */
   .story{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding:44px clamp(28px,4.5vw,68px);display:flex;flex-direction:column;justify-content:space-between}
   .story:before{content:"";position:absolute;inset:auto -22% -38% auto;width:640px;height:640px;border-radius:50%;background:rgba(42,83,204,.30);filter:blur(8px)}
   .brand{position:relative;display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px}
@@ -55,6 +30,8 @@ LOGIN_PAGE = """<!DOCTYPE html>
   .proof div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:17px}
   .proof b{display:block;font-size:26px;letter-spacing:-.03em;margin-bottom:4px}
   .proof span{font-size:12.5px;color:#B9C5D8;line-height:1.35}
+
+  /* ---- panel ---- */
   .panel{padding:34px clamp(22px,4vw,60px);display:grid;place-items:center}
   .card{width:min(100%,460px);background:#fff;border:1px solid var(--line);border-radius:24px;padding:36px 34px;box-shadow:0 28px 70px -48px rgba(21,32,58,.45)}
   .card h2{font-size:29px;line-height:1.12;letter-spacing:-.025em;margin:0 0 9px}
@@ -64,7 +41,6 @@ LOGIN_PAGE = """<!DOCTYPE html>
   input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(42,83,204,.11);background:#fff}
   .hint{display:flex;gap:9px;align-items:flex-start;margin:12px 0 22px;color:#697384;font-size:13px;line-height:1.45}
   .hint svg{flex:none;margin-top:1px}
-  .error{background:#FFF1ED;border:1px solid rgba(201,82,46,.22);color:#A4432E;border-radius:12px;padding:11px 13px;font-size:13.5px;font-weight:600;margin-bottom:16px}
   button.submit{width:100%;height:52px;border:none;border-radius:14px;background:var(--primary);color:#fff;font:700 15.5px 'Hanken Grotesk',system-ui;cursor:pointer;box-shadow:0 14px 28px -16px var(--primary);transition:.15s}
   button.submit:hover{filter:brightness(1.05)}
   .demo{margin-top:18px;border-top:1px solid rgba(21,32,58,.08);padding-top:17px}
@@ -72,6 +48,7 @@ LOGIN_PAGE = """<!DOCTYPE html>
   .demo button{width:100%;height:40px;background:#F2F5FC;color:var(--primary);border:1px solid rgba(42,83,204,.14);border-radius:11px;font:700 13.5px 'Hanken Grotesk',system-ui;cursor:pointer}
   .small{margin-top:22px;font-size:12.5px;color:var(--muted);line-height:1.5;text-align:center}
   .small a{color:var(--primary);font-weight:700}
+
   @media (max-width:920px){.shell{grid-template-columns:1fr}.story{min-height:auto;padding:32px 26px}.hero{margin:40px 0}.proof{grid-template-columns:1fr 1fr 1fr}}
   @media (max-width:520px){.proof{grid-template-columns:1fr}.card{padding:28px 22px;border-radius:18px}}
 </style>
@@ -83,7 +60,7 @@ LOGIN_PAGE = """<!DOCTYPE html>
     <div class="hero">
       <div class="eyebrow">Secure school access</div>
       <h1>Classroom support, ready before the lesson slips.</h1>
-      <p class="mission">Make every classroom run seamlessly, so educators can focus on what matters most - their students.</p>
+      <p class="mission">Make every classroom run seamlessly, so educators can focus on what matters most — their students.</p>
     </div>
     <div class="proof">
       <div><b>24s</b><span>average resolution for everyday issues</span></div>
@@ -91,149 +68,25 @@ LOGIN_PAGE = """<!DOCTYPE html>
       <div><b>3.2h</b><span>teacher time recovered each week</span></div>
     </div>
   </section>
+
   <section class="panel">
     <form class="card" method="post" action="/login">
       <h2>Sign in with your school email</h2>
       <p class="sub">Use an institution email to open your EduDesk AI dashboard. This demo checks the email format only.</p>
-      __ERROR__
       <label for="email">School email</label>
-      <input id="email" name="email" type="email" placeholder="sarah.carter@oakfield.edu" value="__EMAIL__" autocomplete="email" required autofocus>
+      <input id="email" name="email" type="email" placeholder="sarah.carter@oakfield.edu" autocomplete="email" required autofocus>
       <div class="hint">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#12876A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6l-7-3z"/></svg>
         <span>For the demo, any realistic school, college, or university email opens the dashboard.</span>
       </div>
-      <button class="submit" type="submit">Continue to dashboard</button>
+      <button class="submit" type="submit" onclick="if(!document.getElementById('email').checkValidity()){return true;} window.location.href='dashboard.html';return false;">Continue to dashboard</button>
       <div class="demo">
         <p>Need a sample for the pitch?</p>
         <button type="button" onclick="document.getElementById('email').value='sarah.carter@oakfield.edu'">Use demo teacher account</button>
       </div>
-      <p class="small">Looking for the marketing site? <a href="/edudesk-ai.html">View EduDesk AI</a></p>
+      <p class="small">Looking for the marketing site? <a href="edudesk-ai.html">View EduDesk&nbsp;AI</a></p>
     </form>
   </section>
 </main>
 </body>
-</html>"""
-
-
-def is_school_email(email):
-    value = email.strip().lower()
-    if "@" not in value or value.startswith("@") or value.endswith("@"):
-        return False
-    domain = value.rsplit("@", 1)[1]
-    return "." in domain and any(marker in domain for marker in SCHOOL_DOMAINS)
-
-
-def session_from(headers):
-    raw = headers.get("Cookie", "")
-    jar = cookies.SimpleCookie(raw)
-    token = jar.get("edudesk_session")
-    if not token:
-        return None
-    return SESSIONS.get(token.value)
-
-
-def login_page(email="", error=""):
-    error_html = ""
-    if error:
-        error_html = f'<div class="error">{html.escape(error)}</div>'
-    return LOGIN_PAGE.replace("__ERROR__", error_html).replace("__EMAIL__", html.escape(email))
-
-
-class EduDeskHandler(BaseHTTPRequestHandler):
-    def log_message(self, fmt, *args):
-        print("%s - %s" % (self.address_string(), fmt % args))
-
-    def send_html(self, body, status=200, headers=None):
-        data = body.encode("utf-8")
-        self.send_response(status)
-        self.send_header("Content-Type", "text/html; charset=utf-8")
-        self.send_header("Content-Length", str(len(data)))
-        if headers:
-            for key, value in headers.items():
-                self.send_header(key, value)
-        self.end_headers()
-        self.wfile.write(data)
-
-    def redirect(self, location, headers=None):
-        self.send_response(303)
-        self.send_header("Location", location)
-        if headers:
-            for key, value in headers.items():
-                self.send_header(key, value)
-        self.end_headers()
-
-    def serve_file(self, name):
-        target = (ROOT / name).resolve()
-        if ROOT not in target.parents and target != ROOT:
-            self.send_error(404)
-            return
-        if not target.exists() or not target.is_file():
-            self.send_error(404)
-            return
-        data = target.read_bytes()
-        content_type = mimetypes.guess_type(str(target))[0] or "application/octet-stream"
-        self.send_response(200)
-        self.send_header("Content-Type", content_type)
-        self.send_header("Content-Length", str(len(data)))
-        self.end_headers()
-        self.wfile.write(data)
-
-    def do_GET(self):
-        path = urlparse(self.path).path
-        if path in ("/", "/login"):
-            if session_from(self.headers):
-                self.redirect("/dashboard.html")
-                return
-            self.send_html(login_page())
-            return
-        if path == "/logout":
-            header = "edudesk_session=; Path=/; Max-Age=0; SameSite=Lax"
-            self.redirect("/", {"Set-Cookie": header})
-            return
-        if path in ("/dashboard", "/dashboard.html"):
-            if not session_from(self.headers):
-                self.redirect("/")
-                return
-            self.serve_file("dashboard.html")
-            return
-        if path in ("/landing", "/edudesk-ai.html"):
-            self.serve_file("edudesk-ai.html")
-            return
-        if path == "/EduDesk%20AI.dc.html":
-            self.serve_file("EduDesk AI.dc.html")
-            return
-        clean = path.lstrip("/")
-        if clean in {"support.js", ".thumbnail"} or clean.startswith("dist/"):
-            self.serve_file(clean)
-            return
-        self.send_error(404)
-
-    def do_POST(self):
-        path = urlparse(self.path).path
-        if path != "/login":
-            self.send_error(404)
-            return
-        length = int(self.headers.get("Content-Length", "0"))
-        body = self.rfile.read(length).decode("utf-8")
-        email = parse_qs(body).get("email", [""])[0].strip()
-        if not is_school_email(email):
-            self.send_html(
-                login_page(email, "Please use a school, college, or university email address."),
-                status=400,
-            )
-            return
-        token = secrets.token_urlsafe(32)
-        SESSIONS[token] = {"email": email}
-        header = f"edudesk_session={token}; Path=/; HttpOnly; SameSite=Lax"
-        self.redirect("/dashboard.html", {"Set-Cookie": header})
-
-
-if __name__ == "__main__":
-    try:
-        server = ThreadingHTTPServer(("localhost", PORT), EduDeskHandler)
-        print(f"EduDesk AI running at http://localhost:{PORT}/")
-        print("Press Ctrl+C to stop.")
-        server.serve_forever()
-    except Exception as exc:
-        (ROOT / "edudesk-app-startup-error.log").write_text(str(exc), encoding="utf-8")
-        raise
+</html>
