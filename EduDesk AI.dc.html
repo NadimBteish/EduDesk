@@ -504,7 +504,7 @@
       <div style="display:flex;flex-direction:column;background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:20px;padding:32px 28px">
         <h3 style="margin:0 0 6px;font-size:18px;font-weight:700;color:#1B2230">Single school</h3>
         <p style="margin:0 0 20px;font-size:14px;color:#8A93A0">For one K–12 school</p>
-        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px"><span style="font-size:40px;font-weight:800;letter-spacing:-0.03em;color:#15203A">£4,800</span><span style="font-size:15px;color:#8A93A0">/ year</span></div>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px"><span style="font-size:40px;font-weight:800;letter-spacing:-0.03em;color:#15203A">£2,500</span><span style="font-size:15px;color:#8A93A0">/ year</span></div>
         <p style="margin:0 0 22px;font-size:13px;color:#9AA2AE;font-style:italic">Illustrative</p>
         <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:26px">
           <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Instant AI resolution, all staff</span>
@@ -517,7 +517,7 @@
         <span style="position:absolute;top:20px;right:20px;font-size:11.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#15203A;background:var(--ed-accent,#E8845A);padding:5px 11px;border-radius:999px">Most common</span>
         <h3 style="margin:0 0 6px;font-size:18px;font-weight:700;color:#fff">Trust / District</h3>
         <p style="margin:0 0 20px;font-size:14px;color:#9AAAC4">Multiple sites, one contract</p>
-        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px"><span style="font-size:40px;font-weight:800;letter-spacing:-0.03em;color:#fff">£18,000</span><span style="font-size:15px;color:#9AAAC4">/ year</span></div>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px"><span style="font-size:40px;font-weight:800;letter-spacing:-0.03em;color:#fff">£7,500</span><span style="font-size:15px;color:#9AAAC4">/ year</span></div>
         <p style="margin:0 0 22px;font-size:13px;color:#7E8DA6;font-style:italic">Illustrative</p>
         <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:26px">
           <span style="display:flex;gap:10px;font-size:14.5px;color:#CDD5E2"><span style="color:var(--ed-accent,#E8845A);font-weight:800">✓</span> Everything in Single school</span>
@@ -886,8 +886,8 @@ class Component extends DCLogic {
       const setHeight = (el, value) => { if (el) el.style.height = value + '%'; };
 
       const planFor = (sites) => {
-        if (sites <= 1) return { name: 'Single school', cost: 4800 };
-        if (sites <= 6) return { name: 'Trust / District', cost: 18000 };
+        if (sites <= 1) return { name: 'Single school', cost: 2500 };
+        if (sites <= 6) return { name: 'Trust / District', cost: 7500 };
         return { name: 'University / College', cost: 18000 + ((sites - 6) * 2500) };
       };
 
