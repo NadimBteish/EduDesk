@@ -83,9 +83,64 @@
   .roi-footnotes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:18px}
   .roi-footnotes span{display:flex;flex-direction:column;gap:3px;min-height:62px;padding:13px 14px;border-radius:14px;background:#fff;border:1px solid rgba(27,34,48,0.08);font-size:12.5px;color:#667085}
   .roi-footnotes b{font-size:20px;line-height:1;color:#15203A}
+  .persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .persona-card{background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:20px;padding:30px 28px;display:flex;flex-direction:column;gap:18px;min-height:320px}
+  .persona-icon{width:48px;height:48px;border-radius:14px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 11%, #fff);display:grid;place-items:center;color:var(--ed-primary,#2B5AD4);font-weight:800}
+  .persona-list{display:grid;gap:10px;margin-top:auto}
+  .persona-list span{display:flex;gap:9px;font-size:14.5px;line-height:1.45;color:#56606E}
+  .dashboard-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:38px;align-items:center}
+  .dashboard-preview{background:#07101F;border-radius:26px;padding:34px;color:#F7FAFF;box-shadow:0 36px 80px -42px rgba(21,32,58,0.75)}
+  .dash-top{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:24px}
+  .dash-pill{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;border-radius:999px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);font-size:12px;font-weight:800;color:#A6E0C7}
+  .dash-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+  .dash-panel{background:#0E1A33;border:1px solid rgba(255,255,255,0.12);border-radius:18px;padding:20px}
+  .dash-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+  .dash-metric{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:16px}
+  .dash-metric b{display:block;font-size:28px;line-height:1;color:#fff;margin-bottom:6px}
+  .dash-metric span{font-size:12.5px;line-height:1.35;color:#AEB7C7}
+  .dash-bar-row{display:grid;grid-template-columns:92px 1fr 42px;gap:10px;align-items:center;font-size:12.5px;color:#AEB7C7;margin-top:12px}
+  .dash-bar{height:10px;border-radius:999px;background:rgba(255,255,255,0.08);overflow:hidden}
+  .dash-bar span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--ed-primary,#2B5AD4),#83B4FF)}
+  .dash-ticket{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,0.09)}
+  .dash-ticket:last-child{border-bottom:0}
+  .dash-dot{width:10px;height:10px;border-radius:999px;background:#2E8B57;box-shadow:0 0 0 5px rgba(46,139,87,0.14);margin-top:6px;flex:none}
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .trust-card{background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:24px}
+  .trust-card b{display:block;font-size:16px;color:#15203A;margin-bottom:8px}
+  .trust-card p{margin:0;font-size:14.5px;line-height:1.55;color:#56606E}
+  .case-study{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:stretch;background:#15203A;border-radius:26px;padding:34px;color:#fff}
+  .case-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .case-stat{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:18px;padding:18px}
+  .case-stat b{display:block;font-size:30px;line-height:1;color:#fff;margin-bottom:8px}
+  .case-stat span{font-size:13px;line-height:1.4;color:#CDD5E2}
   @keyframes systems-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   @media (max-width:980px){.roi-footnotes{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  @media (max-width:760px){.roi-visual-head,.roi-graph-title{display:grid}.roi-footnotes{grid-template-columns:1fr}.roi-year-bars{height:132px}}
+  @media (max-width:980px){.persona-grid,.dashboard-layout,.dash-grid,.case-study{grid-template-columns:1fr}.trust-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:760px){
+    body{overflow-x:hidden}
+    header nav{display:none!important}
+    div[style*="grid-template-columns:1.05fr 0.95fr"],
+    div[style*="grid-template-columns: 1.05fr 0.95fr"],
+    div[style*="grid-template-columns:repeat(2,1fr)"],
+    div[style*="grid-template-columns: repeat(2, 1fr)"],
+    div[style*="grid-template-columns:repeat(4,1fr)"],
+    div[style*="grid-template-columns: repeat(4, 1fr)"],
+    div[style*="grid-template-columns:1fr 1fr"],
+    div[style*="grid-template-columns: 1fr 1fr"],
+    div[style*="grid-template-columns:repeat(3,1fr);gap:20px"],
+    div[style*="grid-template-columns: repeat(3, 1fr)"][style*="gap: 20px"],
+    div[style*="grid-template-columns:repeat(3,1fr);gap:16px;padding-top"],
+    div[style*="grid-template-columns: repeat(3, 1fr)"][style*="gap: 16px"][style*="padding-top"],
+    div[style*="grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch"]{grid-template-columns:1fr!important}
+    div[style*="grid-template-columns: repeat(3, 1fr)"][style*="gap: 22px"][style*="align-items: stretch"]{grid-template-columns:1fr!important}
+    .roi-visual-head,.roi-graph-title{display:grid}
+    .roi-footnotes{grid-template-columns:1fr}
+    .roi-year-bars{height:132px}
+    .dash-metrics,.case-stat-grid,.trust-grid{grid-template-columns:1fr}
+    .dashboard-preview,.case-study{padding:24px}
+    .dash-bar-row{grid-template-columns:1fr}
+    .persona-card{min-height:auto}
+  }
   @media (max-width:980px){.live-stack{display:none}.phone-stage{justify-content:center}.phone-shell{min-height:520px}.phone-log{height:360px}}
   @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.systems-track{animation:none}.phone-bubble,.phone-typing{animation:none}}
 </style>
@@ -328,6 +383,61 @@
   </div>
 </section>
 
+<!-- ============ ROLE VALUE ============ -->
+<section data-reveal style="padding:74px 32px;background:#fff;scroll-margin-top:64px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="max-width:700px;margin-bottom:42px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ed-accent,#E8845A);margin-bottom:14px">Value by role</div>
+      <h2 style="margin:0 0 14px;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-0.02em;font-weight:800;color:#15203A;text-wrap:balance">Different teams feel the same relief in different ways.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.55;color:#56606E;max-width:620px">EduDesk AI gives each stakeholder a clear reason to support the decision: fewer interruptions, fewer repetitive tickets, and a budget that is easier to defend.</p>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v13"/><path d="M8 8h8M8 12h5"/><path d="M3 20h18"/></svg>
+        </div>
+        <div>
+          <h3 style="margin:0 0 9px;font-size:21px;font-weight:800;color:#15203A">For teachers</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#56606E">A fast way to get unstuck without leaving the lesson, chasing IT, or losing the first ten minutes of class.</p>
+        </div>
+        <div class="persona-list">
+          <span><b style="color:var(--ed-primary,#2B5AD4)">✓</b> Report issues in plain language</span>
+          <span><b style="color:var(--ed-primary,#2B5AD4)">✓</b> Get instant help for common classroom problems</span>
+          <span><b style="color:var(--ed-primary,#2B5AD4)">✓</b> Escalate without repeating the story</span>
+        </div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/><path d="M18 16l2 2 3-4"/></svg>
+        </div>
+        <div>
+          <h3 style="margin:0 0 9px;font-size:21px;font-weight:800;color:#15203A">For IT teams</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#56606E">A calmer queue where repetitive, low-complexity tickets are filtered out before they reach stretched staff.</p>
+        </div>
+        <div class="persona-list">
+          <span><b style="color:var(--ed-primary,#2B5AD4)">✓</b> Deflect password, printer and projector tickets</span>
+          <span><b style="color:var(--ed-primary,#2B5AD4)">✓</b> Receive escalations with device and room context</span>
+          <span><b style="color:var(--ed-primary,#2B5AD4)">✓</b> Spot recurring issues across sites</span>
+        </div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 16v-5M12 16V8M16 16v-8"/></svg>
+        </div>
+        <div>
+          <h3 style="margin:0 0 9px;font-size:21px;font-weight:800;color:#15203A">For finance &amp; operations</h3>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#56606E">A predictable annual support model that turns hidden disruption into visible time and cost savings.</p>
+        </div>
+        <div class="persona-list">
+          <span><b style="color:var(--ed-primary,#2B5AD4)">✓</b> Compare annual cost against staffing pressure</span>
+          <span><b style="color:var(--ed-primary,#2B5AD4)">✓</b> Track time recovered and tickets avoided</span>
+          <span><b style="color:var(--ed-primary,#2B5AD4)">✓</b> Defend the spend with operational evidence</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ OUTCOMES ============ -->
 <section data-reveal style="padding:64px 32px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 7%, #F7F5F1);scroll-margin-top:64px">
   <div style="max-width:1180px;margin:0 auto">
@@ -351,6 +461,53 @@
       <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px 24px">
         <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#2B5AD4);line-height:1">1</div>
         <div style="margin-top:10px;font-size:15px;line-height:1.5;color:#56606E">predictable annual IT budget line</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DASHBOARD PREVIEW ============ -->
+<section data-reveal style="padding:78px 32px;scroll-margin-top:64px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div class="dashboard-layout">
+      <div>
+        <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ed-accent,#E8845A);margin-bottom:14px">Manager view</div>
+        <h2 style="margin:0 0 14px;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-0.02em;font-weight:800;color:#15203A;text-wrap:balance">A dashboard that turns support noise into decisions.</h2>
+        <p style="margin:0 0 24px;font-size:17px;line-height:1.6;color:#56606E">Business managers and IT leads can see which issues are being resolved, what is escalating, and where recurring problems are costing time.</p>
+        <div style="display:grid;gap:12px">
+          <span style="display:flex;gap:10px;font-size:15px;color:#56606E"><b style="color:var(--ed-primary,#2B5AD4)">✓</b> Track tickets avoided and hours recovered</span>
+          <span style="display:flex;gap:10px;font-size:15px;color:#56606E"><b style="color:var(--ed-primary,#2B5AD4)">✓</b> See top problem rooms, systems and devices</span>
+          <span style="display:flex;gap:10px;font-size:15px;color:#56606E"><b style="color:var(--ed-primary,#2B5AD4)">✓</b> Review escalation history with context attached</span>
+        </div>
+      </div>
+      <div class="dashboard-preview" aria-label="Illustrative EduDesk AI dashboard preview">
+        <div class="dash-top">
+          <div>
+            <div style="font-size:13px;font-weight:800;color:#8FA2C2;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:7px">This month</div>
+            <h3 style="margin:0;font-size:24px;font-weight:800;color:#fff">Support impact summary</h3>
+          </div>
+          <div class="dash-pill"><span style="width:7px;height:7px;border-radius:999px;background:#2E8B57"></span> Live view</div>
+        </div>
+        <div class="dash-metrics">
+          <div class="dash-metric"><b>1,596</b><span>low-complexity tickets deflected</span></div>
+          <div class="dash-metric"><b>479</b><span>IT team hours freed</span></div>
+          <div class="dash-metric"><b>84%</b><span>resolved before escalation</span></div>
+        </div>
+        <div class="dash-grid">
+          <div class="dash-panel">
+            <h4 style="margin:0 0 14px;font-size:16px;color:#fff">Top resolved issues</h4>
+            <div class="dash-bar-row"><span>Login / SSO</span><div class="dash-bar"><span style="width:86%"></span></div><b>412</b></div>
+            <div class="dash-bar-row"><span>Printing</span><div class="dash-bar"><span style="width:64%"></span></div><b>306</b></div>
+            <div class="dash-bar-row"><span>Projectors</span><div class="dash-bar"><span style="width:52%"></span></div><b>248</b></div>
+            <div class="dash-bar-row"><span>LMS access</span><div class="dash-bar"><span style="width:41%"></span></div><b>196</b></div>
+          </div>
+          <div class="dash-panel">
+            <h4 style="margin:0 0 8px;font-size:16px;color:#fff">Recent escalations</h4>
+            <div class="dash-ticket"><span class="dash-dot"></span><div><b style="display:block;color:#fff;font-size:14px;margin-bottom:3px">Lecture Hall B receiver offline</b><span style="font-size:12.5px;color:#AEB7C7">Device ID and room booking attached</span></div></div>
+            <div class="dash-ticket"><span class="dash-dot" style="background:var(--ed-accent,#E8845A);box-shadow:0 0 0 5px rgba(232,132,90,0.14)"></span><div><b style="display:block;color:#fff;font-size:14px;margin-bottom:3px">Library printer hardware fault</b><span style="font-size:12.5px;color:#AEB7C7">On-site visit recommended</span></div></div>
+            <div class="dash-ticket"><span class="dash-dot"></span><div><b style="display:block;color:#fff;font-size:14px;margin-bottom:3px">Moodle plug-in conflict</b><span style="font-size:12.5px;color:#AEB7C7">Escalated with logs and user role</span></div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -390,6 +547,64 @@
       <div>
         <h3 style="margin:0 0 8px;font-size:19px;font-weight:700;color:#fff">Student data, protected by design</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#AEB7C7;max-width:760px">EduDesk AI is built around education's duty of care. Data is encrypted, access is tightly controlled, and information stays within UK &amp; EU residency — with safeguarding considerations baked into how the service operates.</p>
+      </div>
+    </div>
+    <div style="margin-top:22px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 6%, #F7F5F1);border:1px solid rgba(27,34,48,0.08);border-radius:22px;padding:30px">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:22px">
+        <div>
+          <div style="font-size:12.5px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--ed-accent,#E8845A);margin-bottom:8px">Trust &amp; governance</div>
+          <h3 style="margin:0;font-size:26px;line-height:1.12;font-weight:800;color:#15203A;letter-spacing:-0.02em">Ready for the questions a DPO or safeguarding lead will ask.</h3>
+        </div>
+        <span style="font-size:13px;font-weight:700;color:#56606E;background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:999px;padding:10px 14px">Compliance pack available on request</span>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-card">
+          <b>Data residency</b>
+          <p>UK &amp; EU processing options, with regional controls aligned to institutional procurement requirements.</p>
+        </div>
+        <div class="trust-card">
+          <b>Access control</b>
+          <p>Role-based access, least-privilege workflows, and a clear audit trail for human support actions.</p>
+        </div>
+        <div class="trust-card">
+          <b>Safeguarding boundaries</b>
+          <p>Student-data handling stays limited to support context, with escalation rules for sensitive requests.</p>
+        </div>
+        <div class="trust-card">
+          <b>Operational audit logs</b>
+          <p>Every resolution, escalation and support action is recorded so leaders can review what happened.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDY ============ -->
+<section data-reveal style="padding:78px 32px;background:#fff;scroll-margin-top:64px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div class="case-study">
+      <div style="display:flex;flex-direction:column;justify-content:space-between;gap:28px">
+        <div>
+          <div style="font-size:13px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--ed-accent,#E8845A);margin-bottom:14px">Illustrative case study</div>
+          <h2 style="margin:0 0 16px;font-size:clamp(28px,3.4vw,42px);line-height:1.1;letter-spacing:-0.025em;font-weight:800;color:#fff;text-wrap:balance">A multi-site trust gets time back without adding another full-time support hire.</h2>
+          <p style="margin:0;font-size:16.5px;line-height:1.6;color:#CDD5E2">Placeholder scenario for presentation use: a trust with five schools, 280 teaching staff, and a small central IT team uses EduDesk AI to absorb repetitive issues before they become queue pressure.</p>
+        </div>
+        <span style="display:inline-flex;align-items:center;width:max-content;max-width:100%;min-height:38px;padding:0 13px;border-radius:999px;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.12);font-size:12.5px;font-weight:800;color:#A6E0C7">Example figures, not a customer claim</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px;justify-content:space-between">
+        <div class="case-stat-grid">
+          <div class="case-stat"><b>3,120</b><span>teaching hours recovered across the academic year</span></div>
+          <div class="case-stat"><b>2,450</b><span>low-complexity requests resolved before IT intervention</span></div>
+          <div class="case-stat"><b>38%</b><span>estimated reduction in operational support cost</span></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:24px">
+          <h3 style="margin:0 0 12px;font-size:19px;font-weight:800;color:#fff">What changed operationally</h3>
+          <div style="display:grid;gap:11px">
+            <span style="display:flex;gap:10px;color:#CDD5E2;font-size:14.5px;line-height:1.45"><b style="color:var(--ed-accent,#E8845A)">01</b> Teachers report classroom issues through one simple channel.</span>
+            <span style="display:flex;gap:10px;color:#CDD5E2;font-size:14.5px;line-height:1.45"><b style="color:var(--ed-accent,#E8845A)">02</b> EduDesk AI handles routine fixes using the trust's exact room, device and system map.</span>
+            <span style="display:flex;gap:10px;color:#CDD5E2;font-size:14.5px;line-height:1.45"><b style="color:var(--ed-accent,#E8845A)">03</b> Central IT receives fewer repetitive tickets and better-context escalations.</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
