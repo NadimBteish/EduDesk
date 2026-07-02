@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduDesk AI — Teacher Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz@1,18..72&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ed-primary:#2B5AD4;
+    --ed-accent:#E8845A;
+    --ed-ink:#15203A;
+    --ed-ink-soft:#1B2230;
+    --ed-muted:#56606E;
+    --ed-muted-2:#8A93A0;
+    --ed-bg:#F7F5F1;
+    --ed-surface:#ffffff;
+    --ed-line:rgba(27,34,48,0.08);
+    --ed-line-2:rgba(27,34,48,0.14);
+    --ed-success:#2E8B57;
+    --ed-warn:#C9772E;
+    --ed-radius:14px;
+    --sidebar-w:248px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+    color:var(--ed-ink-soft);
+    background:var(--ed-bg);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  input,textarea,select{font-family:inherit}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:rgba(27,34,48,0.16);border-radius:8px;border:2px solid var(--ed-bg)}
+
+  .app{display:flex;min-height:100vh}
+
+  /* ============ SIDEBAR ============ */
+  .sidebar{
+    width:var(--sidebar-w);flex:none;position:sticky;top:0;height:100vh;
+    background:var(--ed-ink);color:#fff;display:flex;flex-direction:column;
+    padding:22px 16px;gap:6px;
+  }
+  .brand{display:flex;align-items:center;gap:11px;padding:6px 10px 20px}
+  .brand-mark{width:34px;height:34px;border-radius:9px;background:var(--ed-primary);display:flex;align-items:center;justify-content:center;flex:none}
+  .brand-mark span{width:13px;height:13px;border:2.5px solid #fff;border-radius:4px;display:block}
+  .brand-name{font-weight:700;font-size:18px;letter-spacing:-0.01em}
+  .brand-name b{color:#7FA3F0;font-weight:700}
+  .nav-label{font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:rgba(255,255,255,0.38);padding:14px 12px 6px}
+  .nav-item{
+    display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:11px;
+    font-size:14.5px;font-weight:600;color:rgba(255,255,255,0.72);width:100%;text-align:left;transition:.15s;
+  }
+  .nav-item svg{width:19px;height:19px;flex:none;opacity:.85}
+  .nav-item:hover{background:rgba(255,255,255,0.06);color:#fff}
+  .nav-item.active{background:var(--ed-primary);color:#fff}
+  .nav-item .badge{margin-left:auto;font-size:11.5px;font-weight:700;background:var(--ed-accent);color:#15203A;border-radius:999px;padding:2px 8px;min-width:22px;text-align:center}
+  .nav-item.active .badge{background:rgba(255,255,255,0.9);color:var(--ed-primary)}
+  .sidebar-foot{margin-top:auto;padding:14px 12px 4px;border-top:1px solid rgba(255,255,255,0.09)}
+  .teacher-card{display:flex;align-items:center;gap:11px}
+  .avatar{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#4B7BE0,#2B5AD4);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#fff;flex:none}
+  .teacher-card .meta{line-height:1.3;overflow:hidden}
+  .teacher-card .name{font-size:14px;font-weight:700}
+  .teacher-card .role{font-size:12px;color:rgba(255,255,255,0.5);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  /* ============ MAIN ============ */
+  .main{flex:1;min-width:0;display:flex;flex-direction:column}
+  .topbar{
+    position:sticky;top:0;z-index:20;
+    background:rgba(247,245,241,0.82);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--ed-line);
+    padding:0 34px;height:74px;display:flex;align-items:center;gap:20px;
+  }
+  .topbar h1{font-size:21px;font-weight:800;letter-spacing:-0.02em;color:var(--ed-ink)}
+  .topbar .sub{font-size:13.5px;color:var(--ed-muted-2);font-weight:500;margin-top:2px}
+  .topbar .spacer{flex:1}
+  .room-select{
+    display:flex;align-items:center;gap:8px;height:42px;padding:0 14px;border-radius:12px;
+    background:#fff;border:1px solid var(--ed-line-2);font-size:14px;font-weight:600;color:var(--ed-ink-soft);
+  }
+  .room-select svg{width:16px;height:16px;opacity:.6}
+  .online-pill{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ed-success)}
+  .online-pill .dot{width:8px;height:8px;border-radius:999px;background:var(--ed-success);box-shadow:0 0 0 3px rgba(46,139,87,0.15)}
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:12px;
+    background:var(--ed-primary);color:#fff;font-weight:600;font-size:14.5px;
+    box-shadow:0 10px 22px -12px var(--ed-primary);transition:.15s;
+  }
+  .btn-primary:hover{filter:brightness(1.05)}
+  .btn-primary svg{width:17px;height:17px}
+  .btn-ghost{
+    display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:12px;
+    background:#fff;border:1px solid var(--ed-line-2);font-weight:600;font-size:14.5px;color:var(--ed-ink-soft);transition:.15s;
+  }
+  .btn-ghost:hover{border-color:var(--ed-primary);color:var(--ed-primary)}
+
+  .content{padding:30px 34px 60px;max-width:1240px;width:100%}
+  .view{display:none;animation:fade .35s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* ============ STAT CARDS ============ */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:26px}
+  .stat{background:#fff;border:1px solid var(--ed-line);border-radius:18px;padding:22px 22px}
+  .stat .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .stat .ico{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center}
+  .stat .ico svg{width:21px;height:21px}
+  .stat .trend{font-size:12px;font-weight:700;padding:3px 8px;border-radius:999px}
+  .trend.up{color:var(--ed-success);background:rgba(46,139,87,0.1)}
+  .trend.flat{color:var(--ed-muted-2);background:rgba(138,147,160,0.12)}
+  .stat .num{font-size:32px;font-weight:800;letter-spacing:-0.03em;color:var(--ed-ink);line-height:1}
+  .stat .lbl{margin-top:7px;font-size:13.5px;color:var(--ed-muted);line-height:1.45}
+
+  .grid-2{display:grid;grid-template-columns:1.35fr 1fr;gap:22px}
+  .card{background:#fff;border:1px solid var(--ed-line);border-radius:18px;overflow:hidden}
+  .card-head{display:flex;align-items:center;gap:12px;padding:20px 22px;border-bottom:1px solid var(--ed-line)}
+  .card-head h2{font-size:16.5px;font-weight:700;color:var(--ed-ink)}
+  .card-head .spacer{flex:1}
+  .card-head .link{font-size:13.5px;font-weight:600;color:var(--ed-primary)}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ed-accent);margin-bottom:12px}
+
+  /* ============ CHAT / REPORT ============ */
+  .chat{display:flex;flex-direction:column;height:520px}
+  .chat-log{flex:1;overflow-y:auto;padding:22px;display:flex;flex-direction:column;gap:14px;background:#FBFAF8}
+  .msg{max-width:82%;font-size:14.5px;line-height:1.5;padding:12px 15px;border-radius:14px}
+  .msg.user{align-self:flex-end;background:var(--ed-primary);color:#fff;border-bottom-right-radius:4px}
+  .msg.ai{align-self:flex-start;background:#fff;border:1px solid var(--ed-line);color:#28303E;border-bottom-left-radius:4px}
+  .msg .time{display:block;font-size:11px;margin-top:6px;opacity:.6}
+  .msg.user .time{color:#fff}
+  .resolved-tag{display:flex;align-items:center;gap:8px;margin-top:11px;padding-top:10px;border-top:1px solid var(--ed-line);font-size:13px;font-weight:600;color:var(--ed-success)}
+  .resolved-tag.esc{color:var(--ed-warn)}
+  .resolved-tag .check{width:18px;height:18px;border-radius:999px;background:var(--ed-success);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px}
+  .resolved-tag.esc .check{background:var(--ed-warn)}
+  .typing{align-self:flex-start;display:flex;gap:4px;padding:12px 15px;background:#fff;border:1px solid var(--ed-line);border-radius:14px;border-bottom-left-radius:4px}
+  .typing span{width:7px;height:7px;border-radius:999px;background:#C4CAD3;animation:blink 1.2s infinite}
+  .typing span:nth-child(2){animation-delay:.2s}
+  .typing span:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+  .chat-input{display:flex;gap:10px;padding:16px 18px;border-top:1px solid var(--ed-line);background:#fff}
+  .chat-input input{flex:1;height:46px;padding:0 16px;border-radius:12px;border:1px solid var(--ed-line-2);font-size:14.5px;outline:none;transition:.15s}
+  .chat-input input:focus{border-color:var(--ed-primary);box-shadow:0 0 0 3px rgba(43,90,212,0.1)}
+  .chat-input button{width:46px;height:46px;border-radius:12px;background:var(--ed-primary);color:#fff;display:flex;align-items:center;justify-content:center}
+  .chat-input button svg{width:19px;height:19px}
+  .quick-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 16px;background:#fff}
+  .chip{font-size:12.5px;font-weight:600;color:var(--ed-muted);background:var(--ed-bg);border:1px solid var(--ed-line);padding:7px 12px;border-radius:999px;transition:.15s}
+  .chip:hover{border-color:var(--ed-primary);color:var(--ed-primary)}
+
+  /* ============ ACTIVITY / TICKETS ============ */
+  .activity{padding:8px 0}
+  .act-row{display:flex;gap:13px;padding:14px 22px;border-bottom:1px solid var(--ed-line)}
+  .act-row:last-child{border-bottom:none}
+  .act-ico{width:36px;height:36px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center}
+  .act-ico svg{width:18px;height:18px}
+  .act-body{flex:1;min-width:0}
+  .act-title{font-size:14px;font-weight:600;color:var(--ed-ink-soft);line-height:1.4}
+  .act-meta{font-size:12.5px;color:var(--ed-muted-2);margin-top:3px}
+  .status{font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;white-space:nowrap;align-self:flex-start}
+  .status.ai{color:var(--ed-success);background:rgba(46,139,87,0.1)}
+  .status.esc{color:var(--ed-warn);background:rgba(201,119,46,0.12)}
+  .status.open{color:var(--ed-primary);background:rgba(43,90,212,0.1)}
+
+  /* tickets table */
+  .filters{display:flex;gap:9px;margin-bottom:18px}
+  .filter{font-size:13.5px;font-weight:600;color:var(--ed-muted);background:#fff;border:1px solid var(--ed-line-2);padding:9px 15px;border-radius:11px;transition:.15s}
+  .filter.active{background:var(--ed-ink);color:#fff;border-color:var(--ed-ink)}
+  .ticket-list{display:flex;flex-direction:column;gap:12px}
+  .ticket{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--ed-line);border-radius:15px;padding:16px 20px;transition:.15s}
+  .ticket:hover{border-color:var(--ed-line-2);box-shadow:0 8px 24px -18px rgba(21,32,58,0.4)}
+  .ticket .cat-ico{width:44px;height:44px;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center}
+  .ticket .cat-ico svg{width:22px;height:22px}
+  .ticket .info{flex:1;min-width:0}
+  .ticket .info h4{font-size:15px;font-weight:600;color:var(--ed-ink-soft);line-height:1.4}
+  .ticket .info p{font-size:12.5px;color:var(--ed-muted-2);margin-top:3px}
+  .ticket .res-time{text-align:right;flex:none}
+  .ticket .res-time .t{font-size:14px;font-weight:700;color:var(--ed-ink)}
+  .ticket .res-time .l{font-size:11.5px;color:var(--ed-muted-2)}
+
+  /* ============ KNOWLEDGE BASE ============ */
+  .kb-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .kb-card{background:#fff;border:1px solid var(--ed-line);border-radius:18px;padding:24px;transition:.15s}
+  .kb-card:hover{box-shadow:0 14px 34px -24px rgba(21,32,58,0.5)}
+  .kb-card .kb-ico{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .kb-card .kb-ico svg{width:24px;height:24px}
+  .kb-card h3{font-size:17px;font-weight:700;color:var(--ed-ink-soft);margin-bottom:8px}
+  .kb-card p{font-size:14px;line-height:1.55;color:var(--ed-muted);margin-bottom:14px}
+  .kb-steps{display:flex;flex-direction:column;gap:9px}
+  .kb-step{display:flex;gap:10px;font-size:13.5px;color:var(--ed-muted);line-height:1.5}
+  .kb-step .n{flex:none;width:20px;height:20px;border-radius:999px;background:rgba(43,90,212,0.1);color:var(--ed-primary);font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+
+  /* ============ SETTINGS ============ */
+  .settings-wrap{display:grid;grid-template-columns:1fr;gap:22px;max-width:820px}
+  .set-section{background:#fff;border:1px solid var(--ed-line);border-radius:18px;padding:26px 28px}
+  .set-section h2{font-size:17px;font-weight:700;color:var(--ed-ink);margin-bottom:5px;display:flex;align-items:center;gap:10px}
+  .set-section .desc{font-size:14px;color:var(--ed-muted);line-height:1.55;margin-bottom:22px}
+  .demo-badge{font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--ed-warn);background:rgba(201,119,46,0.12);padding:4px 10px;border-radius:999px}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ed-ink-soft);margin-bottom:7px}
+  .field .hint{font-size:12.5px;color:var(--ed-muted-2);font-weight:500;margin-left:6px}
+  .field .key-row{display:flex;gap:10px}
+  .field input[type=text],.field input[type=password]{
+    flex:1;height:46px;padding:0 15px;border-radius:11px;border:1px solid var(--ed-line-2);
+    font-size:14px;color:var(--ed-ink-soft);background:var(--ed-bg);outline:none;font-family:ui-monospace,Menlo,monospace;transition:.15s;
+  }
+  .field input:focus{border-color:var(--ed-primary);background:#fff;box-shadow:0 0 0 3px rgba(43,90,212,0.1)}
+  .field .save-btn{height:46px;padding:0 18px;border-radius:11px;background:var(--ed-ink);color:#fff;font-weight:600;font-size:14px;white-space:nowrap}
+  .conn-row{display:flex;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--ed-line)}
+  .conn-row:last-child{border-bottom:none}
+  .conn-logo{width:42px;height:42px;border-radius:11px;flex:none;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff}
+  .conn-info{flex:1}
+  .conn-info h4{font-size:14.5px;font-weight:700;color:var(--ed-ink-soft)}
+  .conn-info p{font-size:12.5px;color:var(--ed-muted-2);margin-top:2px}
+  .conn-status{font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px}
+  .conn-status.on{color:var(--ed-success);background:rgba(46,139,87,0.1)}
+  .conn-status.off{color:var(--ed-muted-2);background:rgba(138,147,160,0.12)}
+
+  /* toast */
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(140%);
+    background:var(--ed-ink);color:#fff;padding:13px 20px;border-radius:12px;font-size:14px;font-weight:600;
+    box-shadow:0 20px 40px -20px rgba(0,0,0,0.5);z-index:100;transition:transform .35s cubic-bezier(.2,.8,.2,1);
+    display:flex;align-items:center;gap:10px;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0)}
+  .toast .check{width:20px;height:20px;border-radius:999px;background:var(--ed-success);display:flex;align-items:center;justify-content:center;font-size:12px}
+
+  @media (max-width:1080px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .grid-2{grid-template-columns:1fr}
+    .kb-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:760px){
+    .sidebar{display:none}
+    .stats{grid-template-columns:1fr}
+    .content{padding:22px 18px 50px}
+    .topbar{padding:0 18px}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <a class="brand" href="edudesk-ai.html" style="text-decoration:none;color:inherit">
+      <span class="brand-mark"><span></span></span>
+      <span class="brand-name">EduDesk<b> AI</b></span>
+    </a>
+
+    <div class="nav-label">Workspace</div>
+    <button class="nav-item active" data-view="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M9.5 20v-6h5v6"/></svg>
+      Dashboard
+    </button>
+    <button class="nav-item" data-view="report">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>
+      Report an issue
+    </button>
+    <button class="nav-item" data-view="tickets">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M3.5 9h17M8 13h8M8 16h5"/></svg>
+      My tickets
+      <span class="badge" id="openBadge">2</span>
+    </button>
+    <button class="nav-item" data-view="kb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v16h5.5a2.5 2.5 0 0 1 2.5 2.5z"/></svg>
+      Knowledge base
+    </button>
+
+    <div class="nav-label">Account</div>
+    <button class="nav-item" data-view="settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings &amp; Integrations
+    </button>
+
+    <div class="sidebar-foot">
+      <div class="teacher-card">
+        <div class="avatar">SC</div>
+        <div class="meta">
+          <div class="name">Ms. Sarah Carter</div>
+          <div class="role">Year 5 · Oakfield Primary</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <h1 id="pageTitle">Good morning, Sarah</h1>
+        <div class="sub" id="pageSub">Here's how your classroom tech is running today.</div>
+      </div>
+      <div class="spacer"></div>
+      <div class="room-select">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21v-6h6v6"/></svg>
+        Room 12
+      </div>
+      <div class="online-pill"><span class="dot"></span> All systems online</div>
+      <button class="btn-primary" onclick="go('report')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        Report an issue
+      </button>
+    </div>
+
+    <div class="content">
+
+      <!-- ========== HOME VIEW ========== -->
+      <section class="view active" id="view-home">
+        <div class="stats">
+          <div class="stat">
+            <div class="top">
+              <div class="ico" style="background:rgba(43,90,212,0.1)"><svg viewBox="0 0 24 24" fill="none" stroke="#2B5AD4" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+              <span class="trend up">↑ 18%</span>
+            </div>
+            <div class="num">3.2 hrs</div>
+            <div class="lbl">Teaching time recovered this week</div>
+          </div>
+          <div class="stat">
+            <div class="top">
+              <div class="ico" style="background:rgba(232,132,90,0.13)"><svg viewBox="0 0 24 24" fill="none" stroke="#E8845A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
+              <span class="trend up">↑ 4</span>
+            </div>
+            <div class="num" id="statResolved">14</div>
+            <div class="lbl">Issues resolved for you this month</div>
+          </div>
+          <div class="stat">
+            <div class="top">
+              <div class="ico" style="background:rgba(46,139,87,0.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#2E8B57" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+              <span class="trend flat">Instant</span>
+            </div>
+            <div class="num">24s</div>
+            <div class="lbl">Average time to a working fix</div>
+          </div>
+          <div class="stat">
+            <div class="top">
+              <div class="ico" style="background:rgba(43,90,212,0.1)"><svg viewBox="0 0 24 24" fill="none" stroke="#2B5AD4" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
+              <span class="trend up">↑ 6%</span>
+            </div>
+            <div class="num">71%</div>
+            <div class="lbl">Solved instantly, no waiting for IT</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head">
+              <h2>Ask EduDesk AI</h2>
+              <span class="spacer"></span>
+              <span class="online-pill"><span class="dot"></span> Online</span>
+            </div>
+            <div class="chat" id="homeChat">
+              <div class="chat-log" id="homeLog">
+                <div class="msg ai">Hi Sarah 👋 I'm here whenever something in your classroom isn't working. Describe the problem in plain words — I know Room 12's exact setup.</div>
+              </div>
+              <div class="quick-chips">
+                <button class="chip" onclick="quickAsk(this)">Projector won't connect</button>
+                <button class="chip" onclick="quickAsk(this)">Can't log in to the LMS</button>
+                <button class="chip" onclick="quickAsk(this)">Printer is offline</button>
+              </div>
+              <form class="chat-input" onsubmit="return sendMsg(event,'homeLog')">
+                <input type="text" placeholder="Describe your tech problem…" autocomplete="off" required>
+                <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></button>
+              </form>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h2>Recent activity</h2>
+              <span class="spacer"></span>
+              <a class="link" onclick="go('tickets')">View all</a>
+            </div>
+            <div class="activity" id="recentActivity"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== REPORT VIEW ========== -->
+      <section class="view" id="view-report">
+        <div class="kicker">Report an issue</div>
+        <div class="card" style="max-width:760px">
+          <div class="card-head">
+            <span class="brand-mark" style="width:28px;height:28px;border-radius:8px"><span style="width:10px;height:10px"></span></span>
+            <h2>EduDesk AI · Room 12</h2>
+            <span class="spacer"></span>
+            <span class="online-pill"><span class="dot"></span> Online</span>
+          </div>
+          <div class="chat" style="height:560px">
+            <div class="chat-log" id="reportLog">
+              <div class="msg ai">Tell me what's going wrong and I'll fix it on the spot. If I can't, I'll pass it straight to a real person on our support team — either way you'll be back to teaching fast.</div>
+            </div>
+            <div class="quick-chips">
+              <button class="chip" onclick="quickAskReport(this)">Projector won't connect</button>
+              <button class="chip" onclick="quickAskReport(this)">Can't log in to the LMS</button>
+              <button class="chip" onclick="quickAskReport(this)">Printer is offline</button>
+              <button class="chip" onclick="quickAskReport(this)">Smartboard not responding</button>
+              <button class="chip" onclick="quickAskReport(this)">No sound from speakers</button>
+            </div>
+            <form class="chat-input" onsubmit="return sendMsg(event,'reportLog')">
+              <input type="text" placeholder="Describe your tech problem…" autocomplete="off" required>
+              <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== TICKETS VIEW ========== -->
+      <section class="view" id="view-tickets">
+        <div class="kicker">My tickets</div>
+        <div class="filters" id="ticketFilters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="ai">Resolved by AI</button>
+          <button class="filter" data-filter="esc">Escalated to human</button>
+          <button class="filter" data-filter="open">In progress</button>
+        </div>
+        <div class="ticket-list" id="ticketList"></div>
+      </section>
+
+      <!-- ========== KNOWLEDGE BASE VIEW ========== -->
+      <section class="view" id="view-kb">
+        <div class="kicker">Knowledge base · Room 12</div>
+        <p style="font-size:15px;color:var(--ed-muted);max-width:640px;margin-bottom:24px;line-height:1.55">Quick self-serve fixes for your classroom's exact hardware. These are the same steps EduDesk AI walks you through — mapped to Room 12's devices.</p>
+        <div class="kb-grid" id="kbGrid"></div>
+      </section>
+
+      <!-- ========== SETTINGS VIEW ========== -->
+      <section class="view" id="view-settings">
+        <div class="kicker">Settings &amp; Integrations</div>
+        <div class="settings-wrap">
+
+          <div class="set-section">
+            <h2>API keys <span class="demo-badge">Demo mode</span></h2>
+            <p class="desc">In production, EduDesk AI connects to your institution's systems through secure API keys. These fields are placeholders for the demo — no keys are stored or sent anywhere. This is where a live deployment would authenticate the AI engine and your school platforms.</p>
+
+            <div class="field">
+              <label>AI engine key <span class="hint">— powers instant resolution (e.g. Anthropic Claude)</span></label>
+              <div class="key-row">
+                <input type="password" placeholder="sk-ant-•••••••••••••••••••••••••••" value="sk-ant-demo-0000000000000000">
+                <button class="save-btn" onclick="fakeSave('AI engine key')">Save</button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>LMS integration key <span class="hint">— e.g. Google Classroom / Canvas / Moodle</span></label>
+              <div class="key-row">
+                <input type="password" placeholder="lms_live_•••••••••••••••••••" value="lms_demo_00000000000000000">
+                <button class="save-btn" onclick="fakeSave('LMS integration key')">Save</button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Device management key <span class="hint">— MDM / classroom hardware control</span></label>
+              <div class="key-row">
+                <input type="password" placeholder="mdm_•••••••••••••••••••••••" value="mdm_demo_000000000000000">
+                <button class="save-btn" onclick="fakeSave('Device management key')">Save</button>
+              </div>
+            </div>
+
+            <div class="field" style="margin-bottom:0">
+              <label>Webhook endpoint <span class="hint">— where escalations are pushed to your IT team</span></label>
+              <div class="key-row">
+                <input type="text" placeholder="https://…" value="https://oakfield.edu/hooks/edudesk">
+                <button class="save-btn" onclick="fakeSave('Webhook endpoint')">Save</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="set-section">
+            <h2>Connected platforms</h2>
+            <p class="desc">The systems EduDesk AI is mapped to for Room 12. In the demo these are illustrative.</p>
+            <div class="conn-row">
+              <div class="conn-logo" style="background:#4285F4">GC</div>
+              <div class="conn-info"><h4>Google Classroom</h4><p>Rosters, assignments &amp; login sync</p></div>
+              <span class="conn-status on">Connected</span>
+            </div>
+            <div class="conn-row">
+              <div class="conn-logo" style="background:#15203A">EP</div>
+              <div class="conn-info"><h4>Epson projector network</h4><p>Room 12 · display &amp; input control</p></div>
+              <span class="conn-status on">Connected</span>
+            </div>
+            <div class="conn-row">
+              <div class="conn-logo" style="background:#E8845A">PR</div>
+              <div class="conn-info"><h4>PaperCut print server</h4><p>Staff room MFD &amp; corridor printers</p></div>
+              <span class="conn-status on">Connected</span>
+            </div>
+            <div class="conn-row">
+              <div class="conn-logo" style="background:#8A93A0">MS</div>
+              <div class="conn-info"><h4>Microsoft Intune (MDM)</h4><p>Device provisioning &amp; policy</p></div>
+              <span class="conn-status off">Not connected</span>
+            </div>
+          </div>
+
+          <div class="set-section">
+            <h2>Notifications</h2>
+            <p class="desc">Choose how EduDesk AI keeps you posted.</p>
+            <div class="conn-row">
+              <div class="conn-info"><h4>Escalation updates</h4><p>When a human takes over one of your issues</p></div>
+              <span class="conn-status on">Email + in-app</span>
+            </div>
+            <div class="conn-row">
+              <div class="conn-info"><h4>Weekly time-saved summary</h4><p>Sent every Friday afternoon</p></div>
+              <span class="conn-status on">On</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"><span class="check">✓</span><span id="toastMsg">Saved</span></div>
+
+<script>
+// ============ MOCK DATA ============
+const NOW = new Date();
+function ago(mins){ // returns a friendly label for X minutes ago
+  if(mins < 60) return mins + 'm ago';
+  const h = Math.floor(mins/60);
+  if(h < 24) return h + 'h ago';
+  const d = Math.floor(h/24);
+  return d + (d===1?' day ago':' days ago');
+}
+
+// category → icon + color
+const CATS = {
+  projector:{color:'#2B5AD4', bg:'rgba(43,90,212,0.1)', svg:'<path d="M3 8h18v9H3z"/><circle cx="8" cy="12.5" r="2.5"/><path d="M15 11h3M15 14h2M6 17v2M18 17v2"/>'},
+  login:{color:'#7C6FB0', bg:'rgba(124,111,176,0.12)', svg:'<rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>'},
+  printer:{color:'#E8845A', bg:'rgba(232,132,90,0.13)', svg:'<path d="M6 9V3h12v6"/><rect x="4" y="9" width="16" height="7" rx="2"/><path d="M7 16h10v5H7z"/>'},
+  smartboard:{color:'#2E8B57', bg:'rgba(46,139,87,0.12)', svg:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8 20h8"/>'},
+  sound:{color:'#0E7490', bg:'rgba(14,116,144,0.12)', svg:'<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>'},
+  wifi:{color:'#2B5AD4', bg:'rgba(43,90,212,0.1)', svg:'<path d="M5 12.5a10 10 0 0 1 14 0M8 15.5a6 6 0 0 1 8 0M11 18.5a2 2 0 0 1 2 0"/><circle cx="12" cy="20" r="0.6"/>'},
+  other:{color:'#8A93A0', bg:'rgba(138,147,160,0.12)', svg:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3M12 17h.01"/>'}
+};
+
+let tickets = [
+  {id:'ED-2041', cat:'projector', title:"Projector in Room 12 won't connect to laptop", room:'Room 12', status:'ai', mins:8, resTime:'22s'},
+  {id:'ED-2038', cat:'login', title:'Two pupils locked out of Google Classroom', room:'Room 12', status:'ai', mins:52, resTime:'40s'},
+  {id:'ED-2035', cat:'printer', title:'Corridor printer showing paper jam (no jam)', room:'Corridor B', status:'ai', mins:180, resTime:'1m 05s'},
+  {id:'ED-2031', cat:'smartboard', title:'Smartboard touch is offset after update', room:'Room 12', status:'esc', mins:320, resTime:'Human'},
+  {id:'ED-2028', cat:'sound', title:'No audio from ceiling speakers during video', room:'Room 12', status:'ai', mins:1440, resTime:'35s'},
+  {id:'ED-2024', cat:'wifi', title:'Class tablets keep dropping off the Wi-Fi', room:'Room 12', status:'open', mins:1500, resTime:'—'},
+  {id:'ED-2019', cat:'login', title:'Staff SSO password reset needed', room:'Staff room', status:'ai', mins:2880, resTime:'18s'},
+  {id:'ED-2015', cat:'projector', title:'HDMI input wrong on visualiser', room:'Room 12', status:'ai', mins:4320, resTime:'27s'},
+];
+
+// ============ AI MOCK ENGINE ============
+// keyword → response {reply, resolved(bool), category, resTime}
+const KB_RESPONSES = [
+  {keys:['projector','project','display','screen','hdmi','no signal'], cat:'projector', resolved:true, resTime:'22s',
+   reply:"That display is set to the wrong input. On the projector remote, press <b>Source → HDMI 2</b>. I've also re-pushed the wireless display profile to your laptop. Give it about 5 seconds to appear."},
+  {keys:['login','log in','password','locked','account','sso','classroom','can\'t sign','cant sign'], cat:'login', resolved:true, resTime:'38s',
+   reply:"I've reset the affected Google Classroom sessions for Room 12 and cleared the lockout. Ask the pupils to close the tab and sign in again with their usual details — they're unlocked now."},
+  {keys:['printer','print','paper jam','jam','toner'], cat:'printer', resolved:true, resTime:'1m 02s',
+   reply:"The printer reported a phantom jam. I've cleared the queue and power-cycled it remotely. It's back online — try sending your document again. If it stalls, open the front tray and reseat the paper."},
+  {keys:['smartboard','smart board','whiteboard','touch','calibrat'], cat:'smartboard', resolved:false, resTime:'Human',
+   reply:"The touch layer is misaligned after the firmware update — that needs a physical recalibration I can't do remotely. I've <b>escalated this to our support team</b> and flagged it as classroom-blocking. Someone will be in Room 12 within the hour."},
+  {keys:['sound','audio','speaker','volume','no sound','mute'], cat:'sound', resolved:true, resTime:'33s',
+   reply:"Your laptop output had switched to the internal speakers. I've set the default audio device back to <b>Room 12 – Ceiling</b> and unmuted the amp. Play your video again — sound should come through now."},
+  {keys:['wifi','wi-fi','internet','network','tablet','ipad','dropping','disconnect'], cat:'wifi', resolved:false, resTime:'Human',
+   reply:"Several devices in Room 12 are dropping off the same access point — that points to a hardware fault I can't fix remotely. I've <b>escalated to our support team</b> with the AP details. In the meantime, the wired laptop connection is unaffected."},
+  {keys:['email','outlook','inbox','mail not','not syncing','sync'], cat:'login', resolved:true, resTime:'29s',
+   reply:"Your mailbox had a stuck sync token after the last policy update. I've cleared it and forced a resync — new mail should start arriving within a minute. No need to re-enter your password."},
+  {keys:['laptop won\'t turn on','laptop wont turn on','battery','charging','won\'t charge','wont charge','won\'t boot','wont boot','black screen','dead laptop'], cat:'other', resolved:false, resTime:'Human',
+   reply:"That looks like a hardware fault I can't fix remotely — most likely the charger or battery. I've <b>escalated this to our support team</b> with a loaner device flagged for Room 12. Someone will be with you shortly."},
+];
+
+function matchAI(text){
+  const t = text.toLowerCase();
+  for(const r of KB_RESPONSES){
+    if(r.keys.some(k => t.includes(k))) return r;
+  }
+  return {cat:'other', resolved:false, resTime:'Human',
+    reply:"Thanks Sarah — I've logged this and I'm not fully certain of the fix from here, so I've <b>passed it to a real person</b> on our support team so nothing slips. You'll get an update shortly, and you can carry on teaching in the meantime."};
+}
+
+// ============ NAVIGATION ============
+const TITLES = {
+  home:{t:'Good morning, Sarah', s:"Here's how your classroom tech is running today."},
+  report:{t:'Report an issue', s:'Describe the problem — EduDesk AI fixes it or escalates instantly.'},
+  tickets:{t:'My tickets', s:'Everything you\'ve reported, and how it was resolved.'},
+  kb:{t:'Knowledge base', s:'Self-serve fixes mapped to your exact classroom hardware.'},
+  settings:{t:'Settings & Integrations', s:'Connections, API keys and how EduDesk AI reaches you.'},
+};
+function go(view){
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active', n.dataset.view===view));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+view).classList.add('active');
+  document.getElementById('pageTitle').textContent = TITLES[view].t;
+  document.getElementById('pageSub').textContent = TITLES[view].s;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.nav-item').forEach(n=>n.addEventListener('click',()=>go(n.dataset.view)));
+
+// ============ CHAT ============
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function nowTime(){return NOW.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});}
+
+function appendMsg(logId, who, html, meta){
+  const log = document.getElementById(logId);
+  const d = document.createElement('div');
+  d.className = 'msg ' + who;
+  d.innerHTML = html + (meta ? '' : '') + '<span class="time">'+ (who==='user'?'You · ':'EduDesk AI · ') + nowTime() +'</span>';
+  log.appendChild(d);
+  log.scrollTop = log.scrollHeight;
+  return d;
+}
+function showTyping(logId){
+  const log = document.getElementById(logId);
+  const t = document.createElement('div');
+  t.className='typing'; t.id='__typing';
+  t.innerHTML='<span></span><span></span><span></span>';
+  log.appendChild(t); log.scrollTop = log.scrollHeight;
+}
+function clearTyping(){const t=document.getElementById('__typing'); if(t)t.remove();}
+
+function handleUserText(logId, text){
+  appendMsg(logId,'user', esc(text));
+  showTyping(logId);
+  const r = matchAI(text);
+  setTimeout(()=>{
+    clearTyping();
+    let block = r.reply;
+    if(r.resolved){
+      block += '<div class="resolved-tag"><span class="check">✓</span> Resolved in '+r.resTime+'</div>';
+    } else {
+      block += '<div class="resolved-tag esc"><span class="check">→</span> Escalated to a human · you\'ll get an update shortly</div>';
+    }
+    appendMsg(logId,'ai', block);
+    // add to tickets
+    const id = 'ED-'+ (2042 + (tickets.length-8));
+    tickets.unshift({
+      id, cat:r.cat,
+      title: text.length>60 ? text.slice(0,60)+'…' : text,
+      room:'Room 12',
+      status: r.resolved ? 'ai' : 'esc',
+      mins:0, resTime: r.resolved ? r.resTime : 'Human'
+    });
+    refreshAll();
+  }, 1100);
+}
+
+function sendMsg(e, logId){
+  e.preventDefault();
+  const input = e.target.querySelector('input');
+  const text = input.value.trim();
+  if(!text) return false;
+  input.value='';
+  handleUserText(logId, text);
+  return false;
+}
+function quickAsk(btn){ handleUserText('homeLog', btn.textContent); }
+function quickAskReport(btn){ handleUserText('reportLog', btn.textContent); }
+
+// ============ RENDER: recent activity ============
+function statusMeta(s){
+  if(s==='ai') return {cls:'ai', label:'Resolved by AI'};
+  if(s==='esc') return {cls:'esc', label:'Escalated'};
+  return {cls:'open', label:'In progress'};
+}
+function renderRecent(){
+  const wrap = document.getElementById('recentActivity');
+  wrap.innerHTML = tickets.slice(0,5).map(t=>{
+    const c = CATS[t.cat]||CATS.other, sm = statusMeta(t.status);
+    return `<div class="act-row">
+      <div class="act-ico" style="background:${c.bg}"><svg viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${c.svg}</svg></div>
+      <div class="act-body">
+        <div class="act-title">${t.title}</div>
+        <div class="act-meta">${t.room} · ${t.mins===0?'just now':ago(t.mins)} · ${t.id}</div>
+      </div>
+      <span class="status ${sm.cls}">${sm.label}</span>
+    </div>`;
+  }).join('');
+}
+
+// ============ RENDER: tickets ============
+let currentFilter = 'all';
+function renderTickets(){
+  const list = document.getElementById('ticketList');
+  const shown = tickets.filter(t=> currentFilter==='all' || t.status===currentFilter);
+  if(!shown.length){ list.innerHTML='<p style="color:var(--ed-muted-2);padding:40px 0;text-align:center">No tickets in this view.</p>'; return; }
+  list.innerHTML = shown.map(t=>{
+    const c = CATS[t.cat]||CATS.other, sm = statusMeta(t.status);
+    return `<div class="ticket">
+      <div class="cat-ico" style="background:${c.bg}"><svg viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${c.svg}</svg></div>
+      <div class="info">
+        <h4>${t.title}</h4>
+        <p>${t.id} · ${t.room} · ${t.mins===0?'just now':ago(t.mins)}</p>
+      </div>
+      <span class="status ${sm.cls}">${sm.label}</span>
+      <div class="res-time">
+        <div class="t">${t.resTime}</div>
+        <div class="l">${t.status==='esc'?'handed over':t.status==='open'?'awaiting':'resolution'}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+document.getElementById('ticketFilters').addEventListener('click', e=>{
+  const b = e.target.closest('.filter'); if(!b) return;
+  currentFilter = b.dataset.filter;
+  document.querySelectorAll('.filter').forEach(f=>f.classList.toggle('active', f===b));
+  renderTickets();
+});
+
+// ============ RENDER: badges/stats ============
+function refreshBadges(){
+  const open = tickets.filter(t=>t.status==='open'||t.status==='esc').length;
+  document.getElementById('openBadge').textContent = open;
+  document.getElementById('statResolved').textContent = tickets.filter(t=>t.status==='ai').length + 8;
+}
+
+function refreshAll(){ renderRecent(); renderTickets(); refreshBadges(); }
+
+// ============ KNOWLEDGE BASE ============
+const KB = [
+  {cat:'projector', title:'Projector won\'t show your laptop', desc:"The most common Room 12 fix — usually a wrong input source.",
+   steps:['Press <b>Source</b> on the projector remote','Select <b>HDMI 2</b> (the laptop cable)','Wait ~5s; if blank, re-plug the HDMI cable','Still nothing? Ask EduDesk AI to re-push the display profile']},
+  {cat:'login', title:'Pupils locked out of Google Classroom', desc:"Clears failed-login lockouts without waiting for IT.",
+   steps:['Confirm they\'re using their @oakfield address','Have them close the tab completely','Ask EduDesk AI to reset the Room 12 sessions','Sign back in — the lockout is cleared instantly']},
+  {cat:'printer', title:'Printer offline or false paper jam', desc:"Remote power-cycle fixes most corridor printer stalls.",
+   steps:['Check the tray actually has paper','Ask EduDesk AI to clear the print queue','It power-cycles the printer remotely','Resend your document once it\'s back online']},
+  {cat:'sound', title:'No sound from the ceiling speakers', desc:"Almost always the wrong audio output device.",
+   steps:['Click the speaker icon in the taskbar','Choose <b>Room 12 – Ceiling</b> as output','Check the amp isn\'t muted','Ask EduDesk AI to reset audio if it won\'t switch']},
+];
+function renderKB(){
+  document.getElementById('kbGrid').innerHTML = KB.map(k=>{
+    const c = CATS[k.cat]||CATS.other;
+    return `<div class="kb-card">
+      <div class="kb-ico" style="background:${c.bg}"><svg viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${c.svg}</svg></div>
+      <h3>${k.title}</h3>
+      <p>${k.desc}</p>
+      <div class="kb-steps">${k.steps.map((s,i)=>`<div class="kb-step"><span class="n">${i+1}</span><span>${s}</span></div>`).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+// ============ SETTINGS ============
+let toastTimer;
+function toast(msg){
+  document.getElementById('toastMsg').textContent = msg;
+  const el = document.getElementById('toast');
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove('show'), 2600);
+}
+function fakeSave(what){ toast(what + ' saved (demo)'); }
+
+// ============ INIT ============
+renderKB();
+refreshAll();
+</script>
+</body>
+</html>
