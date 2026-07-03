@@ -104,7 +104,7 @@
   .topbar .sub{font-size:13.5px;color:var(--ed-muted-2);font-weight:500;margin-top:2px}
   .topbar .spacer{flex:1}
   .top-role-wrap{
-    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    position:absolute;left:43%;top:50%;transform:translate(-50%,-50%);
     display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--ed-line);
     border-radius:12px;padding:5px 6px 5px 12px;box-shadow:0 16px 34px -26px rgba(16,24,40,0.35);
   }
@@ -119,6 +119,11 @@
     background:#fff;border:1px solid var(--ed-line-2);font-size:14px;font-weight:600;color:var(--ed-ink-soft);
   }
   .ctx-chip svg{width:16px;height:16px;opacity:.6}
+  .room-select{
+    height:42px;min-width:154px;border-radius:8px;border:1px solid var(--ed-line-2);
+    background:#fff;color:var(--ed-ink-soft);font-size:14px;font-weight:700;padding:0 34px 0 12px;outline:none;
+  }
+  .room-select:focus{border-color:var(--ed-primary);box-shadow:0 0 0 3px rgba(36,78,122,0.1)}
   .pill{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600}
   .pill.ok{color:var(--ed-success)}
   .pill.warn{color:var(--ed-warn)}
@@ -192,12 +197,28 @@
   .readiness-card span{font-size:12.5px;color:var(--ed-muted);line-height:1.35}
   .ready-dot{display:inline-block;width:7px;height:7px;border-radius:999px;margin-right:7px;background:var(--ed-success)}
   .readiness-card.warn .ready-dot{background:var(--ed-warn)}
+  .room-intel{display:grid;gap:14px;margin-top:12px}
+  .room-note{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:8px;background:var(--ed-bg);border:1px solid var(--ed-line);font-size:13.5px;color:var(--ed-muted)}
+  .room-note.active{border-color:rgba(36,78,122,0.28);background:rgba(36,78,122,0.07)}
+  .room-note b{color:var(--ed-ink-soft)}
+  .history-item,.asset-item,.room-detail-row{display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--ed-line)}
+  .history-item:last-child,.asset-item:last-child,.room-detail-row:last-child{border-bottom:none}
+  .history-item b,.asset-item b,.room-detail-row b{font-size:14px;color:var(--ed-ink-soft)}
+  .history-item span,.asset-item span,.room-detail-row span{font-size:12.8px;color:var(--ed-muted);line-height:1.35}
+  .asset-item code{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--ed-primary);background:rgba(36,78,122,0.08);padding:3px 6px;border-radius:5px}
   .lesson-plan{display:grid;gap:12px}
   .lesson-row{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--ed-line)}
   .lesson-row:last-child{border-bottom:none}
   .lesson-row time{font-size:13px;font-weight:800;color:var(--ed-primary)}
   .lesson-row b{font-size:14px;color:var(--ed-ink-soft)}
   .lesson-row span{font-size:12.5px;color:var(--ed-muted-2);display:block;margin-top:2px}
+  .timetable-list{display:grid;gap:12px}
+  .timetable-row{display:grid;grid-template-columns:96px 1fr auto;gap:16px;align-items:center;padding:16px;border:1px solid var(--ed-line);border-radius:10px;background:#fff;box-shadow:0 12px 28px -24px rgba(16,24,40,0.42)}
+  .timetable-row.current{border-color:rgba(36,78,122,0.3);background:rgba(36,78,122,0.05)}
+  .timetable-time{font-size:13px;font-weight:800;color:var(--ed-primary)}
+  .timetable-main b{font-size:15px;color:var(--ed-ink-soft)}
+  .timetable-main span{display:block;font-size:13px;color:var(--ed-muted);margin-top:3px}
+  .timetable-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
   .ops-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   .ops-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:16px;box-shadow:0 14px 28px -24px rgba(0,0,0,0.4)}
   .ops-card b{display:block;font-size:28px;line-height:1;color:#fff;margin-bottom:6px}
@@ -215,6 +236,7 @@
 
   /* ============ CHAT / REPORT ============ */
   .chat{display:flex;flex-direction:column;height:520px}
+  .report-layout{display:grid;grid-template-columns:minmax(0,760px) minmax(280px,1fr);gap:22px;align-items:start}
   .chat-log{flex:1;overflow-y:auto;padding:22px;display:flex;flex-direction:column;gap:14px;background:#F8FAFC}
   .msg{max-width:82%;font-size:14.5px;line-height:1.5;padding:12px 15px;border-radius:10px}
   .msg.user{align-self:flex-end;background:var(--ed-primary);color:#fff;border-bottom-right-radius:3px}
@@ -235,6 +257,14 @@
   .chat-input input:focus{border-color:var(--ed-primary);box-shadow:0 0 0 3px rgba(36,78,122,0.1)}
   .chat-input button{width:46px;height:46px;border-radius:8px;background:var(--ed-primary);color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
   .chat-input button svg{width:19px;height:19px}
+  .history-list{display:flex;flex-direction:column;gap:10px}
+  .report-history-card{height:626px;display:flex;flex-direction:column;overflow:hidden}
+  .report-history-card .history-list{flex:1;overflow-y:auto;padding-right:4px}
+  .history-ticket{display:flex;gap:12px;padding:13px;border:1px solid var(--ed-line);border-radius:10px;background:#fff;box-shadow:0 10px 22px -22px rgba(16,24,40,0.38)}
+  .history-ticket .mini-ico{margin-top:2px}
+  .history-ticket h4{font-size:13.5px;font-weight:700;color:var(--ed-ink-soft);line-height:1.35;margin-bottom:5px}
+  .history-ticket p{font-size:12px;color:var(--ed-muted-2);line-height:1.35}
+  .history-ticket .status{margin-top:8px;display:inline-flex}
   .quick-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 16px;background:#fff}
   .chip{font-size:12.5px;font-weight:600;color:var(--ed-muted);background:var(--ed-bg);border:1px solid var(--ed-line);padding:7px 12px;border-radius:8px;transition:.15s}
   .chip:hover{border-color:var(--ed-primary);color:var(--ed-primary)}
@@ -283,15 +313,36 @@
   .kb-step .n{flex:none;width:20px;height:20px;border-radius:6px;background:rgba(36,78,122,0.1);color:var(--ed-primary);font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
 
   /* ============ CHARTS ============ */
-  .barchart{display:flex;align-items:flex-end;gap:12px;height:180px;padding-top:10px}
+  .barchart{position:relative;height:220px;padding:10px 0 0 42px}
+  .bar-axis{position:absolute;left:0;right:0;top:10px;bottom:40px;pointer-events:none}
+  .bar-axis-line{position:absolute;left:42px;right:0;height:1px;background:rgba(16,24,40,0.08)}
+  .bar-axis-label{position:absolute;left:0;transform:translateY(50%);font-size:11.5px;font-weight:700;color:var(--ed-muted-2)}
+  .barplot{position:relative;z-index:1;display:flex;align-items:flex-end;gap:12px;height:100%;padding-bottom:0}
   .barcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end}
+  .barvalue{font-size:12px;font-weight:800;color:var(--ed-ink-soft);line-height:1}
   .barstack{width:70%;max-width:34px;display:flex;flex-direction:column;justify-content:flex-end;border-radius:4px;overflow:hidden;transition:.4s}
   .barstack .ai{background:var(--ed-primary)}
   .barstack .hu{background:var(--ed-accent)}
   .barlabel{font-size:11.5px;font-weight:600;color:var(--ed-muted-2)}
+  .bar-detail{font-size:10.5px;font-weight:700;color:var(--ed-muted-2);line-height:1;text-align:center;white-space:nowrap}
   .legend{display:flex;gap:18px;margin-top:16px;flex-wrap:wrap}
   .legend span{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--ed-muted)}
   .legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+  .chart-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}
+  .chart-select{height:38px;border-radius:8px;border:1px solid var(--ed-line-2);background:#fff;color:var(--ed-ink-soft);font-size:13.5px;font-weight:700;padding:0 34px 0 12px;outline:none}
+  .chart-select:focus{border-color:var(--ed-primary);box-shadow:0 0 0 3px rgba(36,78,122,0.1)}
+  .linechart{height:300px;width:100%;position:relative}
+  .linechart svg{width:100%;height:100%;display:block}
+  .linechart .axis{font-size:12px;fill:var(--ed-muted-2);font-weight:700}
+  .linechart .grid{stroke:rgba(16,24,40,0.08);stroke-width:1}
+  .linechart .line{fill:none;stroke:var(--ed-accent);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+  .linechart .line-hit{fill:none;stroke:transparent;stroke-width:26;stroke-linecap:round;stroke-linejoin:round;cursor:crosshair}
+  .linechart .area{fill:rgba(154,107,47,0.12)}
+  .linechart .point{fill:#fff;stroke:var(--ed-accent);stroke-width:3}
+  .linechart .callout{fill:var(--ed-ink)}
+  .linechart .callout-text{fill:#fff;font-size:12px;font-weight:800}
+  .time-tooltip{position:absolute;z-index:3;pointer-events:none;transform:translate(-50%,-118%);background:var(--ed-ink);color:#fff;border-radius:8px;padding:7px 10px;font-size:12.5px;font-weight:800;box-shadow:0 14px 26px -18px rgba(16,24,40,0.7);opacity:0;transition:opacity .12s}
+  .time-tooltip span{display:block;font-size:11px;font-weight:700;color:rgba(255,255,255,0.72);margin-top:2px}
 
   .donut-wrap{display:flex;align-items:center;gap:26px}
   .donut{position:relative;width:150px;height:150px;flex:none}
@@ -311,6 +362,8 @@
   .datatable td{padding:14px;border-bottom:1px solid var(--ed-line);font-size:14px;color:var(--ed-ink-soft);vertical-align:middle;transition:background .15s ease}
   .datatable tr:last-child td{border-bottom:none}
   .datatable tbody tr:hover td{background:var(--ed-bg)}
+  .datatable tbody tr{cursor:pointer}
+  .datatable tbody tr.active td{background:rgba(36,78,122,0.08)}
   .datatable td b{font-weight:700}
   .datatable .room-tag{display:inline-flex;align-items:center;gap:8px;font-weight:600}
   .mini-ico{width:30px;height:30px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;flex:none}
@@ -349,6 +402,8 @@
   .qbtn.resolve:hover{filter:brightness(1.06)}
   .qbtn.reassign{background:#fff;border:1px solid var(--ed-line-2);color:var(--ed-ink-soft)}
   .qbtn.reassign:hover{border-color:var(--ed-primary);color:var(--ed-primary)}
+  .tech-select{height:38px;border-radius:8px;border:1px solid var(--ed-line-2);background:#fff;color:var(--ed-ink-soft);font-size:13px;font-weight:650;padding:0 10px;outline:none;width:100%}
+  .tech-select:focus{border-color:var(--ed-primary);box-shadow:0 0 0 3px rgba(36,78,122,0.1)}
   .empty-state{text-align:center;padding:56px 20px;color:var(--ed-muted-2)}
   .empty-state .es-ico{width:56px;height:56px;border-radius:10px;background:rgba(6,118,71,0.09);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
   .empty-state .es-ico svg{width:30px;height:30px;stroke:var(--ed-success)}
@@ -415,6 +470,7 @@
   @media (max-width:1120px){
     .stats{grid-template-columns:repeat(2,1fr)}
     .grid-2,.grid-2b{grid-template-columns:1fr}
+    .report-layout{grid-template-columns:1fr}
     .command-grid{grid-template-columns:1fr}
     .priority-strip{grid-template-columns:repeat(2,1fr)}
     .kb-grid{grid-template-columns:1fr}
@@ -432,6 +488,8 @@
     .stats{grid-template-columns:1fr}
     .readiness-grid,.ops-grid,.priority-strip{grid-template-columns:1fr}
     .lesson-row{grid-template-columns:1fr}
+    .timetable-row{grid-template-columns:1fr}
+    .timetable-actions{justify-content:flex-start}
     .content{padding:22px 18px 50px}
     .topbar{padding:12px 18px;gap:10px;min-height:auto;flex-wrap:wrap;align-items:center}
     .topbar > div:not(.ctx):not(.top-role-wrap):not(.spacer){min-width:0;flex:1}
@@ -546,8 +604,8 @@
           <div class="command-panel">
             <div class="command-head">
               <div>
-                <h2>Room 12 readiness</h2>
-                <p>Pre-class checks for the systems most likely to interrupt teaching.</p>
+                <h2 id="readinessTitle">Room 12 readiness</h2>
+                <p id="readinessCopy">Pre-class checks for the systems most likely to interrupt teaching.</p>
               </div>
               <button class="mini-action" onclick="runPreflight()">Run check</button>
             </div>
@@ -565,12 +623,19 @@
                 <p>EduDesk AI watches the common failure points before they matter.</p>
               </div>
             </div>
-            <div class="lesson-plan">
+            <div class="lesson-plan" id="lessonPlan">
               <div class="lesson-row"><time>09:20</time><div><b>Year 5 maths</b><span>Projector + visualiser check complete</span></div><span class="status ai">Ready</span></div>
               <div class="lesson-row"><time>11:00</time><div><b>Computing lab</b><span>12 pupil logins pre-verified</span></div><span class="status ai">Ready</span></div>
               <div class="lesson-row"><time>13:30</time><div><b>Parent call</b><span>Teams camera and microphone checked</span></div><span class="status open">Monitor</span></div>
             </div>
           </div>
+        </div>
+
+        <div class="room-note" id="roomModeNote"></div>
+        <div class="card card-pad" style="margin-bottom:24px">
+          <div class="card-title">Room assets</div>
+          <div class="card-sub">Hardware EduDesk AI checks before class</div>
+          <div class="room-intel" id="roomAssetList"></div>
         </div>
 
         <div class="grid-2">
@@ -582,7 +647,7 @@
             </div>
             <div class="chat">
               <div class="chat-log" id="homeLog">
-                <div class="msg ai">Good morning Sarah. Tell me what is not working and I will check Room 12's systems first.</div>
+                <div class="msg ai" id="homeIntroMsg">Good morning Sarah. Tell me what is not working and I will check Room 12's systems first.</div>
               </div>
               <div class="quick-chips">
                 <button class="chip" onclick="quickAsk(this,'homeLog')">Projector won't connect</button>
@@ -610,30 +675,37 @@
       <!-- ========== REPORT ========== -->
       <section class="view" id="view-report">
         <div class="kicker">Report an issue</div>
-        <div class="card" style="max-width:760px">
-          <div class="card-head">
-            <span class="brand-mark" style="width:28px;height:28px;border-radius:8px"><span style="width:10px;height:10px"></span></span>
-            <h2>EduDesk AI · Room 12</h2>
-            <span class="spacer"></span>
-            <span class="pill ok"><span class="dot"></span> Online</span>
+        <div class="report-layout">
+          <div class="card">
+            <div class="card-head">
+              <span class="brand-mark" style="width:28px;height:28px;border-radius:8px"><span style="width:10px;height:10px"></span></span>
+              <h2 id="reportTitle">EduDesk AI · Room 12</h2>
+              <span class="spacer"></span>
+              <span class="pill ok"><span class="dot"></span> Online</span>
+            </div>
+            <div class="chat" style="height:560px">
+              <div class="chat-log" id="reportLog">
+                <div class="msg ai" id="reportIntroMsg">Tell me what's going wrong and I'll fix it on the spot. If I can't, I'll pass it straight to a real person on our support team — either way you'll be back to teaching fast.</div>
+              </div>
+              <div class="quick-chips">
+                <button class="chip" onclick="quickAsk(this,'reportLog')">Projector won't connect</button>
+                <button class="chip" onclick="quickAsk(this,'reportLog')">Can't log in to the LMS</button>
+                <button class="chip" onclick="quickAsk(this,'reportLog')">Printer is offline</button>
+                <button class="chip" onclick="quickAsk(this,'reportLog')">Smartboard not responding</button>
+                <button class="chip" onclick="quickAsk(this,'reportLog')">No sound from speakers</button>
+                <button class="chip" onclick="quickAsk(this,'reportLog')">Laptop won't turn on</button>
+                <button class="chip" onclick="quickAsk(this,'reportLog')">Can't join the Teams call</button>
+              </div>
+              <form class="chat-input" onsubmit="return sendMsg(event,'reportLog')">
+                <input type="text" placeholder="Describe your tech problem…" autocomplete="off" required>
+                <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></button>
+              </form>
+            </div>
           </div>
-          <div class="chat" style="height:560px">
-            <div class="chat-log" id="reportLog">
-              <div class="msg ai">Tell me what's going wrong and I'll fix it on the spot. If I can't, I'll pass it straight to a real person on our support team — either way you'll be back to teaching fast.</div>
-            </div>
-            <div class="quick-chips">
-              <button class="chip" onclick="quickAsk(this,'reportLog')">Projector won't connect</button>
-              <button class="chip" onclick="quickAsk(this,'reportLog')">Can't log in to the LMS</button>
-              <button class="chip" onclick="quickAsk(this,'reportLog')">Printer is offline</button>
-              <button class="chip" onclick="quickAsk(this,'reportLog')">Smartboard not responding</button>
-              <button class="chip" onclick="quickAsk(this,'reportLog')">No sound from speakers</button>
-              <button class="chip" onclick="quickAsk(this,'reportLog')">Laptop won't turn on</button>
-              <button class="chip" onclick="quickAsk(this,'reportLog')">Can't join the Teams call</button>
-            </div>
-            <form class="chat-input" onsubmit="return sendMsg(event,'reportLog')">
-              <input type="text" placeholder="Describe your tech problem…" autocomplete="off" required>
-              <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></button>
-            </form>
+          <div class="card card-pad report-history-card">
+            <div class="card-title">Issue history</div>
+            <div class="card-sub">Questions Sarah has asked and their current status</div>
+            <div class="history-list" id="reportHistoryList"></div>
           </div>
         </div>
       </section>
@@ -650,10 +722,28 @@
         <div class="ticket-list" id="ticketList"></div>
       </section>
 
+      <!-- ========== TIMETABLE ========== -->
+      <section class="view" id="view-timetable">
+        <div class="kicker">My timetable</div>
+        <p class="section-lead">Sarah's teaching day, with each room linked to the checks EduDesk AI runs before she arrives.</p>
+        <div class="grid-2b" style="margin-bottom:22px">
+          <div class="card card-pad">
+            <div class="card-title">Today</div>
+            <div class="card-sub">Auto room selection follows this schedule</div>
+            <div class="timetable-list" id="timetableList" style="margin-top:16px"></div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-title">Current room intelligence</div>
+            <div class="card-sub">What EduDesk AI knows before the lesson starts</div>
+            <div class="room-intel" id="timetableRoomIntel" style="margin-top:12px"></div>
+          </div>
+        </div>
+      </section>
+
       <!-- ========== KNOWLEDGE BASE ========== -->
       <section class="view" id="view-kb">
-        <div class="kicker">Knowledge base · Room 12</div>
-        <p class="section-lead">Quick self-serve fixes for your classroom's exact hardware. These are the same steps EduDesk AI walks you through — mapped to Room 12's devices.</p>
+        <div class="kicker" id="kbKicker">Knowledge base · Room 12</div>
+        <p class="section-lead" id="kbLead">Quick self-serve fixes for your classroom's exact hardware. These are the same steps EduDesk AI walks you through — mapped to Room 12's devices.</p>
         <div class="kb-grid" id="kbGrid"></div>
       </section>
 
@@ -674,7 +764,7 @@
               <span class="trend up">↓ cost</span>
             </div>
             <div class="num">£42.6k</div>
-            <div class="lbl">Operational support cost saved vs. IT staffing</div>
+            <div class="lbl">Net operational saving, term to date</div>
           </div>
           <div class="stat">
             <div class="top">
@@ -682,7 +772,7 @@
               <span class="trend up">↑ 22%</span>
             </div>
             <div class="num">1,240 hrs</div>
-            <div class="lbl">Teacher &amp; faculty hours recovered</div>
+            <div class="lbl">Teaching hours recovered across the trust</div>
           </div>
           <div class="stat">
             <div class="top">
@@ -690,7 +780,7 @@
               <span class="trend up">↑ 8%</span>
             </div>
             <div class="num">312</div>
-            <div class="lbl">Issues resolved this month, trust-wide</div>
+            <div class="lbl">Tickets handled without extra internal staffing</div>
           </div>
           <div class="stat">
             <div class="top">
@@ -698,7 +788,39 @@
               <span class="trend flat">Instant</span>
             </div>
             <div class="num">71%</div>
-            <div class="lbl">Resolved instantly by AI, no IT time used</div>
+            <div class="lbl">Instant resolution rate, no IT hand-off</div>
+          </div>
+          <div class="stat">
+            <div class="top">
+              <div class="ico" style="background:rgba(36,78,122,0.1)"><svg viewBox="0 0 24 24" fill="none" stroke="#244E7A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 3 5-7"/></svg></div>
+              <span class="trend up">forecast</span>
+            </div>
+            <div class="num">2.4×</div>
+            <div class="lbl">Projected return against annual subscription</div>
+          </div>
+          <div class="stat">
+            <div class="top">
+              <div class="ico" style="background:rgba(6,118,71,0.09)"><svg viewBox="0 0 24 24" fill="none" stroke="#067647" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <span class="trend up">on plan</span>
+            </div>
+            <div class="num">£7.1k</div>
+            <div class="lbl">Spend avoided after subscription cost</div>
+          </div>
+          <div class="stat">
+            <div class="top">
+              <div class="ico" style="background:rgba(154,107,47,0.11)"><svg viewBox="0 0 24 24" fill="none" stroke="#9A6B2F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div>
+              <span class="trend up">↓ 12m</span>
+            </div>
+            <div class="num">18m</div>
+            <div class="lbl">Median response time for human escalations</div>
+          </div>
+          <div class="stat">
+            <div class="top">
+              <div class="ico" style="background:rgba(98,91,113,0.11)"><svg viewBox="0 0 24 24" fill="none" stroke="#625B71" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/><path d="M21 12a9 9 0 1 1-3-6.7"/></svg></div>
+              <span class="trend up">+5%</span>
+            </div>
+            <div class="num">94%</div>
+            <div class="lbl">Escalations meeting internal service target</div>
           </div>
         </div>
 
@@ -713,8 +835,8 @@
             </div>
             <div class="ops-grid">
               <div class="ops-card"><b>2.4×</b><span>return against the annual subscription</span></div>
-              <div class="ops-card"><b>38</b><span>hours saved in rooms with repeated AV issues</span></div>
-              <div class="ops-card"><b>1</b><span>site needs focused follow-up this week</span></div>
+              <div class="ops-card"><b>£7.1k</b><span>net saving after subscription cost this term</span></div>
+              <div class="ops-card"><b>94%</b><span>human escalations within service target</span></div>
             </div>
           </div>
           <div class="command-panel">
@@ -730,6 +852,23 @@
               <div class="decision"><span class="mark">3</span><div><b>Share time-recovered report</b><p>Leadership summary is ready for weekly operations review.</p></div></div>
             </div>
           </div>
+        </div>
+
+        <div class="card card-pad" style="margin-bottom:22px">
+          <div class="chart-head">
+            <div>
+              <div class="card-title">Time gained</div>
+              <div class="card-sub" id="timeGainedSub">Teaching and IT time recovered today</div>
+            </div>
+            <select class="chart-select" id="timeGainedMode" aria-label="Choose time gained view">
+              <option value="today">Today</option>
+              <option value="week">This week</option>
+              <option value="month">This month</option>
+              <option value="teacher">By teacher</option>
+              <option value="campus">By campus</option>
+            </select>
+          </div>
+          <div class="linechart" id="timeGainedChart"></div>
         </div>
 
         <div class="grid-2" style="margin-bottom:22px">
@@ -784,6 +923,7 @@
           <span class="illus">Illustrative demo figures</span>
         </div>
         <p class="section-lead">Where time and cost are being recovered across the trust. Sorted by teaching hours given back this term.</p>
+        <div class="card card-pad" id="roomDetailCard" style="margin-bottom:18px"></div>
         <div class="card card-pad">
           <table class="datatable">
             <thead>
@@ -815,9 +955,12 @@
               <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--ed-line)"><span style="color:var(--ed-muted);font-size:14px">Resolved instantly by AI</span><b style="font-size:15px">221 · 71%</b></div>
               <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--ed-line)"><span style="color:var(--ed-muted);font-size:14px">Escalated to a human</span><b style="font-size:15px">91 · 29%</b></div>
               <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--ed-line)"><span style="color:var(--ed-muted);font-size:14px">Teacher hours recovered</span><b style="font-size:15px">1,240 hrs</b></div>
+              <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--ed-line)"><span style="color:var(--ed-muted);font-size:14px">Median human response</span><b style="font-size:15px">18m</b></div>
+              <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--ed-line)"><span style="color:var(--ed-muted);font-size:14px">Service target met</span><b style="font-size:15px">94%</b></div>
+              <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--ed-line)"><span style="color:var(--ed-muted);font-size:14px">Subscription return</span><b style="font-size:15px">2.4×</b></div>
               <div style="display:flex;justify-content:space-between;padding:14px 0"><span style="color:var(--ed-muted);font-size:14px">Net operational saving</span><b style="font-size:15px;color:var(--ed-success)">£42,600</b></div>
             </div>
-            <button class="btn-ghost" style="width:100%;justify-content:center;margin-top:18px" onclick="toast('Term report exported (demo)')">
+            <button class="btn-ghost" style="width:100%;justify-content:center;margin-top:18px" onclick="exportTermReportPDF()">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
               Export term report (PDF)
             </button>
@@ -860,6 +1003,24 @@
           <button class="filter" data-filter="resolved">Closed by IT</button>
         </div>
         <div class="ticket-list" id="itTicketList"></div>
+      </section>
+
+      <!-- ========== IT ROOM HISTORY ========== -->
+      <section class="view" id="view-it-room-history">
+        <div class="kicker">Room history</div>
+        <p class="section-lead">Recurring problems, last fixes and unresolved warnings by room, so IT can spot patterns before they become tickets.</p>
+        <div class="grid-2b" style="margin-bottom:22px">
+          <div class="card card-pad">
+            <div class="card-title">Rooms to watch</div>
+            <div class="card-sub">Click a room to inspect its pattern</div>
+            <div class="room-intel" id="itRoomHistoryList" style="margin-top:12px"></div>
+          </div>
+          <div class="card card-pad">
+            <div class="card-title">Selected room pattern</div>
+            <div class="card-sub">What changed, what repeats, what still needs attention</div>
+            <div class="room-intel" id="itRoomHistoryDetail" style="margin-top:12px"></div>
+          </div>
+        </div>
       </section>
 
       <!-- ========== IT SYSTEMS ========== -->
@@ -933,6 +1094,7 @@ const ICON = {
   home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M9.5 20v-6h5v6"/>',
   chat:'<path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2A8.5 8.5 0 1 1 21 11.5z"/>',
   ticket:'<rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M3.5 9h17M8 13h8M8 16h5"/>',
+  calendar:'<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M8 3.5v3M16 3.5v3M3.5 10h17M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"/>',
   book:'<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v16h5.5a2.5 2.5 0 0 1 2.5 2.5z"/>',
   gear:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
   grid:'<rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/>',
@@ -959,6 +1121,123 @@ const CATS = {
   other:{color:'#8A93A0', bg:'rgba(138,147,160,0.12)', svg:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3M12 17h.01"/>'}
 };
 
+const TEACHER_ROOMS = {
+  'Room 12': {
+    status:'ok',
+    readiness:[
+      {state:'ok', name:'Projector', detail:'HDMI 2 and wireless display responding'},
+      {state:'ok', name:'LMS login', detail:'Google Classroom sessions healthy'},
+      {state:'warn', name:'Printer', detail:'PaperCut queue has 2 waiting jobs'},
+      {state:'ok', name:'Wi-Fi', detail:'Room 12 access point stable'},
+    ],
+    lessons:[
+      {time:'09:20', title:'Year 5 maths', detail:'Projector + visualiser check complete', state:'ai', label:'Ready'},
+      {time:'11:00', title:'Computing lab', detail:'12 pupil logins pre-verified', state:'ai', label:'Ready'},
+      {time:'13:30', title:'Parent call', detail:'Teams camera and microphone checked', state:'open', label:'Monitor'},
+    ],
+    history:{recurring:'Projector input after laptop refresh', lastFix:'Wireless display profile re-pushed 22s ago', common:'Projector / HDMI', warnings:'Printer queue has 2 waiting jobs'},
+    assets:[
+      {name:'Projector', model:'Epson EB-2250U', detail:'HDMI 2 + wireless display'},
+      {name:'Printer', model:'PaperCut COR-B', detail:'Corridor B queue'},
+      {name:'Access point', model:'UniFi AP-12', detail:'Last checked today 08:48'},
+      {name:'Smartboard', model:'Promethean AP7', detail:'Firmware 6.4.1'},
+    ]
+  },
+  'Room 8': {
+    status:'warn',
+    readiness:[
+      {state:'ok', name:'Projector', detail:'Wireless display responding'},
+      {state:'ok', name:'LMS login', detail:'Class roster sync completed'},
+      {state:'ok', name:'Printer', detail:'Nearest corridor printer online'},
+      {state:'warn', name:'Wi-Fi', detail:'Access point is degraded for tablets'},
+    ],
+    lessons:[
+      {time:'10:05', title:'Year 4 literacy', detail:'Slides and visualiser ready', state:'ai', label:'Ready'},
+      {time:'12:15', title:'Guided reading', detail:'Shared drive resources available', state:'ai', label:'Ready'},
+      {time:'14:00', title:'Tablet activity', detail:'Wi-Fi needs monitoring before pupils log in', state:'open', label:'Monitor'},
+    ],
+    history:{recurring:'Tablet Wi-Fi drops near the back tables', lastFix:'Access point rebooted yesterday', common:'Wi-Fi', warnings:'AP signal degraded for tablets'},
+    assets:[
+      {name:'Projector', model:'BenQ MW560', detail:'Wireless display enabled'},
+      {name:'Printer', model:'HP M404dn', detail:'Nearest printer online'},
+      {name:'Access point', model:'UniFi AP-08', detail:'Intermittent drops detected'},
+      {name:'Smartboard', model:'Clevertouch IMPACT', detail:'Touch layer healthy'},
+    ]
+  },
+  'Science Lab 2': {
+    status:'ok',
+    readiness:[
+      {state:'ok', name:'Display', detail:'Lab screen and HDMI input responding'},
+      {state:'ok', name:'LMS login', detail:'Google Classroom sessions healthy'},
+      {state:'ok', name:'Printer', detail:'Science prep printer online'},
+      {state:'ok', name:'Wi-Fi', detail:'Lab access point stable'},
+    ],
+    lessons:[
+      {time:'09:50', title:'Year 6 science', detail:'Microscope camera driver checked', state:'ai', label:'Ready'},
+      {time:'11:35', title:'Practical setup', detail:'Shared worksheet opens on staff laptop', state:'ai', label:'Ready'},
+      {time:'15:10', title:'After-school club', detail:'Display and speakers checked', state:'ai', label:'Ready'},
+    ],
+    history:{recurring:'Microscope camera driver needs refresh', lastFix:'Driver cache cleared this morning', common:'Display peripherals', warnings:'No unresolved warnings'},
+    assets:[
+      {name:'Display', model:'ViewSonic CDE6530', detail:'Lab bench HDMI input'},
+      {name:'Printer', model:'Brother HL-L5100DN', detail:'Science prep room'},
+      {name:'Access point', model:'UniFi AP-LAB2', detail:'Last checked today 08:52'},
+      {name:'Camera', model:'IPEVO V4K', detail:'Microscope camera mapped'},
+    ]
+  },
+  'Computing Lab': {
+    status:'warn',
+    readiness:[
+      {state:'ok', name:'Teacher screen', detail:'Main display responding'},
+      {state:'warn', name:'LMS login', detail:'2 pupil accounts need a reset'},
+      {state:'ok', name:'Printer', detail:'Lab printer online'},
+      {state:'ok', name:'Wi-Fi', detail:'All lab devices connected'},
+    ],
+    lessons:[
+      {time:'11:00', title:'Computing lab', detail:'28 of 30 pupil logins pre-verified', state:'open', label:'Monitor'},
+      {time:'13:10', title:'Coding workshop', detail:'Scratch and browser profiles ready', state:'ai', label:'Ready'},
+      {time:'15:30', title:'Staff training', detail:'Projector and demo account checked', state:'ai', label:'Ready'},
+    ],
+    history:{recurring:'Pupil SSO lockouts after password resets', lastFix:'28 accounts pre-verified at 10:41', common:'LMS / SSO login', warnings:'2 pupil accounts need reset'},
+    assets:[
+      {name:'Teacher screen', model:'LG 65UL3J', detail:'Main display responding'},
+      {name:'Printer', model:'HP LaserJet Lab', detail:'Lab queue online'},
+      {name:'Access point', model:'UniFi AP-LAB', detail:'30 devices connected'},
+      {name:'Device cart', model:'Chromebook Cart C', detail:'Policy sync healthy'},
+    ]
+  },
+  'Lecture Hall A': {
+    status:'warn',
+    readiness:[
+      {state:'ok', name:'Projector', detail:'Main AV input responding'},
+      {state:'ok', name:'LMS login', detail:'Moodle and lecture capture synced'},
+      {state:'ok', name:'Microphones', detail:'Presenter mic paired'},
+      {state:'warn', name:'Sound', detail:'Amp reports low output on left channel'},
+    ],
+    lessons:[
+      {time:'09:00', title:'Intro lecture', detail:'Slides and capture schedule ready', state:'ai', label:'Ready'},
+      {time:'12:00', title:'Guest speaker', detail:'Microphone tested; sound channel to monitor', state:'open', label:'Monitor'},
+      {time:'16:00', title:'Revision session', detail:'Recording link and display ready', state:'ai', label:'Ready'},
+    ],
+    history:{recurring:'Left audio channel drops after amp sleep', lastFix:'Lecture capture token refreshed today', common:'AV / sound', warnings:'Amp reports low output on left channel'},
+    assets:[
+      {name:'Projector', model:'Panasonic PT-VMZ71', detail:'Main AV rack'},
+      {name:'Microphones', model:'Shure MXW', detail:'Presenter mic paired'},
+      {name:'Access point', model:'UniFi AP-HALL', detail:'Stable'},
+      {name:'Capture', model:'Panopto Recorder', detail:'Schedule synced'},
+    ]
+  }
+};
+const TEACHER_TIMETABLE = [
+  {start:'09:00', end:'10:30', room:'Room 12', label:'Year 5 maths'},
+  {start:'10:45', end:'12:00', room:'Science Lab 2', label:'Year 6 science'},
+  {start:'12:15', end:'13:00', room:'Room 8', label:'Guided reading'},
+  {start:'13:10', end:'14:10', room:'Computing Lab', label:'Coding workshop'},
+  {start:'14:30', end:'15:45', room:'Lecture Hall A', label:'Revision support'},
+];
+let roomMode = 'auto';
+let selectedTeacherRoom = 'Room 12';
+
 // ======================================================================
 //  PROFILES / ROLES
 // ======================================================================
@@ -970,13 +1249,12 @@ const PROFILES = {
     nav:[
       {view:'home', label:'Dashboard', icon:'home2'},
       {view:'report', label:'Report an issue', icon:'chat'},
+      {view:'timetable', label:'Timetable', icon:'calendar'},
       {view:'tickets', label:'My tickets', icon:'ticket', badge:()=>teacherOpen()},
       {view:'kb', label:'Knowledge base', icon:'book'},
     ],
     account:[{view:'settings', label:'Settings & Integrations', icon:'gear'}],
-    ctx:`<div class="ctx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21v-6h6v6"/></svg> Room 12</div>
-          <span class="pill ok"><span class="dot"></span> All systems online</span>
-          <button class="btn-primary" onclick="go('report')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Report an issue</button>`
+    ctx:()=>teacherContextHtml()
   },
   admin:{
     name:'David Okafor', initials:'DO', sub:'Business Manager · Oakfield Trust',
@@ -999,6 +1277,7 @@ const PROFILES = {
     nav:[
       {view:'it-escalations', label:'Escalations', icon:'alert', badge:()=>escCount()},
       {view:'it-tickets', label:'All tickets', icon:'list'},
+      {view:'it-room-history', label:'Room history', icon:'layers'},
       {view:'it-systems', label:'Systems status', icon:'server'},
     ],
     account:[{view:'settings', label:'Settings & Integrations', icon:'gear'}],
@@ -1011,6 +1290,7 @@ const PROFILES = {
 const TITLES = {
   home:{t:'Good morning, Sarah', s:"Here's how your classroom tech is running today."},
   report:{t:'Report an issue', s:'Describe the problem — EduDesk AI fixes it or escalates instantly.'},
+  timetable:{t:'My timetable', s:'Your rooms today, with pre-class checks ready for each lesson.'},
   tickets:{t:'My tickets', s:"Everything you've reported, and how it was resolved."},
   kb:{t:'Knowledge base', s:'Self-serve fixes mapped to your exact classroom hardware.'},
   settings:{t:'Settings & Integrations', s:'Connections, API keys and how EduDesk AI reaches you.'},
@@ -1019,6 +1299,7 @@ const TITLES = {
   'admin-reports':{t:'Cost & reports', s:'Operational savings and your predictable annual budget.'},
   'it-escalations':{t:'Escalations', s:'Issues the AI passed to a human — resolve or reassign.'},
   'it-tickets':{t:'All tickets', s:'Every issue across the trust, live.'},
+  'it-room-history':{t:'Room history', s:'Recurring problems, last fixes and unresolved warnings across rooms.'},
   'it-systems':{t:'Systems status', s:'Connected platforms and current health.'},
 };
 
@@ -1040,6 +1321,53 @@ sidebarBackdrop.addEventListener('click', closeSidebar);
 // ======================================================================
 function iconSvg(name){
   return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${ICON[name]}</svg>`;
+}
+function timeToMin(t){
+  const parts=t.split(':').map(Number);
+  return parts[0]*60 + parts[1];
+}
+function autoRoomFromTimetable(){
+  const now=new Date();
+  const mins=now.getHours()*60 + now.getMinutes();
+  const active=TEACHER_TIMETABLE.find(slot=>mins>=timeToMin(slot.start) && mins<timeToMin(slot.end));
+  if(active) return {...active, mode:'current'};
+  const next=TEACHER_TIMETABLE.find(slot=>mins<timeToMin(slot.start)) || TEACHER_TIMETABLE[0];
+  return {...next, mode:'next'};
+}
+function syncAutoRoom(){
+  if(roomMode==='auto'){
+    selectedTeacherRoom = autoRoomFromTimetable().room;
+  }
+}
+function timetableState(slot){
+  const now=new Date();
+  const mins=now.getHours()*60 + now.getMinutes();
+  const start=timeToMin(slot.start);
+  const end=timeToMin(slot.end);
+  if(mins>=start && mins<end) return {cls:'current', label:'Current', status:'open'};
+  const next=autoRoomFromTimetable();
+  if(slot.start===next.start && slot.room===next.room && mins<start) return {cls:'next', label:'Next', status:'ai'};
+  if(mins>=end) return {cls:'past', label:'Checked', status:'resolved'};
+  return {cls:'future', label:'Upcoming', status:'ai'};
+}
+function currentRoom(){
+  return TEACHER_ROOMS[selectedTeacherRoom] || TEACHER_ROOMS['Room 12'];
+}
+function roomOptionsHtml(){
+  const auto=autoRoomFromTimetable();
+  return `<option value="__auto" ${roomMode==='auto'?'selected':''}>Auto: ${auto.room}</option>`
+    + Object.keys(TEACHER_ROOMS).map(room=>`<option value="${room}" ${roomMode==='manual'&&room===selectedTeacherRoom?'selected':''}>${room}</option>`).join('');
+}
+function teacherContextHtml(){
+  syncAutoRoom();
+  const room = currentRoom();
+  const needsAttention = room.readiness.filter(item=>item.state!=='ok').length;
+  const pill = needsAttention
+    ? `<span class="pill warn"><span class="dot"></span> ${needsAttention} needs attention</span>`
+    : '<span class="pill ok"><span class="dot"></span> All systems online</span>';
+  return `<select class="room-select" aria-label="Choose room to check" onchange="setTeacherRoom(this.value)">${roomOptionsHtml()}</select>
+          ${pill}
+          <button class="btn-primary" onclick="go('report')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Report an issue</button>`;
 }
 function renderSidebar(){
   const p = PROFILES[currentRole];
@@ -1064,7 +1392,7 @@ function renderSidebar(){
   document.getElementById('userRole').textContent = p.sub;
   const av = document.getElementById('userAvatar');
   av.textContent = p.initials; av.style.background = p.avatarBg;
-  document.getElementById('topbarCtx').innerHTML = p.ctx;
+  document.getElementById('topbarCtx').innerHTML = typeof p.ctx === 'function' ? p.ctx() : p.ctx;
   if(currentRole==='it'){ const c=document.getElementById('itNeedCount'); if(c) c.textContent = escCount(); }
 }
 
@@ -1100,6 +1428,131 @@ function ago(mins){
   if(h<24) return h+'h ago';
   const d=Math.floor(h/24);
   return d+(d===1?' day ago':' days ago');
+}
+function withRoom(text){
+  return text.replaceAll('Room 12', selectedTeacherRoom);
+}
+function attr(s){
+  return String(s).replace(/[&"]/g,c=>({'&':'&amp;','"':'&quot;'}[c]));
+}
+function renderReadiness(){
+  const room = currentRoom();
+  const title = document.getElementById('readinessTitle');
+  const copy = document.getElementById('readinessCopy');
+  const grid = document.getElementById('readinessGrid');
+  if(title) title.textContent = selectedTeacherRoom + ' readiness';
+  if(copy) copy.textContent = 'Pre-class checks for the systems most likely to interrupt teaching in this room.';
+  if(grid){
+    grid.innerHTML = room.readiness.map(item=>`<div class="readiness-card ${item.state}">
+      <b><span class="ready-dot"></span>${item.name}</b><span>${item.detail}</span>
+    </div>`).join('');
+  }
+}
+function renderLessons(){
+  const plan = document.getElementById('lessonPlan');
+  if(!plan) return;
+  plan.innerHTML = currentRoom().lessons.map(item=>`<div class="lesson-row">
+    <time>${item.time}</time><div><b>${item.title}</b><span>${item.detail}</span></div><span class="status ${item.state}">${item.label}</span>
+  </div>`).join('');
+}
+function renderRoomHistoryAssets(){
+  const room = currentRoom();
+  const auto = autoRoomFromTimetable();
+  const note = document.getElementById('roomModeNote');
+  if(note){
+    note.innerHTML = roomMode==='auto'
+      ? `<span><b>Auto room:</b> ${selectedTeacherRoom} selected from Sarah's timetable (${auto.label}, ${auto.start}-${auto.end}).</span><button class="mini-action" onclick="setTeacherRoom('__auto')">Refresh auto</button>`
+      : `<span><b>Manual override:</b> checking ${selectedTeacherRoom}. Switch back to Auto when you want the timetable to choose.</span><button class="mini-action" onclick="setTeacherRoom('__auto')">Use auto</button>`;
+  }
+  const assets = document.getElementById('roomAssetList');
+  if(assets){
+    assets.innerHTML = (room.assets || []).map(asset=>`<div class="asset-item">
+      <div><b>${asset.name}</b><br><span>${asset.detail}</span></div><code>${asset.model}</code>
+    </div>`).join('');
+  }
+  renderTimetableIntel();
+}
+function renderTimetable(){
+  const list=document.getElementById('timetableList');
+  if(!list) return;
+  list.innerHTML=TEACHER_TIMETABLE.map(slot=>{
+    const state=timetableState(slot);
+    const room=TEACHER_ROOMS[slot.room] || {};
+    const warnings=(room.readiness||[]).filter(item=>item.state!=='ok').length;
+    return `<div class="timetable-row ${state.cls}">
+      <div class="timetable-time">${slot.start}<br><span style="color:var(--ed-muted-2);font-weight:700">${slot.end}</span></div>
+      <div class="timetable-main">
+        <b>${slot.label}</b>
+        <span>${slot.room} · ${warnings ? warnings+' room warning'+(warnings>1?'s':'') : 'all systems online'}</span>
+      </div>
+      <div class="timetable-actions">
+        <span class="status ${state.status}">${state.label}</span>
+        <button class="mini-action" type="button" data-timetable-action="check" data-room="${attr(slot.room)}">Check room</button>
+        <button class="mini-action light" type="button" data-timetable-action="report" data-room="${attr(slot.room)}">Report</button>
+      </div>
+    </div>`;
+  }).join('');
+  renderTimetableIntel();
+}
+function renderTimetableIntel(){
+  const el=document.getElementById('timetableRoomIntel');
+  if(!el) return;
+  const room=currentRoom();
+  const h=room.history || {};
+  const warnings=(room.readiness||[]).filter(item=>item.state!=='ok');
+  el.innerHTML=`<div class="room-note"><span><b>${selectedTeacherRoom}</b> is the active room context.</span><span>${warnings.length ? warnings.length+' warning'+(warnings.length>1?'s':'') : 'Ready'}</span></div>`
+    + `<div class="history-item"><div><b>Next likely issue</b><br><span>${h.recurring || 'No recurring pattern detected'}</span></div></div>`
+    + `<div class="history-item"><div><b>Last fix</b><br><span>${h.lastFix || 'No recent fixes recorded'}</span></div></div>`
+    + `<div class="history-item"><div><b>Watch before class</b><br><span>${h.warnings || 'No unresolved warnings'}</span></div></div>`;
+}
+function renderTeacherRoom(){
+  syncAutoRoom();
+  renderReadiness();
+  renderLessons();
+  const homeIntro = document.getElementById('homeIntroMsg');
+  if(homeIntro) homeIntro.innerHTML = `Good morning Sarah. Tell me what is not working and I will check ${selectedTeacherRoom}'s systems first.<span class="time">EduDesk AI · ${nowTime()}</span>`;
+  const reportTitle = document.getElementById('reportTitle');
+  if(reportTitle) reportTitle.textContent = 'EduDesk AI · ' + selectedTeacherRoom;
+  const reportIntro = document.getElementById('reportIntroMsg');
+  if(reportIntro) reportIntro.innerHTML = `Tell me what's going wrong in ${selectedTeacherRoom} and I'll fix it on the spot. If I can't, I'll pass it straight to a real person on our support team — either way you'll be back to teaching fast.<span class="time">EduDesk AI · ${nowTime()}</span>`;
+  const kbKicker = document.getElementById('kbKicker');
+  if(kbKicker) kbKicker.textContent = 'Knowledge base · ' + selectedTeacherRoom;
+  const kbLead = document.getElementById('kbLead');
+  if(kbLead) kbLead.textContent = `Quick self-serve fixes for ${selectedTeacherRoom}'s exact hardware. These are the same steps EduDesk AI walks you through.`;
+  renderRoomHistoryAssets();
+  renderTimetable();
+  renderKB();
+}
+function setTeacherRoom(room){
+  if(room==='__auto'){
+    roomMode = 'auto';
+    syncAutoRoom();
+  } else {
+    if(!TEACHER_ROOMS[room]) return;
+    roomMode = 'manual';
+    selectedTeacherRoom = room;
+  }
+  renderSidebar();
+  renderTeacherRoom();
+  toast((roomMode==='auto'?'Auto-checking ':'Now checking ') + selectedTeacherRoom);
+}
+function checkTimetableRoom(room){
+  setTeacherRoom(room);
+  go('home');
+}
+function reportTimetableRoom(room){
+  setTeacherRoom(room);
+  go('report');
+}
+const timetableListEl = document.getElementById('timetableList');
+if(timetableListEl){
+  timetableListEl.addEventListener('click', e=>{
+    const btn=e.target.closest('[data-timetable-action]');
+    if(!btn) return;
+    const room=btn.dataset.room;
+    if(btn.dataset.timetableAction==='check') checkTimetableRoom(room);
+    if(btn.dataset.timetableAction==='report') reportTimetableRoom(room);
+  });
 }
 
 let tickets = [
@@ -1142,7 +1595,7 @@ function matchAI(text){
   const t=text.toLowerCase();
   for(const r of KB_RESPONSES){ if(r.keys.some(k=>t.includes(k))) return r; }
   return {cat:'other', resolved:false, resTime:'Human',
-    reply:"Thanks Sarah — I've logged this and I'm not fully certain of the fix from here, so I've <b>passed it to a real person</b> on our support team so nothing slips. You'll get an update shortly, and you can carry on teaching in the meantime."};
+    reply:`Thanks Sarah — I've logged this for ${selectedTeacherRoom} and I'm not fully certain of the fix from here, so I've <b>passed it to a real person</b> on our support team so nothing slips. You'll get an update shortly, and you can carry on teaching in the meantime.`};
 }
 
 function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
@@ -1167,22 +1620,22 @@ function handleUserText(logId,text){
   const r=matchAI(text);
   setTimeout(()=>{
     clearTyping();
-    let block=r.reply;
+    let block=withRoom(r.reply);
     block += r.resolved
       ? '<div class="resolved-tag"><span class="check">✓</span> Resolved in '+r.resTime+'</div>'
       : '<div class="resolved-tag esc"><span class="check">→</span> Escalated to a human · you\'ll get an update shortly</div>';
     appendMsg(logId,'ai',block);
     const id='ED-'+(2043+(tickets.length-8));
     const shortTitle=text.length>60?text.slice(0,60)+'…':text;
-    tickets.unshift({id, cat:r.cat, title:shortTitle, room:'Room 12', status:r.resolved?'ai':'esc', mins:0, resTime:r.resolved?r.resTime:'Human'});
+    tickets.unshift({id, cat:r.cat, title:shortTitle, room:selectedTeacherRoom, status:r.resolved?'ai':'esc', mins:0, resTime:r.resolved?r.resTime:'Human'});
     // mirror onto the trust-wide feed so IT/Admin see it appear live when they switch roles
     if(r.resolved){
-      INST.unshift({id, cat:r.cat, title:shortTitle, room:'Room 12', who:'S. Carter', status:'ai', mins:0, resTime:r.resTime});
+      INST.unshift({id, cat:r.cat, title:shortTitle, room:selectedTeacherRoom, who:'S. Carter', status:'ai', mins:0, resTime:r.resTime});
     } else {
-      INST.unshift({id, cat:r.cat, title:shortTitle, room:'Room 12', who:'S. Carter', status:'esc', mins:0, prio:'high',
+      INST.unshift({id, cat:r.cat, title:shortTitle, room:selectedTeacherRoom, who:'S. Carter', status:'esc', mins:0, prio:'high', assignee:'Unassigned',
         reason:"Reported live by Ms. Carter — EduDesk AI couldn't resolve this remotely and flagged it for a human."});
     }
-    refreshTeacher(); renderSidebar(); renderEscalations(); renderITTickets();
+    refreshTeacher(); renderSidebar(); renderEscalations(); renderITTickets(); renderITRoomHistory();
   },1050);
 }
 function sendMsg(e,logId){
@@ -1224,6 +1677,27 @@ function renderTeacherTickets(){
     </div>`;
   }).join('');
 }
+function renderReportHistory(){
+  const list=document.getElementById('reportHistoryList');
+  if(!list) return;
+  const shown=tickets.slice(0,7);
+  if(!shown.length){
+    list.innerHTML='<p style="color:var(--ed-muted-2);font-size:13.5px">No issues reported yet.</p>';
+    return;
+  }
+  list.innerHTML=shown.map(t=>{
+    const c=CATS[t.cat]||CATS.other;
+    const sm=statusMeta(t.status);
+    return `<div class="history-ticket">
+      <span class="mini-ico" style="background:${c.bg}"><svg viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${c.svg}</svg></span>
+      <div>
+        <h4>${t.title}</h4>
+        <p>${t.room} · ${ago(t.mins)} · ${t.id}</p>
+        <span class="status ${sm.cls}">${sm.label}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
 document.getElementById('ticketFilters').addEventListener('click',e=>{
   const b=e.target.closest('.filter'); if(!b) return;
   teacherFilter=b.dataset.filter;
@@ -1231,7 +1705,7 @@ document.getElementById('ticketFilters').addEventListener('click',e=>{
   renderTeacherTickets();
 });
 function refreshTeacher(){
-  renderRecent(); renderTeacherTickets();
+  renderRecent(); renderTeacherTickets(); renderReportHistory();
   document.getElementById('statResolved').textContent = tickets.filter(t=>t.status==='ai').length+8;
 }
 
@@ -1250,8 +1724,8 @@ function renderKB(){
     const c=CATS[k.cat]||CATS.other;
     return `<div class="kb-card">
       <div class="kb-ico" style="background:${c.bg}"><svg viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${c.svg}</svg></div>
-      <h3>${k.title}</h3><p>${k.desc}</p>
-      <div class="kb-steps">${k.steps.map((s,i)=>`<div class="kb-step"><span class="n">${i+1}</span><span>${s}</span></div>`).join('')}</div>
+      <h3>${withRoom(k.title)}</h3><p>${withRoom(k.desc)}</p>
+      <div class="kb-steps">${k.steps.map((s,i)=>`<div class="kb-step"><span class="n">${i+1}</span><span>${withRoom(s)}</span></div>`).join('')}</div>
     </div>`;
   }).join('');
 }
@@ -1260,26 +1734,102 @@ function renderKB(){
 //  ADMIN: charts
 // ======================================================================
 const WEEKLY=[{w:'Wk1',ai:22,hu:8},{w:'Wk2',ai:26,hu:9},{w:'Wk3',ai:24,hu:7},{w:'Wk4',ai:31,hu:8},{w:'Wk5',ai:35,hu:9},{w:'Wk6',ai:38,hu:7},{w:'Wk7',ai:41,hu:8},{w:'Wk8',ai:44,hu:6}];
+// ADMIN_TIME_GAINED_DATA is the editable placeholder data source.
+// Replace the point values here when the final figures are available.
+const ADMIN_TIME_GAINED_DATA={
+  today:{label:'Teaching and IT time recovered today', unit:'hrs', points:[['07 am',32],['08 am',108],['09 am',74],['10 am',128],['11 am',139],['12 pm',118],['1 pm',126]]},
+  week:{label:'Teaching and IT time recovered this week', unit:'hrs', points:[['Mon',188],['Tue',226],['Wed',204],['Thu',272],['Fri',350]]},
+  month:{label:'Teaching and IT time recovered this month', unit:'hrs', points:[['Wk 1',760],['Wk 2',890],['Wk 3',1040],['Wk 4',1240]]},
+  teacher:{label:'Time recovered by teacher / faculty member', unit:'hrs', points:[['S. Carter',180],['J. Ahmed',154],['M. Owusu',132],['K. Bright',118],['R. Patel',96]]},
+  campus:{label:'Time recovered by campus', unit:'hrs', points:[['Oakfield',520],['Meadow',430],["St. Anne's",290]]},
+};
 const SITES=[{name:'Oakfield Primary',val:520},{name:'Meadow High School',val:430},{name:"St. Anne's College",val:290}];
 const COSTS=[{name:'Instant AI resolutions',val:26400},{name:'Avoided overtime & call-outs',val:9800},{name:'Reduced agency IT cover',val:6400}];
 const BREAKDOWN=[
-  {room:'Room 12', site:'Oakfield Primary', cat:'projector', tickets:38, hours:31, top:'Projector'},
-  {room:'Science Labs', site:'Meadow High School', cat:'login', tickets:34, hours:28, top:'LMS logins'},
-  {room:'Lecture Hall A', site:"St. Anne's College", cat:'sound', tickets:29, hours:24, top:'AV / sound'},
-  {room:'Room 8', site:'Oakfield Primary', cat:'wifi', tickets:26, hours:22, top:'Wi-Fi'},
-  {room:'Library', site:'Meadow High School', cat:'printer', tickets:21, hours:15, top:'Printing'},
-  {room:'Staff room', site:'Oakfield Primary', cat:'login', tickets:18, hours:12, top:'SSO resets'},
+  {room:'Room 12', site:'Oakfield Primary', cat:'projector', tickets:38, hours:31, top:'Projector', cost:2840, lost:9, warnings:1, lastFix:'Wireless display profile re-pushed', action:'Replace older HDMI adapters before next laptop refresh.'},
+  {room:'Science Labs', site:'Meadow High School', cat:'login', tickets:34, hours:28, top:'LMS logins', cost:2460, lost:7, warnings:0, lastFix:'Microscope camera driver refreshed', action:'Pre-check lab peripherals before practical lessons.'},
+  {room:'Lecture Hall A', site:"St. Anne's College", cat:'sound', tickets:29, hours:24, top:'AV / sound', cost:3180, lost:12, warnings:1, lastFix:'Lecture capture token refreshed', action:'Schedule AV rack inspection for the low-output channel.'},
+  {room:'Room 8', site:'Oakfield Primary', cat:'wifi', tickets:26, hours:22, top:'Wi-Fi', cost:1960, lost:10, warnings:1, lastFix:'Access point rebooted yesterday', action:'Move AP replacement up the maintenance queue.'},
+  {room:'Library', site:'Meadow High School', cat:'printer', tickets:21, hours:15, top:'Printing', cost:1240, lost:5, warnings:0, lastFix:'PaperCut queue cleared', action:'Keep queue clean-up automated weekly.'},
+  {room:'Staff room', site:'Oakfield Primary', cat:'login', tickets:18, hours:12, top:'SSO resets', cost:980, lost:4, warnings:0, lastFix:'SSO password reset flow updated', action:'Share reset guidance with new starters.'},
 ];
+let selectedAdminRoom = 0;
 function renderWeekly(){
   const max=Math.max(...WEEKLY.map(d=>d.ai+d.hu));
-  document.getElementById('weeklyChart').innerHTML=WEEKLY.map(d=>{
+  const axisMax=Math.ceil(max/10)*10;
+  const ticks=[axisMax, Math.round(axisMax/2), 0];
+  const axisHtml=`<div class="bar-axis">${ticks.map(t=>{
+    const bottom=(t/axisMax)*100;
+    return `<span class="bar-axis-label" style="bottom:${bottom}%">${t}</span><span class="bar-axis-line" style="bottom:${bottom}%"></span>`;
+  }).join('')}</div>`;
+  const barsHtml=WEEKLY.map(d=>{
     const aiH=(d.ai/max)*100, huH=(d.hu/max)*100;
-    return `<div class="barcol"><div class="barstack" style="height:${aiH+huH}%">
+    const total=d.ai+d.hu;
+    return `<div class="barcol"><span class="barvalue">${total}</span><div class="barstack" style="height:${aiH+huH}%">
       <div class="hu" style="height:${huH/(aiH+huH)*100}%"></div>
       <div class="ai" style="height:${aiH/(aiH+huH)*100}%"></div>
-    </div><span class="barlabel">${d.w}</span></div>`;
+    </div><span class="barlabel">${d.w}</span><span class="bar-detail">${d.ai} AI / ${d.hu} H</span></div>`;
   }).join('');
+  document.getElementById('weeklyChart').innerHTML=axisHtml+`<div class="barplot">${barsHtml}</div>`;
 }
+function renderTimeGained(){
+  const modeEl=document.getElementById('timeGainedMode');
+  const chart=document.getElementById('timeGainedChart');
+  const sub=document.getElementById('timeGainedSub');
+  if(!modeEl || !chart) return;
+  const data=ADMIN_TIME_GAINED_DATA[modeEl.value] || ADMIN_TIME_GAINED_DATA.today;
+  if(sub) sub.textContent = data.label;
+  const points=data.points;
+  const vals=points.map(p=>p[1]);
+  const max=Math.ceil(Math.max(...vals)*1.18/10)*10;
+  const total=vals.reduce((sum,v)=>sum+v,0);
+  const w=1000,h=300,left=42,right=14,top=38,bottom=42;
+  const innerW=w-left-right, innerH=h-top-bottom;
+  const xy=points.map((p,i)=>{
+    const x=left+(points.length===1?innerW/2:(i/(points.length-1))*innerW);
+    const y=top+innerH-(p[1]/max)*innerH;
+    return {label:p[0],val:p[1],x,y};
+  });
+  const line=xy.map(p=>`${p.x},${p.y}`).join(' ');
+  const area=`${left},${top+innerH} ${line} ${left+innerW},${top+innerH}`;
+  const peak=xy.reduce((a,b)=>b.val>a.val?b:a,xy[0]);
+  const ticks=[0,Math.round(max/2),max];
+  chart.innerHTML=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${data.label}">
+    <defs>
+      <linearGradient id="timeArea" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#9A6B2F" stop-opacity="0.18"/>
+        <stop offset="1" stop-color="#9A6B2F" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    ${ticks.map(t=>{
+      const y=top+innerH-(t/max)*innerH;
+      return `<line class="grid" x1="${left}" x2="${left+innerW}" y1="${y}" y2="${y}"/><text class="axis" x="${left-14}" y="${y+4}" text-anchor="end">${t}</text>`;
+    }).join('')}
+    <polygon class="area" points="${area}" fill="url(#timeArea)"/>
+    <polyline class="line" points="${line}"/>
+    <polyline class="line-hit" points="${line}"/>
+    ${xy.map(p=>`<circle class="point" cx="${p.x}" cy="${p.y}" r="${p===peak?5:3.5}"/>`).join('')}
+    ${xy.map(p=>`<text class="axis" x="${p.x}" y="${h-16}" text-anchor="middle">${p.label}</text>`).join('')}
+    <line class="grid" x1="${peak.x}" x2="${peak.x}" y1="${peak.y}" y2="${top+innerH}"/>
+    <rect class="callout" x="${peak.x-24}" y="${peak.y-34}" width="48" height="24" rx="6"/>
+    <text class="callout-text" x="${peak.x}" y="${peak.y-18}" text-anchor="middle">${peak.val}</text>
+    <text class="axis" x="${left}" y="18">Total ${total.toLocaleString()} ${data.unit}</text>
+  </svg><div class="time-tooltip" id="timeGainedTooltip"></div>`;
+  const svg=chart.querySelector('svg');
+  const tooltip=chart.querySelector('#timeGainedTooltip');
+  const showTooltip=(evt)=>{
+    const rect=svg.getBoundingClientRect();
+    const cursorX=((evt.clientX-rect.left)/rect.width)*w;
+    const nearest=xy.reduce((best,p)=>Math.abs(p.x-cursorX)<Math.abs(best.x-cursorX)?p:best,xy[0]);
+    tooltip.innerHTML=`${nearest.val.toLocaleString()} ${data.unit}<span>${nearest.label}</span>`;
+    tooltip.style.left=(nearest.x/w*100)+'%';
+    tooltip.style.top=(nearest.y/h*100)+'%';
+    tooltip.style.opacity='1';
+  };
+  svg.addEventListener('mousemove', showTooltip);
+  svg.addEventListener('mouseleave', ()=>{ tooltip.style.opacity='0'; });
+}
+document.getElementById('timeGainedMode')?.addEventListener('change', renderTimeGained);
 function renderDonut(){
   const pct=71, r=58, c=2*Math.PI*r, off=c*(1-pct/100);
   document.getElementById('donut').innerHTML=`
@@ -1292,21 +1842,23 @@ function renderDonut(){
 }
 function renderSiteBars(){
   const max=Math.max(...SITES.map(s=>s.val));
+  const total=SITES.reduce((sum,s)=>sum+s.val,0);
   document.getElementById('siteBars').innerHTML=SITES.map(s=>`
-    <div class="hbar"><div class="hb-top"><b>${s.name}</b><span>${s.val} hrs</span></div>
+    <div class="hbar"><div class="hb-top"><b>${s.name}</b><span>${s.val} hrs · ${Math.round(s.val/total*100)}%</span></div>
     <div class="track"><div class="fill" style="width:${s.val/max*100}%"></div></div></div>`).join('');
 }
 function renderCostBars(){
   const total=COSTS.reduce((a,b)=>a+b.val,0), max=Math.max(...COSTS.map(s=>s.val));
   document.getElementById('costBars').innerHTML=COSTS.map(s=>`
-    <div class="hbar"><div class="hb-top"><b>${s.name}</b><span>£${s.val.toLocaleString()}</span></div>
+    <div class="hbar"><div class="hb-top"><b>${s.name}</b><span>£${s.val.toLocaleString()} · ${Math.round(s.val/total*100)}%</span></div>
     <div class="track"><div class="fill" style="width:${s.val/max*100}%;background:var(--ed-success)"></div></div></div>`).join('')
     + `<div style="display:flex;justify-content:space-between;margin-top:6px;padding-top:14px;border-top:1px solid var(--ed-line)"><b style="font-size:14px">Total saved this term</b><b style="font-size:15px;color:var(--ed-success)">£${total.toLocaleString()}</b></div>`;
 }
 function renderBreakdown(){
   document.getElementById('breakdownBody').innerHTML=BREAKDOWN.map(r=>{
     const c=CATS[r.cat]||CATS.other;
-    return `<tr>
+    const i=BREAKDOWN.indexOf(r);
+    return `<tr class="${i===selectedAdminRoom?'active':''}" onclick="selectAdminRoom(${i})">
       <td><span class="room-tag"><span class="mini-ico" style="background:${c.bg}"><svg viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${c.svg}</svg></span>${r.room}</span></td>
       <td style="color:var(--ed-muted)">${r.site}</td>
       <td><b>${r.tickets}</b></td>
@@ -1314,16 +1866,47 @@ function renderBreakdown(){
       <td style="color:var(--ed-muted)">${r.top}</td>
     </tr>`;
   }).join('');
+  renderRoomDetail();
+}
+function selectAdminRoom(index){
+  selectedAdminRoom = index;
+  renderBreakdown();
+}
+function renderRoomDetail(){
+  const el=document.getElementById('roomDetailCard');
+  if(!el) return;
+  const r=BREAKDOWN[selectedAdminRoom] || BREAKDOWN[0];
+  const c=CATS[r.cat]||CATS.other;
+  el.innerHTML=`<div class="card-head" style="margin-bottom:8px">
+    <div>
+      <div class="card-title">${r.room} impact</div>
+      <div class="card-sub">${r.site} · click another row to compare</div>
+    </div>
+    <span class="mini-ico" style="background:${c.bg}"><svg viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${c.svg}</svg></span>
+  </div>
+  <div class="grid-2b" style="gap:16px">
+    <div>
+      <div class="room-detail-row"><span>Cost avoided this term</span><b style="color:var(--ed-success)">£${r.cost.toLocaleString()}</b></div>
+      <div class="room-detail-row"><span>Teaching time still lost</span><b>${r.lost} hrs</b></div>
+      <div class="room-detail-row"><span>Unresolved warnings</span><b>${r.warnings}</b></div>
+    </div>
+    <div>
+      <div class="room-detail-row"><span>Last fix</span><b>${r.lastFix}</b></div>
+      <div class="room-detail-row"><span>Most common issue</span><b>${r.top}</b></div>
+      <div class="room-detail-row"><span>Recommended action</span><b>${r.action}</b></div>
+    </div>
+  </div>`;
 }
 
 // ======================================================================
 //  IT: institution tickets, escalations, systems
 // ======================================================================
+const TECHNICIANS = ['Unassigned','A. Malik','Priya Sharma','Remote support team','On-site technician'];
 let INST=[
-  {id:'ED-2044', cat:'other', title:"Staff laptop won't power on", room:'Staff room', who:'L. Green', status:'esc', mins:40, prio:'urgent', reason:"Suspected hardware fault — charger or battery. Can't be fixed remotely; loaner flagged for Room 12."},
-  {id:'ED-2031', cat:'smartboard', title:'Smartboard touch offset after firmware update', room:'Room 12', who:'S. Carter', status:'esc', mins:95, prio:'high', reason:"Touch layer misaligned after update — needs a physical recalibration on site."},
-  {id:'ED-2024', cat:'wifi', title:'Class tablets dropping off the Wi-Fi', room:'Room 8', who:'J. Ahmed', status:'esc', mins:130, prio:'high', reason:"Multiple devices dropping the same access point — points to an AP hardware fault."},
-  {id:'ED-2029', cat:'sound', title:'No audio in lecture hall AV rack', room:'Lecture Hall A', who:'M. Owusu', status:'open', mins:210, prio:'normal', reason:"Amp responded but output still silent — on-site check queued."},
+  {id:'ED-2044', cat:'other', title:"Staff laptop won't power on", room:'Staff room', who:'L. Green', status:'esc', mins:40, prio:'urgent', assignee:'On-site technician', reason:"Suspected hardware fault — charger or battery. Can't be fixed remotely; loaner flagged for Room 12."},
+  {id:'ED-2031', cat:'smartboard', title:'Smartboard touch offset after firmware update', room:'Room 12', who:'S. Carter', status:'esc', mins:95, prio:'high', assignee:'Priya Sharma', reason:"Touch layer misaligned after update — needs a physical recalibration on site."},
+  {id:'ED-2024', cat:'wifi', title:'Class tablets dropping off the Wi-Fi', room:'Room 8', who:'J. Ahmed', status:'esc', mins:130, prio:'high', assignee:'A. Malik', reason:"Multiple devices dropping the same access point — points to an AP hardware fault."},
+  {id:'ED-2029', cat:'sound', title:'No audio in lecture hall AV rack', room:'Lecture Hall A', who:'M. Owusu', status:'open', mins:210, prio:'normal', assignee:'Remote support team', reason:"Amp responded but output still silent — on-site check queued."},
   {id:'ED-2041', cat:'projector', title:"Projector won't connect to laptop", room:'Room 12', who:'S. Carter', status:'ai', mins:8, resTime:'22s'},
   {id:'ED-2038', cat:'login', title:'Two pupils locked out of Google Classroom', room:'Room 12', who:'S. Carter', status:'ai', mins:52, resTime:'40s'},
   {id:'ED-2035', cat:'printer', title:'Corridor printer false paper jam', room:'Corridor B', who:'Facilities', status:'ai', mins:180, resTime:'1m 05s'},
@@ -1350,16 +1933,17 @@ function renderEscalations(){
   }
   q.innerHTML=items.map(t=>{
     const c=CATS[t.cat]||CATS.other;
+    const techOptions=TECHNICIANS.map(name=>`<option value="${name}" ${name===(t.assignee||'Unassigned')?'selected':''}>${name}</option>`).join('');
     return `<div class="qcard" id="q-${t.id}">
       <div class="cat-ico" style="background:${c.bg}"><svg viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${c.svg}</svg></div>
       <div class="qbody">
         <h4>${t.title}</h4>
-        <div class="qmeta"><span>${t.id}</span><span>· ${t.room}</span><span>· ${t.who}</span><span>· ${ago(t.mins)}</span><span class="prio ${t.prio}">${t.prio}</span></div>
+        <div class="qmeta"><span>${t.id}</span><span>· ${t.room}</span><span>· ${t.who}</span><span>· ${ago(t.mins)}</span><span>· ${t.assignee||'Unassigned'}</span><span class="prio ${t.prio}">${t.prio}</span></div>
         <div class="qreason">${t.reason||''}</div>
       </div>
       <div class="qactions">
-        <button class="qbtn resolve" onclick="resolveEsc('${t.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Resolve</button>
-        <button class="qbtn reassign" onclick="reassignEsc('${t.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7"/></svg> Reassign</button>
+        <select class="tech-select" aria-label="Assign technician" onchange="assignTech('${t.id}',this.value)">${techOptions}</select>
+        <button class="qbtn resolve" onclick="resolveEsc('${t.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Mark resolved</button>
       </div>
     </div>`;
   }).join('');
@@ -1369,14 +1953,20 @@ function resolveEsc(id){
   const t=INST.find(x=>x.id===id); if(!t) return;
   if(card){ card.classList.add('resolving'); }
   setTimeout(()=>{
-    t.status='resolved'; t.resTime='Closed';
-    renderEscalations(); renderITTickets(); renderSidebar();
-    toast('Ticket '+id+' resolved and closed');
+    t.status='resolved'; t.resTime='Closed'; t.closedBy=t.assignee||'IT';
+    renderEscalations(); renderITTickets(); renderITRoomHistory(); renderSidebar();
+    toast('Ticket '+id+' marked resolved by '+t.closedBy);
   }, 260);
 }
-function reassignEsc(id){ toast('Ticket '+id+' reassigned to on-site technician'); }
+function assignTech(id, name){
+  const t=INST.find(x=>x.id===id); if(!t) return;
+  t.assignee=name;
+  renderEscalations(); renderITTickets(); renderITRoomHistory(); renderSidebar();
+  toast('Ticket '+id+' assigned to '+name);
+}
 
 let itFilter='all';
+let selectedItHistoryRoom = 'Room 12';
 function renderITTickets(){
   const list=document.getElementById('itTicketList');
   const shown=INST.filter(t=>itFilter==='all'||t.status===itFilter);
@@ -1385,7 +1975,7 @@ function renderITTickets(){
     const c=CATS[t.cat]||CATS.other, sm=statusMeta(t.status);
     return `<div class="ticket">
       <div class="cat-ico" style="background:${c.bg}"><svg viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${c.svg}</svg></div>
-      <div class="info"><h4>${t.title}</h4><p>${t.id} · ${t.room} · ${t.who} · ${ago(t.mins)}</p></div>
+      <div class="info"><h4>${t.title}</h4><p>${t.id} · ${t.room} · ${t.who} · ${ago(t.mins)}${t.assignee?' · '+t.assignee:''}</p></div>
       <span class="status ${sm.cls}">${sm.label}</span>
       <div class="res-time"><div class="t">${t.resTime||'—'}</div><div class="l">${t.status==='ai'?'by AI':t.status==='resolved'?'by IT':t.status==='esc'?'with human':'awaiting'}</div></div>
     </div>`;
@@ -1397,6 +1987,44 @@ document.getElementById('itFilters').addEventListener('click',e=>{
   document.querySelectorAll('#itFilters .filter').forEach(f=>f.classList.toggle('active',f===b));
   renderITTickets();
 });
+
+function roomHistoryFor(name){
+  return TEACHER_ROOMS[name] || null;
+}
+function roomTicketCount(name){
+  return INST.filter(t=>t.room===name).length;
+}
+function renderITRoomHistory(){
+  const list=document.getElementById('itRoomHistoryList');
+  const detail=document.getElementById('itRoomHistoryDetail');
+  if(!list || !detail) return;
+  const rooms=Object.keys(TEACHER_ROOMS);
+  if(!rooms.includes(selectedItHistoryRoom)) selectedItHistoryRoom=rooms[0];
+  list.innerHTML=rooms.map(name=>{
+    const room=roomHistoryFor(name);
+    const warnings=(room.readiness||[]).filter(item=>item.state!=='ok').length;
+    const h=room.history||{};
+    return `<button class="room-note ${name===selectedItHistoryRoom?'active':''}" style="text-align:left;width:100%;cursor:pointer" onclick="selectItHistoryRoom(${JSON.stringify(name)})">
+      <span><b>${name}</b><br><span>${h.common || 'No dominant issue'} · ${roomTicketCount(name)} tickets</span></span>
+      <span class="status ${warnings?'open':'ai'}">${warnings ? warnings+' warning'+(warnings>1?'s':'') : 'Clear'}</span>
+    </button>`;
+  }).join('');
+  const room=roomHistoryFor(selectedItHistoryRoom);
+  const h=room.history||{};
+  const warnings=(room.readiness||[]).filter(item=>item.state!=='ok');
+  const recent=INST.filter(t=>t.room===selectedItHistoryRoom).slice(0,4);
+  detail.innerHTML=`
+    <div class="history-item"><div><b>Recurring issue</b><br><span>${h.recurring || 'No recurring pattern detected'}</span></div></div>
+    <div class="history-item"><div><b>Last fix</b><br><span>${h.lastFix || 'No recent fixes recorded'}</span></div></div>
+    <div class="history-item"><div><b>Most common problem</b><br><span>${h.common || 'No dominant issue yet'}</span></div></div>
+    <div class="history-item"><div><b>Unresolved warning</b><br><span>${h.warnings || 'No unresolved warnings'}</span></div></div>
+    <div class="history-item"><div><b>Current warning details</b><br><span>${warnings.length ? warnings.map(w=>w.name+': '+w.detail).join(' · ') : 'No active room warnings'}</span></div></div>
+    <div class="history-item"><div><b>Recent room tickets</b><br><span>${recent.length ? recent.map(t=>t.id+' '+t.title).join(' · ') : 'No recent tickets for this room'}</span></div></div>`;
+}
+function selectItHistoryRoom(name){
+  selectedItHistoryRoom=name;
+  renderITRoomHistory();
+}
 
 const SYSTEMS=[
   {logo:'GC', bg:'#4285F4', name:'Google Classroom', desc:'Rosters, assignments & login sync', uptime:'99.98%', health:'ok', label:'Operational'},
@@ -1416,6 +2044,54 @@ function renderSystems(){
     </div>`).join('');
 }
 
+function exportTermReportPDF(){
+  const generated = new Date().toLocaleDateString('en-GB', {day:'2-digit', month:'long', year:'numeric'});
+  const totalSaved = COSTS.reduce((sum,item)=>sum+item.val,0);
+  const roomRows = BREAKDOWN.map(r=>`<tr><td>${r.room}</td><td>${r.site}</td><td>${r.tickets}</td><td>${r.hours} hrs</td><td>£${r.cost.toLocaleString()}</td><td>${r.top}</td></tr>`).join('');
+  const savingRows = COSTS.map(item=>`<tr><td>${item.name}</td><td>£${item.val.toLocaleString()}</td></tr>`).join('');
+  const report = `<!doctype html>
+  <html><head><meta charset="utf-8"><title>EduDesk AI Term Report</title>
+  <style>
+    body{font-family:Arial,sans-serif;color:#101828;margin:40px;line-height:1.45}
+    h1{font-size:28px;margin:0 0 6px} h2{font-size:18px;margin:28px 0 10px}
+    .muted{color:#667085}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0}
+    .metric{border:1px solid #D0D5DD;border-radius:10px;padding:14px}.metric b{display:block;font-size:22px;margin-bottom:4px}
+    table{width:100%;border-collapse:collapse;margin-top:8px}th{text-align:left;color:#667085;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+    th,td{border-bottom:1px solid #EAECF0;padding:10px 8px;font-size:13.5px}.total{font-weight:700;color:#067647}
+    .note{margin-top:26px;padding:14px;border:1px solid #D0D5DD;border-radius:10px;background:#F8FAFC;color:#475467}
+    @media print{body{margin:24mm}.no-print{display:none}}
+  </style></head><body>
+    <h1>EduDesk AI Term Report</h1>
+    <div class="muted">Oakfield Trust · Term to date · Generated ${generated}</div>
+    <div class="grid">
+      <div class="metric"><b>312</b><span>Total issues handled</span></div>
+      <div class="metric"><b>221 · 71%</b><span>Resolved instantly by AI</span></div>
+      <div class="metric"><b>91 · 29%</b><span>Escalated to a human</span></div>
+      <div class="metric"><b>1,240 hrs</b><span>Teacher hours recovered</span></div>
+      <div class="metric"><b>18m</b><span>Median human response</span></div>
+      <div class="metric"><b>94%</b><span>Service target met</span></div>
+      <div class="metric"><b>2.4×</b><span>Subscription return</span></div>
+      <div class="metric"><b>£7.1k</b><span>Net after subscription</span></div>
+    </div>
+    <h2>Savings Summary</h2>
+    <table><thead><tr><th>Source</th><th>Value</th></tr></thead><tbody>${savingRows}<tr><td class="total">Net operational saving</td><td class="total">£${totalSaved.toLocaleString()}</td></tr></tbody></table>
+    <h2>Rooms & Departments</h2>
+    <table><thead><tr><th>Room</th><th>Site</th><th>Tickets</th><th>Hours recovered</th><th>Cost avoided</th><th>Most common issue</th></tr></thead><tbody>${roomRows}</tbody></table>
+    <div class="note"><b>Student data note:</b> This demo report uses illustrative operational figures only. In production, exports would follow the institution's access controls and data-protection policy.</div>
+    <p class="no-print muted">Use your browser print dialog to save this report as PDF.</p>
+    <script>window.addEventListener('load',()=>{setTimeout(()=>window.print(),250)});<\/script>
+  </body></html>`;
+  const win = window.open('', '_blank');
+  if(!win){
+    toast('Popup blocked. Allow popups to export the PDF report.');
+    return;
+  }
+  win.document.open();
+  win.document.write(report);
+  win.document.close();
+  toast('PDF report opened — choose Save as PDF');
+}
+
 // ======================================================================
 //  TOAST
 // ======================================================================
@@ -1431,24 +2107,34 @@ function toast(msg){
 function runPreflight(){
   const grid=document.getElementById('readinessGrid');
   if(!grid) return;
+  const room = currentRoom();
+  const fixIndex = Math.max(0, room.readiness.findIndex(item=>item.state!=='ok'));
   const cards=Array.from(grid.querySelectorAll('.readiness-card'));
   cards.forEach(card=>{
     card.style.transform='translateY(-2px)';
     card.style.opacity='0.72';
   });
-  toast('Running Room 12 pre-class check...');
+  toast('Running ' + selectedTeacherRoom + ' pre-class check...');
   setTimeout(()=>{
+    room.readiness.forEach(item=>{
+      item.state = 'ok';
+      if(item.detail.toLowerCase().includes('degraded') || item.detail.toLowerCase().includes('waiting') || item.detail.toLowerCase().includes('reset') || item.detail.toLowerCase().includes('low output')){
+        item.detail = item.name + ' check completed and ready';
+      }
+    });
     cards.forEach(card=>{
       card.classList.remove('warn');
       card.classList.add('ok');
       card.style.transform='';
       card.style.opacity='';
     });
-    const printer=cards[2];
-    if(printer){
-      printer.innerHTML='<b><span class="ready-dot"></span>Printer</b><span>PaperCut queue cleared and ready</span>';
+    const fixedCard=cards[fixIndex];
+    const fixedItem=room.readiness[fixIndex];
+    if(fixedCard && fixedItem){
+      fixedCard.innerHTML='<b><span class="ready-dot"></span>'+fixedItem.name+'</b><span>'+fixedItem.detail+'</span>';
     }
-    toast('Room 12 is ready for the next lesson');
+    renderSidebar();
+    toast(selectedTeacherRoom + ' is ready for the next lesson');
   },700);
 }
 
@@ -1456,10 +2142,20 @@ function runPreflight(){
 //  INIT
 // ======================================================================
 renderSidebar();
+renderTeacherRoom();
 refreshTeacher();
-renderKB();
-renderWeekly(); renderDonut(); renderSiteBars(); renderCostBars(); renderBreakdown();
-renderEscalations(); renderITTickets(); renderSystems();
+renderWeekly(); renderTimeGained(); renderDonut(); renderSiteBars(); renderCostBars(); renderBreakdown();
+renderEscalations(); renderITTickets(); renderITRoomHistory(); renderSystems();
+setInterval(()=>{
+  if(roomMode!=='auto') return;
+  const before=selectedTeacherRoom;
+  syncAutoRoom();
+  if(before!==selectedTeacherRoom){
+    renderSidebar();
+    renderTeacherRoom();
+    toast('Auto room updated to '+selectedTeacherRoom);
+  }
+}, 60000);
 </script>
 </body>
 </html>
