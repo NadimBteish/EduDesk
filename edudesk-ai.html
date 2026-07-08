@@ -17,28 +17,28 @@
   body{margin:0;font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;color:#1B2230;background:#F7F5F1;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   a{color:inherit;text-decoration:none}
   .phone-stage{min-width:300px;position:relative;display:flex;justify-content:flex-end}
-  .phone-stage:before{content:"";position:absolute;inset:34px -18px -18px 52px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 10%, #fff);border-radius:32px;transform:rotate(1.2deg);z-index:0;pointer-events:none}
-  .phone-shell{position:relative;z-index:2;width:min(100%,440px);min-height:560px;background:#07101F;border:1px solid rgba(255,255,255,0.12);border-radius:28px;box-shadow:0 34px 80px -42px rgba(21,32,58,0.66);overflow:hidden;color:#F7FAFF}
+  .phone-stage:before{content:"";position:absolute;inset:34px -18px -18px 52px;background:color-mix(in oklab, var(--ed-primary,#15203A) 10%, #fff);border-radius:32px;transform:rotate(1.2deg);z-index:0;pointer-events:none}
+  .phone-shell{position:relative;z-index:2;width:min(100%,440px);min-height:560px;background:#15203A;border:1px solid rgba(255,255,255,0.12);border-radius:28px;box-shadow:0 34px 80px -42px rgba(21,32,58,0.66);overflow:hidden;color:#F7FAFF}
   .phone-top{height:68px;display:flex;align-items:center;gap:12px;padding:0 20px;border-bottom:1px solid rgba(255,255,255,0.12)}
   .phone-back{font-size:28px;color:#8FA2C2;line-height:1}
   .phone-brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800}
-  .phone-brand-mark{width:28px;height:28px;border-radius:8px;background:var(--ed-primary,#2B5AD4);display:grid;place-items:center;flex:none}
+  .phone-brand-mark{width:28px;height:28px;border-radius:8px;background:var(--ed-primary,#15203A);display:grid;place-items:center;flex:none}
   .phone-brand-mark span{width:10px;height:10px;border:2px solid #fff;border-radius:3px}
   .phone-live{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:#A6E0C7}
   .phone-live span{width:7px;height:7px;border-radius:999px;background:#2E8B57;box-shadow:0 0 0 5px rgba(46,139,87,0.15)}
   .phone-log{height:400px;padding:22px 18px;display:flex;flex-direction:column;gap:12px;overflow:hidden}
   .phone-bubble{max-width:86%;border-radius:18px;padding:13px 15px;font-size:14.5px;line-height:1.42;box-shadow:0 14px 32px -26px rgba(0,0,0,0.5);animation:phoneIn .28s ease both}
-  .phone-bubble.user{align-self:flex-end;background:var(--ed-primary,#2B5AD4);color:#fff;border-bottom-right-radius:6px}
-  .phone-bubble.ai{align-self:flex-start;background:#14243F;border:1px solid rgba(255,255,255,0.2);color:#F4F8FF;border-bottom-left-radius:6px}
+  .phone-bubble.user{align-self:flex-end;background:var(--ed-primary,#15203A);color:#fff;border-bottom-right-radius:6px}
+  .phone-bubble.ai{align-self:flex-start;background:#15203A;border:1px solid rgba(255,255,255,0.2);color:#F4F8FF;border-bottom-left-radius:6px}
   .phone-meta{align-self:flex-end;margin-top:-7px;color:#8FA2C2;font-size:11.5px}
   .phone-result{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.16);display:flex;align-items:center;gap:8px;color:#BFF3D7;font-size:12.5px;font-weight:800}
   .phone-result.esc{color:#FFD3BF}
   .phone-dot{width:18px;height:18px;border-radius:999px;background:#2E8B57;display:grid;place-items:center;color:#fff;font-size:11px;line-height:1;flex:none}
   .phone-result.esc .phone-dot{background:var(--ed-accent,#E8845A)}
-  .phone-typing{align-self:flex-start;display:flex;gap:4px;padding:13px 15px;border-radius:16px;background:#0E1A33;border:1px solid rgba(255,255,255,0.12);animation:phoneIn .2s ease both}
+  .phone-typing{align-self:flex-start;display:flex;gap:4px;padding:13px 15px;border-radius:16px;background:#15203A;border:1px solid rgba(255,255,255,0.12);animation:phoneIn .2s ease both}
   .phone-typing span{width:6px;height:6px;border-radius:999px;background:#91A0B8;animation:phonePulse 1s ease-in-out infinite}
   .phone-typing span:nth-child(2){animation-delay:.12s}.phone-typing span:nth-child(3){animation-delay:.24s}
-  .phone-compose{margin:0 16px 16px;height:58px;border:1px solid rgba(255,255,255,0.16);border-radius:18px;display:flex;align-items:center;gap:10px;padding:0 9px 0 16px;background:#0B162B;color:#97A5BB;font-size:14px;font-weight:600}
+  .phone-compose{margin:0 16px 16px;height:58px;border:1px solid rgba(255,255,255,0.16);border-radius:18px;display:flex;align-items:center;gap:10px;padding:0 9px 0 16px;background:#15203A;color:#97A5BB;font-size:14px;font-weight:600}
   .phone-compose span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .phone-send{margin-left:auto;width:40px;height:40px;border-radius:999px;background:#F3F6FB;color:#15203A;display:grid;place-items:center;font-size:20px;font-weight:800;flex:none}
   .live-stack{position:absolute;left:-118px;top:78px;display:grid;gap:12px;width:190px;z-index:1;pointer-events:none}
@@ -48,22 +48,22 @@
   .live-card span{display:block;font-size:12px;line-height:1.35;color:#667085}
   @keyframes phoneIn{from{transform:translateY(12px)}to{transform:none}}
   @keyframes phonePulse{0%,80%,100%{opacity:.35;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
-  .systems-band{padding:34px 0 42px;background:#07101F;color:#fff;overflow:hidden}
+  .systems-band{padding:34px 0 42px;background:#15203A;color:#fff;overflow:hidden}
   .systems-inner{display:grid;gap:22px}
   .systems-kicker{max-width:1180px;margin:0 auto;padding:0 32px;font-size:13px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#AEB7C7}
   .systems-marquee{position:relative;overflow:hidden;width:100%;mask-image:linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%)}
   .systems-marquee:before,.systems-marquee:after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
-  .systems-marquee:before{left:0;background:linear-gradient(90deg,#07101F,rgba(7,16,31,0))}
-  .systems-marquee:after{right:0;background:linear-gradient(270deg,#07101F,rgba(7,16,31,0))}
+  .systems-marquee:before{left:0;background:linear-gradient(90deg,#15203A,rgba(21,32,58,0))}
+  .systems-marquee:after{right:0;background:linear-gradient(270deg,#15203A,rgba(21,32,58,0))}
   .systems-track{display:flex;width:max-content;animation:systems-scroll 32s linear infinite;will-change:transform}
   .systems-row{display:flex;align-items:center;gap:18px;padding-right:18px;white-space:nowrap}
   .system-pill{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 22px;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:#F4F7FB;font-size:17px;font-weight:800;letter-spacing:0}
   .system-pill span{width:28px;height:28px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1;flex:none;box-shadow:none}
   .systems-marquee:hover .systems-track{animation-play-state:paused}
   .bubble-interactive{position:relative;cursor:pointer;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background-color .22s ease,filter .22s ease;will-change:transform}
-  .bubble-interactive:hover,.bubble-interactive:focus-visible{transform:translateY(-4px);box-shadow:0 24px 48px -34px rgba(21,32,58,0.6);border-color:color-mix(in oklab,var(--ed-primary,#2B5AD4) 36%, rgba(27,34,48,0.12))!important;outline:none}
+  .bubble-interactive:hover,.bubble-interactive:focus-visible{transform:translateY(-4px);box-shadow:0 24px 48px -34px rgba(21,32,58,0.6);border-color:color-mix(in oklab,var(--ed-primary,#15203A) 36%, rgba(27,34,48,0.12))!important;outline:none}
   .system-pill.bubble-interactive:hover,.system-pill.bubble-interactive:focus-visible{transform:translateY(-2px) scale(1.025);filter:brightness(1.08)}
-  .bubble-interactive.bubble-active{border-color:var(--ed-primary,#2B5AD4)!important;box-shadow:0 0 0 3px color-mix(in oklab,var(--ed-primary,#2B5AD4) 18%, transparent),0 28px 52px -34px rgba(21,32,58,0.62)}
+  .bubble-interactive.bubble-active{border-color:var(--ed-primary,#15203A)!important;box-shadow:0 0 0 3px color-mix(in oklab,var(--ed-primary,#15203A) 18%, transparent),0 28px 52px -34px rgba(21,32,58,0.62)}
   .bubble-interactive.bubble-pop{animation:bubblePop .24s ease}
   .bubble-toast{position:fixed;right:22px;bottom:22px;z-index:90;max-width:min(330px,calc(100vw - 44px));padding:14px 16px;border-radius:16px;background:#15203A;color:#fff;border:1px solid rgba(255,255,255,0.12);box-shadow:0 24px 52px -30px rgba(21,32,58,0.8);font-size:13.5px;font-weight:700;line-height:1.35;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
   .bubble-toast.show{opacity:1;transform:none}
@@ -78,13 +78,13 @@
   .roi-track{height:16px;border-radius:999px;background:#E9EDF3;overflow:hidden}
   .roi-fill{display:block;height:100%;width:0;border-radius:999px;transition:width .35s ease}
   .roi-fill.baseline{background:#8A93A0}
-  .roi-fill.edudesk{background:linear-gradient(90deg,var(--ed-primary,#2B5AD4),#6FA8FF)}
+  .roi-fill.edudesk{background:linear-gradient(90deg,var(--ed-primary,#15203A),#15203A)}
   .roi-graph{margin-top:22px;padding-top:20px;border-top:1px solid rgba(27,34,48,0.08)}
   .roi-graph-title{display:flex;justify-content:space-between;gap:18px;margin-bottom:14px;font-size:13px;font-weight:800;color:#15203A}
-  .roi-graph-title strong{color:var(--ed-primary,#2B5AD4)}
+  .roi-graph-title strong{color:var(--ed-primary,#15203A)}
   .roi-year-bars{height:150px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:end}
   .roi-year{height:100%;display:grid;grid-template-rows:1fr auto auto;align-items:end;gap:7px;text-align:center}
-  .roi-year span{display:block;width:100%;height:12%;min-height:18px;border-radius:12px 12px 6px 6px;background:linear-gradient(180deg,var(--ed-primary,#2B5AD4),#8CB8FF);transition:height .35s ease}
+  .roi-year span{display:block;width:100%;height:12%;min-height:18px;border-radius:12px 12px 6px 6px;background:linear-gradient(180deg,var(--ed-primary,#15203A),#15203A);transition:height .35s ease}
   .roi-year b{font-size:13px;color:#15203A}
   .roi-year em{font-style:normal;font-size:12px;color:#667085}
   .roi-footnotes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:18px}
@@ -99,7 +99,7 @@
 </style>
 </helmet>
 
-<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#2B5AD4"/><rect x="34" y="34" width="32" height="32" rx="9" fill="none" stroke="#fff" stroke-width="6"/></svg></template>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#15203A"/><rect x="34" y="34" width="32" height="32" rx="9" fill="none" stroke="#fff" stroke-width="6"/></svg></template>
 <div style="{{ rootStyle }}">
 
 <!-- ============ HEADER ============ -->
@@ -118,10 +118,10 @@
   </style>
   <div style="max-width:1180px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative">
     <a href="#top" style="display:flex;align-items:center;gap:11px">
-      <span style="width:34px;height:34px;border-radius:9px;background:var(--ed-primary,#2B5AD4);display:flex;align-items:center;justify-content:center;flex:none">
+      <span style="width:34px;height:34px;border-radius:9px;background:var(--ed-primary,#15203A);display:flex;align-items:center;justify-content:center;flex:none">
         <span style="width:13px;height:13px;border:2.5px solid #fff;border-radius:4px;display:block"></span>
       </span>
-      <span style="font-weight:700;font-size:18px;letter-spacing:-0.01em;color:#16203A">EduDesk<span style="color:var(--ed-primary,#2B5AD4)"> AI</span></span>
+      <span style="font-weight:700;font-size:18px;letter-spacing:-0.01em;color:#15203A">EduDesk<span style="color:var(--ed-primary,#15203A)"> AI</span></span>
     </a>
     <nav class="ed-nav-links">
       <a href="#problem" style="font-size:14.5px;font-weight:500;color:#4B5566">The problem</a>
@@ -130,7 +130,7 @@
       <a href="#pricing" style="font-size:14.5px;font-weight:500;color:#4B5566">Pricing</a>
       <a href="#faq" style="font-size:14.5px;font-weight:500;color:#4B5566">FAQ</a>
       <a href="dashboard.html" title="Explore the product with sample data — no sign-up needed" style="font-size:14.5px;font-weight:600;color:#1B2230;display:inline-flex;align-items:center;height:42px;padding:0 18px;border-radius:var(--ed-radius,14px);border:1px solid rgba(27,34,48,0.14)">Preview dashboard</a>
-      <a href="#demo" style="display:inline-flex;align-items:center;height:42px;padding:0 20px;border-radius:var(--ed-radius,14px);background:var(--ed-primary,#2B5AD4);color:#fff;font-weight:600;font-size:14.5px;box-shadow:0 6px 18px -8px var(--ed-primary,#2B5AD4)">Book a demo</a>
+      <a href="#demo" style="display:inline-flex;align-items:center;height:42px;padding:0 20px;border-radius:var(--ed-radius,14px);background:var(--ed-primary,#15203A);color:#fff;font-weight:600;font-size:14.5px;box-shadow:0 6px 18px -8px var(--ed-primary,#15203A)">Book a demo</a>
     </nav>
     <button class="ed-menu-btn" id="edMenuBtn" type="button" aria-label="Open menu" aria-expanded="false">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#1B2230" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -142,7 +142,7 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="dashboard.html">Preview dashboard <span class="ed-mobile-note">— demo data</span></a>
-      <a href="#demo" style="margin-top:12px;border-bottom:none;display:flex;align-items:center;justify-content:center;height:46px;border-radius:var(--ed-radius,14px);background:var(--ed-primary,#2B5AD4);color:#fff;font-weight:700;font-size:15px">Book a demo</a>
+      <a href="#demo" style="margin-top:12px;border-bottom:none;display:flex;align-items:center;justify-content:center;height:46px;border-radius:var(--ed-radius,14px);background:var(--ed-primary,#15203A);color:#fff;font-weight:700;font-size:15px">Book a demo</a>
     </div>
   </div>
 </header>
@@ -151,7 +151,7 @@
 
 <!-- ============ HERO ============ -->
 <section style="position:relative;overflow:hidden">
-  <div style="position:absolute;inset:0;background:radial-gradient(900px 520px at 78% -8%, color-mix(in oklab, var(--ed-primary,#2B5AD4) 9%, #F7F5F1), #F7F5F1 62%);pointer-events:none"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(900px 520px at 78% -8%, color-mix(in oklab, var(--ed-primary,#15203A) 9%, #F7F5F1), #F7F5F1 62%);pointer-events:none"></div>
   <div style="position:relative;max-width:1180px;margin:0 auto;padding:78px 32px 64px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center">
     <div style="min-width:300px">
       <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;background:#fff;border:1px solid rgba(27,34,48,0.09);font-size:13px;font-weight:600;color:#4B5566;margin-bottom:24px">
@@ -161,16 +161,16 @@
       <h1 style="margin:0 0 20px;font-size:clamp(38px,5vw,60px);line-height:1.04;letter-spacing:-0.025em;font-weight:800;color:#15203A;text-wrap:balance">Give teachers back the time they lose to tech.</h1>
       <p style="margin:0 0 34px;font-size:clamp(17px,1.5vw,20px);line-height:1.55;color:#4B5566;max-width:520px">Make every classroom run seamlessly, so educators can focus on what matters most — their students. EduDesk AI resolves everyday tech problems instantly, and cuts your support costs along the way.</p>
       <div style="display:flex;flex-wrap:wrap;gap:13px;align-items:center">
-        <a href="#demo" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:var(--ed-radius,14px);background:var(--ed-primary,#2B5AD4);color:#fff;font-weight:600;font-size:16px;box-shadow:0 12px 28px -12px var(--ed-primary,#2B5AD4)">Book a demo</a>
+        <a href="#demo" style="display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:var(--ed-radius,14px);background:var(--ed-primary,#15203A);color:#fff;font-weight:600;font-size:16px;box-shadow:0 12px 28px -12px var(--ed-primary,#15203A)">Book a demo</a>
         <a href="#how" style="display:inline-flex;align-items:center;gap:9px;height:52px;padding:0 22px;border-radius:var(--ed-radius,14px);background:#fff;border:1px solid rgba(27,34,48,0.12);color:#1B2230;font-weight:600;font-size:16px">
           How it works
           <span style="display:inline-block;width:16px;height:16px;border-top:2px solid #1B2230;border-right:2px solid #1B2230;transform:rotate(45deg) translateX(-2px);opacity:0.6"></span>
         </a>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:18px 26px;margin-top:38px;font-size:13.5px;font-weight:500;color:#6A7382">
-        <span style="display:flex;align-items:center;gap:8px"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> GDPR-ready</span>
-        <span style="display:flex;align-items:center;gap:8px"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> UK &amp; EU data residency</span>
-        <span style="display:flex;align-items:center;gap:8px"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Safeguarding-aware</span>
+        <span style="display:flex;align-items:center;gap:8px"><span style="color:var(--ed-primary,#15203A);font-weight:800">✓</span> GDPR-ready</span>
+        <span style="display:flex;align-items:center;gap:8px"><span style="color:var(--ed-primary,#15203A);font-weight:800">✓</span> UK &amp; EU data residency</span>
+        <span style="display:flex;align-items:center;gap:8px"><span style="color:var(--ed-primary,#15203A);font-weight:800">✓</span> Safeguarding-aware</span>
       </div>
     </div>
 
@@ -215,31 +215,31 @@
       <div class="systems-track">
         <div class="systems-row">
           <div class="system-pill"><span style="background:#1E8E3E">GC</span>Google Classroom</div>
-          <div class="system-pill"><span style="background:#5059C9">T</span>Microsoft Teams</div>
+          <div class="system-pill"><span style="background:#15203A">T</span>Microsoft Teams</div>
           <div class="system-pill"><span style="background:#E13223">C</span>Canvas</div>
           <div class="system-pill"><span style="background:#F7861F">M</span>Moodle</div>
           <div class="system-pill"><span style="background:#2E333B">Bb</span>Blackboard</div>
-          <div class="system-pill"><span style="background:#0067B1">S</span>SIMS</div>
+          <div class="system-pill"><span style="background:#15203A">S</span>SIMS</div>
           <div class="system-pill"><span style="background:#16A89B">A</span>Arbor</div>
           <div class="system-pill"><span style="background:#E4002B">B</span>Bromcom</div>
           <div class="system-pill"><span style="background:#7AB800">PC</span>PaperCut</div>
-          <div class="system-pill"><span style="background:#1B3A8F">E</span>Epson projectors</div>
-          <div class="system-pill"><span style="background:#0078D4">In</span>Microsoft Intune</div>
-          <div class="system-pill"><span style="background:#2FB3E6">J</span>Jamf School</div>
+          <div class="system-pill"><span style="background:#15203A">E</span>Epson projectors</div>
+          <div class="system-pill"><span style="background:#15203A">In</span>Microsoft Intune</div>
+          <div class="system-pill"><span style="background:#15203A">J</span>Jamf School</div>
         </div>
         <div class="systems-row" aria-hidden="true">
           <div class="system-pill"><span style="background:#1E8E3E">GC</span>Google Classroom</div>
-          <div class="system-pill"><span style="background:#5059C9">T</span>Microsoft Teams</div>
+          <div class="system-pill"><span style="background:#15203A">T</span>Microsoft Teams</div>
           <div class="system-pill"><span style="background:#E13223">C</span>Canvas</div>
           <div class="system-pill"><span style="background:#F7861F">M</span>Moodle</div>
           <div class="system-pill"><span style="background:#2E333B">Bb</span>Blackboard</div>
-          <div class="system-pill"><span style="background:#0067B1">S</span>SIMS</div>
+          <div class="system-pill"><span style="background:#15203A">S</span>SIMS</div>
           <div class="system-pill"><span style="background:#16A89B">A</span>Arbor</div>
           <div class="system-pill"><span style="background:#E4002B">B</span>Bromcom</div>
           <div class="system-pill"><span style="background:#7AB800">PC</span>PaperCut</div>
-          <div class="system-pill"><span style="background:#1B3A8F">E</span>Epson projectors</div>
-          <div class="system-pill"><span style="background:#0078D4">In</span>Microsoft Intune</div>
-          <div class="system-pill"><span style="background:#2FB3E6">J</span>Jamf School</div>
+          <div class="system-pill"><span style="background:#15203A">E</span>Epson projectors</div>
+          <div class="system-pill"><span style="background:#15203A">In</span>Microsoft Intune</div>
+          <div class="system-pill"><span style="background:#15203A">J</span>Jamf School</div>
         </div>
       </div>
     </div>
@@ -321,8 +321,8 @@
     </div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:22px">
       <div style="display:flex;gap:18px;background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px">
-        <span style="flex:none;width:48px;height:48px;border-radius:13px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 11%, #fff);display:flex;align-items:center;justify-content:center">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ed-primary,#2B5AD4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span style="flex:none;width:48px;height:48px;border-radius:13px;background:color-mix(in oklab, var(--ed-primary,#15203A) 11%, #fff);display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ed-primary,#15203A)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         </span>
         <div>
           <h3 style="margin:0 0 8px;font-size:19px;font-weight:700;color:#1B2230">Predictable annual cost</h3>
@@ -330,8 +330,8 @@
         </div>
       </div>
       <div style="display:flex;gap:18px;background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px">
-        <span style="flex:none;width:48px;height:48px;border-radius:13px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 11%, #fff);display:flex;align-items:center;justify-content:center">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ed-primary,#2B5AD4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <span style="flex:none;width:48px;height:48px;border-radius:13px;background:color-mix(in oklab, var(--ed-primary,#15203A) 11%, #fff);display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ed-primary,#15203A)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
         </span>
         <div>
           <h3 style="margin:0 0 8px;font-size:19px;font-weight:700;color:#1B2230">Frees your IT team</h3>
@@ -339,8 +339,8 @@
         </div>
       </div>
       <div style="display:flex;gap:18px;background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px">
-        <span style="flex:none;width:48px;height:48px;border-radius:13px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 11%, #fff);display:flex;align-items:center;justify-content:center">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ed-primary,#2B5AD4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="9" r="2.4"/><circle cx="9" cy="18" r="2.4"/><path d="M8 7l8 1.5M7.6 16l1.8-7"/></svg>
+        <span style="flex:none;width:48px;height:48px;border-radius:13px;background:color-mix(in oklab, var(--ed-primary,#15203A) 11%, #fff);display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ed-primary,#15203A)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="9" r="2.4"/><circle cx="9" cy="18" r="2.4"/><path d="M8 7l8 1.5M7.6 16l1.8-7"/></svg>
         </span>
         <div>
           <h3 style="margin:0 0 8px;font-size:19px;font-weight:700;color:#1B2230">Learns your institution</h3>
@@ -348,8 +348,8 @@
         </div>
       </div>
       <div style="display:flex;gap:18px;background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px">
-        <span style="flex:none;width:48px;height:48px;border-radius:13px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 11%, #fff);display:flex;align-items:center;justify-content:center">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ed-primary,#2B5AD4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6l-7-3z"/></svg>
+        <span style="flex:none;width:48px;height:48px;border-radius:13px;background:color-mix(in oklab, var(--ed-primary,#15203A) 11%, #fff);display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ed-primary,#15203A)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6l-7-3z"/></svg>
         </span>
         <div>
           <h3 style="margin:0 0 8px;font-size:19px;font-weight:700;color:#1B2230">Serious about student data</h3>
@@ -361,7 +361,7 @@
 </section>
 
 <!-- ============ OUTCOMES ============ -->
-<section data-reveal style="padding:64px 32px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 7%, #F7F5F1);scroll-margin-top:64px">
+<section data-reveal style="padding:64px 32px;background:color-mix(in oklab, var(--ed-primary,#15203A) 7%, #F7F5F1);scroll-margin-top:64px">
   <div style="max-width:1180px;margin:0 auto">
     <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:38px">
       <h2 style="margin:0;font-size:clamp(26px,3vw,38px);line-height:1.12;letter-spacing:-0.02em;font-weight:800;color:#15203A;max-width:560px;text-wrap:balance">The value lands where it counts — time, cost and calm.</h2>
@@ -369,19 +369,19 @@
     </div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
       <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px 24px">
-        <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#2B5AD4);line-height:1">3 hrs</div>
+        <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#15203A);line-height:1">3 hrs</div>
         <div style="margin-top:10px;font-size:15px;line-height:1.5;color:#56606E">recovered per teacher, every week</div>
       </div>
       <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px 24px">
-        <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#2B5AD4);line-height:1">70%</div>
+        <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#15203A);line-height:1">70%</div>
         <div style="margin-top:10px;font-size:15px;line-height:1.5;color:#56606E">of issues resolved instantly, no human needed</div>
       </div>
       <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px 24px">
-        <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#2B5AD4);line-height:1">40%</div>
+        <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#15203A);line-height:1">40%</div>
         <div style="margin-top:10px;font-size:15px;line-height:1.5;color:#56606E">lower operational support cost</div>
       </div>
       <div style="background:#fff;border:1px solid rgba(27,34,48,0.08);border-radius:18px;padding:28px 24px">
-        <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#2B5AD4);line-height:1">1</div>
+        <div style="font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-0.03em;color:var(--ed-primary,#15203A);line-height:1">1</div>
         <div style="margin-top:10px;font-size:15px;line-height:1.5;color:#56606E">predictable annual IT budget line</div>
       </div>
     </div>
@@ -428,7 +428,7 @@
 </section>
 
 <!-- ============ PRICING ============ -->
-<section id="pricing" data-reveal style="padding:74px 32px;background:color-mix(in oklab, var(--ed-primary,#2B5AD4) 6%, #F7F5F1);scroll-margin-top:64px">
+<section id="pricing" data-reveal style="padding:74px 32px;background:color-mix(in oklab, var(--ed-primary,#15203A) 6%, #F7F5F1);scroll-margin-top:64px">
   <div style="max-width:1180px;margin:0 auto">
     <div style="text-align:center;max-width:640px;margin:0 auto 46px">
       <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ed-accent,#E8845A);margin-bottom:14px">Pricing</div>
@@ -452,15 +452,15 @@
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-top:22px;border-top:1px solid rgba(27,34,48,0.08)">
         <div>
-          <div id="roiHours" style="font-size:28px;font-weight:800;color:#2B5AD4;letter-spacing:-0.02em">—</div>
+          <div id="roiHours" style="font-size:28px;font-weight:800;color:#15203A;letter-spacing:-0.02em">—</div>
           <div style="font-size:13px;color:#56606E;margin-top:4px">teaching hours recovered / year</div>
         </div>
         <div>
-          <div id="roiSaving" style="font-size:28px;font-weight:800;color:#2B5AD4;letter-spacing:-0.02em">—</div>
+          <div id="roiSaving" style="font-size:28px;font-weight:800;color:#15203A;letter-spacing:-0.02em">—</div>
           <div style="font-size:13px;color:#56606E;margin-top:4px">estimated annual saving vs. traditional IT support</div>
         </div>
         <div>
-          <div id="roiPlan" style="font-size:28px;font-weight:800;color:#2B5AD4;letter-spacing:-0.02em">—</div>
+          <div id="roiPlan" style="font-size:28px;font-weight:800;color:#15203A;letter-spacing:-0.02em">—</div>
           <div style="font-size:13px;color:#56606E;margin-top:4px">suggested plan</div>
         </div>
       </div>
@@ -507,9 +507,9 @@
         <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px"><span style="font-size:40px;font-weight:800;letter-spacing:-0.03em;color:#15203A">£2,500</span><span style="font-size:15px;color:#8A93A0">/ year</span></div>
         <p style="margin:0 0 22px;font-size:13px;color:#9AA2AE;font-style:italic">Illustrative</p>
         <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:26px">
-          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Instant AI resolution, all staff</span>
-          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Remote human escalation</span>
-          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Setup &amp; systems mapping</span>
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#15203A);font-weight:800">✓</span> Instant AI resolution, all staff</span>
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#15203A);font-weight:800">✓</span> Remote human escalation</span>
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#15203A);font-weight:800">✓</span> Setup &amp; systems mapping</span>
         </div>
         <a href="#demo" style="margin-top:auto;display:flex;align-items:center;justify-content:center;height:46px;border-radius:var(--ed-radius,14px);background:#fff;border:1px solid rgba(27,34,48,0.16);font-weight:600;font-size:15px;color:#1B2230">Book a demo</a>
       </div>
@@ -524,7 +524,7 @@
           <span style="display:flex;gap:10px;font-size:14.5px;color:#CDD5E2"><span style="color:var(--ed-accent,#E8845A);font-weight:800">✓</span> Multi-site dashboard &amp; reporting</span>
           <span style="display:flex;gap:10px;font-size:14.5px;color:#CDD5E2"><span style="color:var(--ed-accent,#E8845A);font-weight:800">✓</span> Priority escalation &amp; SLAs</span>
         </div>
-        <a href="#demo" style="margin-top:auto;display:flex;align-items:center;justify-content:center;height:46px;border-radius:var(--ed-radius,14px);background:var(--ed-primary,#2B5AD4);color:#fff;font-weight:600;font-size:15px">Book a demo</a>
+        <a href="#demo" style="margin-top:auto;display:flex;align-items:center;justify-content:center;height:46px;border-radius:var(--ed-radius,14px);background:var(--ed-primary,#15203A);color:#fff;font-weight:600;font-size:15px">Book a demo</a>
       </div>
       <div style="display:flex;flex-direction:column;background:#fff;border:1px solid rgba(27,34,48,0.1);border-radius:20px;padding:32px 28px">
         <h3 style="margin:0 0 6px;font-size:18px;font-weight:700;color:#1B2230">University / College</h3>
@@ -532,9 +532,9 @@
         <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px"><span style="font-size:40px;font-weight:800;letter-spacing:-0.03em;color:#15203A">Custom</span></div>
         <p style="margin:0 0 22px;font-size:13px;color:#9AA2AE;font-style:italic">Tailored quote</p>
         <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:26px">
-          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Everything in Trust / District</span>
-          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Department-level configuration</span>
-          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#2B5AD4);font-weight:800">✓</span> Dedicated account team</span>
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#15203A);font-weight:800">✓</span> Everything in Trust / District</span>
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#15203A);font-weight:800">✓</span> Department-level configuration</span>
+          <span style="display:flex;gap:10px;font-size:14.5px;color:#56606E"><span style="color:var(--ed-primary,#15203A);font-weight:800">✓</span> Dedicated account team</span>
         </div>
         <a href="#demo" style="margin-top:auto;display:flex;align-items:center;justify-content:center;height:46px;border-radius:var(--ed-radius,14px);background:#fff;border:1px solid rgba(27,34,48,0.16);font-weight:600;font-size:15px;color:#1B2230">Talk to us</a>
       </div>
@@ -590,13 +590,13 @@
   <style>
     .demo-label{display:block;font-size:12.5px;font-weight:700;color:#1B2230;margin-bottom:6px}
     .demo-input{width:100%;height:46px;border-radius:12px;border:1px solid rgba(27,34,48,0.16);padding:0 14px;font:600 14.5px 'Hanken Grotesk',system-ui;color:#1B2230;outline:none;background:#F7F5F1}
-    .demo-input:focus{border-color:var(--ed-primary,#2B5AD4);background:#fff}
+    .demo-input:focus{border-color:var(--ed-primary,#15203A);background:#fff}
     textarea.demo-input{height:auto;resize:vertical;padding:12px 14px;font-family:'Hanken Grotesk',system-ui}
   </style>
   <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.05fr 0.95fr;gap:26px;align-items:stretch">
 
     <!-- pitch + timeline + pilot offer -->
-    <div style="background:var(--ed-primary,#2B5AD4);border-radius:26px;padding:clamp(34px,4vw,48px);position:relative;overflow:hidden;color:#fff;display:flex;flex-direction:column">
+    <div style="background:var(--ed-primary,#15203A);border-radius:26px;padding:clamp(34px,4vw,48px);position:relative;overflow:hidden;color:#fff;display:flex;flex-direction:column">
       <div style="position:absolute;inset:0;background:radial-gradient(600px 360px at 88% -20%, rgba(255,255,255,0.16), transparent 70%);pointer-events:none"></div>
       <div style="position:relative">
         <h2 style="margin:0 0 14px;font-size:clamp(27px,3vw,36px);line-height:1.1;letter-spacing:-0.025em;font-weight:800;color:#fff;text-wrap:balance">See EduDesk AI handle your school's real issues.</h2>
@@ -681,7 +681,7 @@
           <label class="demo-label" for="demoTime">Preferred demo time</label>
           <input class="demo-input" id="demoTime" name="preferredTime" type="text" placeholder="e.g. Tuesday afternoons">
         </div>
-        <button type="submit" style="width:100%;height:50px;border-radius:12px;background:var(--ed-primary,#2B5AD4);color:#fff;font-weight:700;font-size:15.5px;box-shadow:0 12px 26px -14px var(--ed-primary,#2B5AD4)">Book a demo</button>
+        <button type="submit" style="width:100%;height:50px;border-radius:12px;background:var(--ed-primary,#15203A);color:#fff;font-weight:700;font-size:15.5px;box-shadow:0 12px 26px -14px var(--ed-primary,#15203A)">Book a demo</button>
         <p style="margin:14px 0 0;font-size:12px;color:#9AA2AE;text-align:center;font-style:italic">Demo booking only — no data leaves this page.</p>
       </form>
       <div id="demoFormSuccess" style="display:none;flex:1;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 10px">
@@ -699,8 +699,8 @@
 <footer style="padding:44px 32px;border-top:1px solid rgba(27,34,48,0.08)">
   <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px">
     <div style="display:flex;align-items:center;gap:11px">
-      <span style="width:30px;height:30px;border-radius:8px;background:var(--ed-primary,#2B5AD4);display:flex;align-items:center;justify-content:center;flex:none"><span style="width:11px;height:11px;border:2.5px solid #fff;border-radius:3.5px"></span></span>
-      <span style="font-weight:700;font-size:16px;color:#16203A">EduDesk<span style="color:var(--ed-primary,#2B5AD4)"> AI</span></span>
+      <span style="width:30px;height:30px;border-radius:8px;background:var(--ed-primary,#15203A);display:flex;align-items:center;justify-content:center;flex:none"><span style="width:11px;height:11px;border:2.5px solid #fff;border-radius:3.5px"></span></span>
+      <span style="font-weight:700;font-size:16px;color:#15203A">EduDesk<span style="color:var(--ed-primary,#15203A)"> AI</span></span>
     </div>
     <p style="margin:0;font-size:14px;color:#6A7382;max-width:420px;text-align:right">Make every classroom run seamlessly, so educators can focus on what matters most — their students.</p>
   </div>
@@ -709,10 +709,10 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900},&quot;primaryColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#2B5AD4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#2B5AD4&quot;,&quot;#1F6F5C&quot;,&quot;#0E7490&quot;,&quot;#2E5BB8&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#E8845A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#E8845A&quot;,&quot;#E0A53B&quot;,&quot;#C9776E&quot;,&quot;#7C6FB0&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;radius&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:14,&quot;min&quot;:0,&quot;max&quot;:24,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Theme&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900},&quot;primaryColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#15203A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#15203A&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#E8845A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#E8845A&quot;,&quot;#E0A53B&quot;,&quot;#C9776E&quot;,&quot;#7C6FB0&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;radius&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:14,&quot;min&quot;:0,&quot;max&quot;:24,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Theme&quot;}}">
 class Component extends DCLogic {
   renderVals() {
-    const p = this.props.primaryColor || '#2B5AD4';
+    const p = this.props.primaryColor || '#15203A';
     const a = this.props.accentColor || '#E8845A';
     const r = (this.props.radius ?? 14);
     return { rootStyle: `--ed-primary:${p};--ed-accent:${a};--ed-radius:${r}px` };

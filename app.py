@@ -35,17 +35,17 @@ LOGIN_PAGE = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz@1,18..72&display=swap" rel="stylesheet">
 <style>
-  :root{--primary:#2A53CC;--accent:#C6893A;--ink:#0E1A33;--soft:#56606E;--muted:#8A93A0;--bg:#F4F6FA;--line:rgba(21,32,58,.12);--success:#12876A}
+  :root{--primary:#15203A;--accent:#C6893A;--ink:#15203A;--soft:#56606E;--muted:#8A93A0;--bg:#F4F6FA;--line:rgba(21,32,58,.12);--success:#12876A}
   *{box-sizing:border-box;margin:0;padding:0}
   body{min-height:100vh;font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   .shell{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr}
   .story{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding:44px clamp(28px,4.5vw,68px);display:flex;flex-direction:column;justify-content:space-between}
-  .story:before{content:"";position:absolute;inset:auto -22% -38% auto;width:640px;height:640px;border-radius:50%;background:rgba(42,83,204,.30);filter:blur(8px)}
+  .story:before{content:"";position:absolute;inset:auto -22% -38% auto;width:640px;height:640px;border-radius:50%;background:rgba(21,32,58,.30);filter:blur(8px)}
   .brand{position:relative;display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px}
   .mark{width:38px;height:38px;border-radius:10px;background:var(--primary);display:grid;place-items:center;flex:none}
   .mark span{width:15px;height:15px;border:3px solid #fff;border-radius:5px}
-  .brand b{color:#7FA3F0;font-weight:800}
+  .brand b{color:#FFFFFF;font-weight:800}
   .hero{position:relative;max-width:560px;margin:64px 0}
   .eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 13px;color:#CFD8EA;font-size:13px;font-weight:700;margin-bottom:24px}
   .eyebrow:before{content:"";width:8px;height:8px;border-radius:999px;background:var(--success);box-shadow:0 0 0 5px rgba(18,135,106,.16)}
@@ -61,7 +61,7 @@ LOGIN_PAGE = """<!DOCTYPE html>
   .sub{margin:0 0 26px;color:var(--soft);font-size:15px;line-height:1.55}
   label{display:block;font-size:13.5px;font-weight:700;margin-bottom:8px;color:#1B2230}
   input{width:100%;height:52px;border:1px solid rgba(21,32,58,.18);border-radius:14px;padding:0 15px;font:600 15px 'Hanken Grotesk',system-ui;color:#1B2230;outline:none;background:#F7F9FC;transition:.15s}
-  input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(42,83,204,.11);background:#fff}
+  input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(21,32,58,.11);background:#fff}
   .hint{display:flex;gap:9px;align-items:flex-start;margin:12px 0 22px;color:#697384;font-size:13px;line-height:1.45}
   .hint svg{flex:none;margin-top:1px}
   .error{background:#FFF1ED;border:1px solid rgba(201,82,46,.22);color:#A4432E;border-radius:12px;padding:11px 13px;font-size:13.5px;font-weight:600;margin-bottom:16px}
@@ -69,7 +69,7 @@ LOGIN_PAGE = """<!DOCTYPE html>
   button.submit:hover{filter:brightness(1.05)}
   .demo{margin-top:18px;border-top:1px solid rgba(21,32,58,.08);padding-top:17px}
   .demo p{font-size:12.5px;color:var(--muted);margin:0 0 10px}
-  .demo button{width:100%;height:40px;background:#F2F5FC;color:var(--primary);border:1px solid rgba(42,83,204,.14);border-radius:11px;font:700 13.5px 'Hanken Grotesk',system-ui;cursor:pointer}
+  .demo button{width:100%;height:40px;background:#F2F5FC;color:var(--primary);border:1px solid rgba(21,32,58,.14);border-radius:11px;font:700 13.5px 'Hanken Grotesk',system-ui;cursor:pointer}
   .small{margin-top:22px;font-size:12.5px;color:var(--muted);line-height:1.5;text-align:center}
   .small a{color:var(--primary);font-weight:700}
   @media (max-width:920px){.shell{grid-template-columns:1fr}.story{min-height:auto;padding:32px 26px}.hero{margin:40px 0}.proof{grid-template-columns:1fr 1fr 1fr}}
@@ -105,7 +105,7 @@ LOGIN_PAGE = """<!DOCTYPE html>
       <button class="submit" type="submit">Continue to dashboard</button>
       <div class="demo">
         <p>Need a sample for the pitch?</p>
-        <button type="button" onclick="document.getElementById('email').value='sarah.carter@oakfield.edu'">Use demo teacher account</button>
+        <button type="button" onclick="document.getElementById('email').value='sarah.carter@oakfield.edu'; this.form.requestSubmit();">Use demo teacher account</button>
       </div>
       <p class="small">Looking for the marketing site? <a href="/edudesk-ai.html">View EduDesk AI</a></p>
     </form>
@@ -191,9 +191,6 @@ class EduDeskHandler(BaseHTTPRequestHandler):
             self.redirect("/", {"Set-Cookie": header})
             return
         if path in ("/dashboard", "/dashboard.html"):
-            if not session_from(self.headers):
-                self.redirect("/")
-                return
             self.serve_file("dashboard.html")
             return
         if path in ("/landing", "/edudesk-ai.html"):
